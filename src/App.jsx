@@ -19,7 +19,9 @@ import WhyChooseUs from './components/WhyChooseUs';
 import BannerCounter from './components/BannerCounter';
 import Hiring from './components/Hiring';
 import MeetOurTeam from './components/MeetOurTeam';
+import Account from './components/Accounts'
 import { FooterTwo } from './Footer';
+import ClientRemarks from './components/ClientRemarks';
 
 
 
@@ -35,6 +37,7 @@ const App = () => {
       <BannerCounter />
         <WhyChooseUs />
         <Services />
+        <ClientRemarks />
         <Routes>
           <Route path="/digitaizing" element={<Digitaizing />} />
         </Routes>
@@ -50,6 +53,7 @@ const App = () => {
         
         <MeetOurTeam />
         <Contact />
+        <Account/>
         <FooterTwo />
       </div>
     </Router>
