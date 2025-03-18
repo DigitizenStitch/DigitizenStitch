@@ -1,220 +1,263 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { FaInstagram, FaFacebookF, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const validate = async (values) => {
   const errors = {};
-
   if (!values.first_name) {
     errors.first_name = 'First Name is required';
   }
-
   if (!values.last_name) {
     errors.last_name = 'Last Name is required';
   }
-
   if (!values.email) {
     errors.email = 'Email is required';
-  } else if (
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-  ) {
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
-
   if (!values.phone_number) {
     errors.phone_number = 'Phone number is required';
   }
-
-  // Async validation for the username
   if (values.username) {
-    await sleep(2000); // Simulate a server call
+    await sleep(2000);
     if (['admin', 'null', 'god'].includes(values.username)) {
       errors.username = 'This username is not allowed';
     }
   }
-
   return errors;
 };
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-gray-200 py-20">
-      
-      <div className="flex flex-col lg:flex-row items-center justify-between px-4 lg:px-12">
-        
-        {/* Left Section */}
-        <div className="flex-1 lg:mr-8">
-          <p className="text-2xl font-bold text-gray-900 md:text-4xl">Get in touch</p>
-          <p className="mt-4 text-lg text-gray-600">
-            Our friendly team would love to hear from you.
-          </p>
-          <Formik
-            initialValues={{
-              first_name: '',
-              last_name: '',
-              email: '',
-              phone_number: '',
-              message: '',
-              username: '',
-            }}
-            validate={validate}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-            }) => (
-              <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-                <div className="grid w-full gap-y-4 md:gap-x-4 lg:grid-cols-2">
-                  <div className="grid w-full items-center gap-1.5">
-                    <label
-                      className="text-sm font-medium leading-none text-gray-700"
-                      htmlFor="first_name"
-                    >
-                      First Name
-                    </label>
-                    <input
-                      className="flex h-12 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
-                      type="text"
-                      id="first_name"
-                      name="first_name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.first_name}
-                      placeholder="First Name"
-                    />
-                    {errors.first_name && touched.first_name && (
-                      <div className="text-red-600 text-sm">{errors.first_name}</div>
-                    )}
-                  </div>
-                  <div className="grid w-full items-center gap-1.5">
-                    <label
-                      className="text-sm font-medium leading-none text-gray-700"
-                      htmlFor="last_name"
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      className="flex h-12 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
-                      type="text"
-                      id="last_name"
-                      name="last_name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.last_name}
-                      placeholder="Last Name"
-                    />
-                    {errors.last_name && touched.last_name && (
-                      <div className="text-red-600 text-sm">{errors.last_name}</div>
-                    )}
-                  </div>
-                </div>
-                <div className="grid w-full items-center gap-1.5">
-                  <label
-                    className="text-sm font-medium leading-none text-gray-700"
-                    htmlFor="email"
-                  >
-                    Email
-                  </label>
-                  <input
-                    className="flex h-12 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
-                    type="text"
-                    id="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    placeholder="Email"
-                  />
-                  {errors.email && touched.email && (
-                    <div className="text-red-600 text-sm">{errors.email}</div>
-                  )}
-                </div>
-                <div className="grid w-full items-center gap-1.5">
-                  <label
-                    className="text-sm font-medium leading-none text-gray-700"
-                    htmlFor="phone_number"
-                  >
-                    Phone number
-                  </label>
-                  <input
-                    className="flex h-12 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
-                    type="tel"
-                    id="phone_number"
-                    name="phone_number"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.phone_number}
-                    placeholder="Phone number"
-                  />
-                  {errors.phone_number && touched.phone_number && (
-                    <div className="text-red-600 text-sm">{errors.phone_number}</div>
-                  )}
-                </div>
-                <div className="grid w-full items-center gap-1.5">
-                  <label
-                    className="text-sm font-medium leading-none text-gray-700"
-                    htmlFor="message"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    className="flex h-32 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1"
-                    id="message"
-                    name="message"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.message}
-                    placeholder="Leave us a message"
-                    cols={3}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-md bg-blue-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  disabled={isSubmitting}
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
-          </Formik>
-        </div>
+    <section id="contact" className="bg-gray-50 py-20">
+      {/* Map Section */}
+      <div className="w-full">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-lg shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.1914696887634!2d-121.92944502393443!3d37.38530397282401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fcbdfe0a2f967%3A0x8f7541ae937457c!2s2570%20N%20First%20St%20%232nd%2C%20San%20Jose%2C%20CA%2095131%2C%20%C3%89tats-Unis!5e0!3m2!1sfr!2s!4v1741816317881!5m2!1sfr!2s"
+            width="600"
+            height="450"
+            className="w-full h-96 border-0"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
 
-        {/* Right Section with Image, "Our Team" text, and Iframe */}
-        <div className="relative flex-1 lg:ml-8 flex flex-col justify-center items-center">
-          <div className="animate-bounce border-collapse border-b-8 border-t-8 border-black absolute -top-12 lg:-top-16 bg-blue-900 text-white text-lg font-bold h-24 w-24 rounded-full flex justify-center items-center shadow-lg">
-            Contact us
           </div>
-          <img
-            alt="Contact us"
-            className="w-full lg:w-3/4 rounded-lg object-cover border-b-8 border-collapse border-blue-800"
-            src="https://th.bing.com/th/id/OIP.aFgtAh1Z50QtwZ6qKk9VQgHaE9?w=589&h=394&rs=1&pid=ImgDetMain"
-          />
-         
         </div>
       </div>
-      <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.044629056729!2d67.06455567521544!3d24.964596177861406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb340959f743d53%3A0x187dcbe4eb81b078!2sNagan%20Chowrangi%20Flyover%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1725435706830!5m2!1sen!2s"
-  style={{ border: 0, marginTop: '20px', padding:"10px" , width:"100%" }} 
-   width="100%"
-  height="450"
-  loading="lazy" 
-  referrerPolicy="no-referrer-when-downgrade"
-  className="w-full lg:w-3/4 mt-8 justifyItems:center alignItems:center rounded-lg border-b-8 border-collapse border-blue-800"
-/>
 
+      {/* Contact Form and Details */}
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-12 mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-12">
+        {/* Left Section - Contact Form */}
+        <div className="flex-1 w-full">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Get in Touch</h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Our friendly team would love to hear from you. Fill out the form below and we’ll get back to you soon.
+          </p>
+
+          <Formik
+              initialValues={{
+                first_name: '',
+                last_name: '',
+                email: '',
+                phone_number: '',
+                message: '',
+                username: '',
+              }}
+              validate={validate}
+              onSubmit={(values, { setSubmitting }) => {
+                setSubmitting(true);
+              }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+              }) => (
+                <form
+                  name="contact" // Required for Netlify
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field" // Spam protection
+                  className="mt-8 space-y-4"
+                  onSubmit={handleSubmit}
+                >
+                  {/* Netlify hidden field */}
+                  <input type="hidden" name="form-name" value="contact" />
+
+                  {/* Honeypot field (hidden for bots) */}
+                  <p hidden>
+                    <label>
+                      Don’t fill this out: <input name="bot-field" />
+                    </label>
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700">First Name</label>
+                      <input
+                        type="text"
+                        name="first_name"
+                        placeholder="First Name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.first_name}
+                        className="w-full h-12 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-700">Last Name</label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        placeholder="Last Name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.last_name}
+                        className="w-full h-12 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      className="w-full h-12 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone_number"
+                      placeholder="Phone Number"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.phone_number}
+                      className="w-full h-12 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Message</label>
+                    <textarea
+                      name="message"
+                      placeholder="Your message..."
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.message}
+                      className="w-full h-32 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-900 text-white py-3 rounded-md text-lg font-semibold hover:bg-black transition"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              )}
+          </Formik>
+
+        </div>
+
+        {/* Right Section - Contact Details */}
+        <div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+
+          <div className="flex items-center gap-4 mb-6">
+            <Phone className="text-blue-900 w-8 h-8" />
+            <div>
+              <p className="text-gray-800 font-medium">Phone Number</p>
+              <p className="text-gray-600"><a href="">+923701081851</a></p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 mb-6">
+            <Mail className="text-blue-900 w-8 h-8" />
+            <div>
+              <p className="text-gray-800 font-medium">Email</p>
+              <p className="text-gray-600"><a href="">info@digitizenstitch.com</a></p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 mb-6">
+            <MapPin className="text-blue-900 w-8 h-8" />
+            <div>
+           
+              <p className="text-gray-800 font-medium">Address</p>
+              <p className="text-gray-600">
+                <a href="https://www.google.com/maps/place/2570+N+First+St+%232nd,+San+Jose,+CA+95131/@37.3853,-121.924832,16z/data=!4m6!3m5!1s0x808fcbdfe0a2f967:0x8f7541ae937457c!8m2!3d37.3852998!4d-121.9248316!16s%2Fg%2F11qpw204g3?hl=fr&entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D">
+              2570 North First Street, 2nd Floor,
+                <br />
+                San Jose, CA
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="mt-6 text-center">
+              <div className="flex items-center justify-center gap-4">
+                <hr className="w-1/4 border-gray-300" />
+                <p className="text-gray-600 font-medium">OR</p>
+                <hr className="w-1/4 border-gray-300" />
+              </div>
+              <p className="mt-4 text-gray-800 font-medium">Follow us on:</p>
+              <div className="flex items-center gap-4 justify-center mt-2">
+              <a
+                href="https://www.instagram.com/digitizenstitch_?igsh=MTlzN3J5N2xnczhnbA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <FaInstagram className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/19WE5X4obH/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <FaFacebookF className="w-6 h-6" />
+              </a>
+              <a
+                href="https://wa.me/message/ERBPA4SEF47CE1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                <FaWhatsapp className="w-6 h-6" />
+              </a>
+            </div>
+
+            </div>
+
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import LOGO from '../assets/stitches.png';
+import LOGO from '../assets/logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,106 +11,76 @@ const Navbar = () => {
     if (isMenuOpen) setIsDropdownOpen(false);
   };
 
+  // Example function to determine active link based on scroll position
+  // In a real implementation, you'd add scroll event listeners and update state accordingly
+  const activeLink = ""; // hardcoded for demonstration
+
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   return (
     <nav className="bg-blue-950 text-white p-6 h-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between">
       <div className="container mx-auto flex justify-between items-center w-full">
         {/* Logo */}
-        <div className="flex items-center">
-          <a href="#home">
-            <img
-              src={LOGO}
-              alt="Logo"
-              className="w-20 h-20 object-contain rounded-2xl" 
-            />
-          </a>
-        </div>
+        <div className="flex items-center justify-center md:justify-start p-4">
+      <a href="#home" className="flex items-center">
+      <img
+        src={LOGO}
+        alt="Logo"
+        className=" w-32 md:w-40 object-contain p-2"
+      />
 
-        {/* Menu Items (centered for larger screens) */}
-        <ul className="hidden md:flex md:space-x-8 items-center justify-center flex-grow text-xl font-bold">
-          <li className="hover:text-gray-300 text-xl font-bold">
-            <a href="#home">Home</a>
-          </li>
-          <li className="hover:text-gray-300">
-            <a href="#about">About</a>
-          </li>
-          <li className="relative hover:text-gray-300">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="hover:text-gray-300 focus:outline-none"
-            >
-              Services
-            </button>
-            {isDropdownOpen && (
-              <ul className="absolute left-0 mt-2 p-2 bg-gray-700 rounded shadow-lg">
-                <li className="hover:text-gray-300 py-1">
-                  <a href="#digitizing">Digitizing</a>
-                </li>
-                <li className="hover:text-gray-300 py-1">
-                  <a href="#vector">Vector</a>
-                </li>
-                <li className="hover:text-gray-300 py-1">
-                  <a href="#pushes">Pushes</a>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li className="hover:text-gray-300">
-            <a href="#portfolio">Portfolio</a>
-          </li>
-          <li className="hover:text-gray-300">
-            <a href="#contact">Contact</a>
-          </li>
+
+      </a>
+    </div>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex md:space-x-8 items-center justify-center flex-grow text-lg">
+          {navItems.map((item) => (
+            <li key={item.href} className="relative group">
+              <a
+                href={item.href}
+                className={`transition-colors duration-200 hover:text-gray-300 ${
+                  activeLink === item.href ? "text-gray-300" : ""
+                }`}
+              >
+                {item.label}
+              </a>
+              {/* Underline */}
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300 ${
+                  activeLink === item.href ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              ></span>
+            </li>
+          ))}
         </ul>
 
-        {/* Hamburger Menu (for smaller screens) */}
+        {/* Hamburger Menu (Mobile) */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
+            className="text-white focus:outline-none transition-transform duration-200 transform hover:scale-105"
           >
             {isMenuOpen ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
           </button>
         </div>
       </div>
 
-      {/* Dropdown Menu Items (for smaller screens) */}
+      {/* Mobile Dropdown Menu */}
       <ul
-        className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} 
-        w-full bg-blue-900 p-4 absolute top-20 left-0`}
+        className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} w-full bg-blue-900 p-4 absolute top-20 left-0`}
       >
-        <li className="hover:text-gray-300 py-2">
-          <a href="#home">Home</a>
-        </li>
-        <li className="hover:text-gray-300 py-2">
-          <a href="#about">About</a>
-        </li>
-        <li className="relative hover:text-gray-300 py-2">
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="hover:text-gray-300 focus:outline-none"
-          >
-            Services
-          </button>
-          {isDropdownOpen && (
-            <ul className="mt-2 p-2 bg-gray-700 rounded shadow-lg">
-              <li className="hover:text-gray-300 py-1">
-                <a href="#digitizing">Digitizing</a>
-              </li>
-              <li className="hover:text-gray-300 py-1">
-                <a href="#vector">Vector</a>
-              </li>
-              <li className="hover:text-gray-300 py-1">
-                <a href="#pushes">Pushes</a>
-              </li>
-            </ul>
-          )}
-        </li>
-        <li className="hover:text-gray-300 py-2">
-          <a href="#portfolio">Portfolio</a>
-        </li>
-        <li className="hover:text-gray-300 py-2">
-          <a href="#contact">Contact</a>
-        </li>
+        {navItems.map((item) => (
+          <li key={item.href} className="py-2 hover:text-gray-300 transition-colors duration-200">
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

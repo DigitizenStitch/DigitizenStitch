@@ -1,16 +1,14 @@
-// App.js
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutUs from './components/AboutUs';
 import Services from './components/Services';
 import Contact from './components/Contact';
-import Portfolio from './components/Portfolio'
-
+import Portfolio from './components/Portfolio';
 import PortfolioHeader from './components/PortfolioHeader';
 import Digitaizing from './components/Digitaizing';
 import VectorArt from './components/VectorArt';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Patches from './components/Patches';
 import AnemeDesign from './components/AnemeDesign';
 import SocialLinks from './components/SocialLinks';
@@ -19,11 +17,9 @@ import WhyChooseUs from './components/WhyChooseUs';
 import BannerCounter from './components/BannerCounter';
 import Hiring from './components/Hiring';
 import MeetOurTeam from './components/MeetOurTeam';
-import Account from './components/Accounts'
+import Account from './components/Accounts';
 import { FooterTwo } from './Footer';
 import ClientRemarks from './components/ClientRemarks';
-
-
 
 const App = () => {
   return (
@@ -34,26 +30,27 @@ const App = () => {
         <SocialLinks />
         <VerticalCarousel />
         <AboutUs />
-      <BannerCounter />
+        <BannerCounter />
         <WhyChooseUs />
         <Services />
         <ClientRemarks />
-        <Routes>
-          <Route path="/digitaizing" element={<Digitaizing />} />
-        </Routes>
-      <Hiring />
-      <Portfolio />
+        <Hiring />
+        <Portfolio />
         <PortfolioHeader />
+
+        {/* ✅ Routes */}
         <Routes>
-          <Route path="/digitaizing" element={<Digitaizing />} />
+          {/* 👇 Redirect Home `/` to `/digitizing` */}
+          <Route path="/" element={<Navigate to="/digitizing" />} />
+          <Route path="/digitizing" element={<Digitaizing />} />
           <Route path="/vectorArt" element={<VectorArt />} />
-          <Route path='/patches' element={<Patches />}></Route>
-          <Route path='/AnemeDesign' element={<AnemeDesign />}></Route>
+          <Route path="/patches" element={<Patches />} />
+          <Route path="/AnemeDesign" element={<AnemeDesign />} />
         </Routes>
-        
+
         <MeetOurTeam />
         <Contact />
-        <Account/>
+        <Account />
         <FooterTwo />
       </div>
     </Router>

@@ -1,35 +1,56 @@
-// PortfolioHeader.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const PortfolioHeader = () => {
+  const location = useLocation();
+
   return (
-    <section id="portfolio">
-      <div className="flex justify-center items-center gap-4 flex-wrap py-6">
-        <Link
-          to="/digitaizing"
-          className=" font-bold border-2 border-blue-600 border-separate border-b-8 rounded-fullborder-2 border-transparent rounded-full p-3 transition-all duration-300 ease-in-out hover:border-blue-600 hover:text-blue-600 hover:font-semibold text-lg md:text-xl lg:text-2xl text-gray-800"
+    <section id="portfolio" className="py-6">
+      <div className="flex flex-wrap justify-center items-center gap-4">
+        <NavLink
+          to="/digitizing"
+          className={({ isActive }) =>
+            "w-full sm:w-auto px-6 py-3 font-bold text-base sm:text-lg md:text-xl uppercase transition-colors duration-300 text-center border-b-4 " +
+            ((isActive || location.pathname === "/") 
+              ? "border-blue-600 text-blue-600"
+              : "border-transparent text-gray-800 hover:border-blue-600 hover:text-blue-600")
+          }
         >
-          Digitaizing
-        </Link>
-        <Link
+          Digitizing
+        </NavLink>
+        <NavLink
           to="/vectorArt"
-          className=" font-bold border-2 border-blue-600 border-separate border-b-8 rounded-fullborder-2 border-transparent rounded-full p-3 transition-all duration-300 ease-in-out hover:border-blue-600 hover:text-blue-600 hover:font-semibold text-lg md:text-xl lg:text-2xl text-gray-800"
+          className={({ isActive }) =>
+            "w-full sm:w-auto px-6 py-3 font-bold text-base sm:text-lg md:text-xl uppercase transition-colors duration-300 text-center border-b-4 " +
+            (isActive
+              ? "border-blue-600 text-blue-600"
+              : "border-transparent text-gray-800 hover:border-blue-600 hover:text-blue-600")
+          }
         >
-          VectorArt
-        </Link>
-        <Link
+          Vector Art
+        </NavLink>
+        <NavLink
           to="/patches"
-          className=" font-bold border-2 border-blue-600 border-separate border-b-8 rounded-full  p-3 transition-all duration-300 ease-in-out hover:border-blue-600 hover:text-blue-600 hover:font-semibold text-lg md:text-xl lg:text-2xl text-gray-800"
+          className={({ isActive }) =>
+            "w-full sm:w-auto px-6 py-3 font-bold text-base sm:text-lg md:text-xl uppercase transition-colors duration-300 text-center border-b-4 " +
+            (isActive
+              ? "border-blue-600 text-blue-600"
+              : "border-transparent text-gray-800 hover:border-blue-600 hover:text-blue-600")
+          }
         >
           Patches
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/AnemeDesign"
-          className=" font-bold border-2 border-blue-600 border-separate border-b-8 rounded-full border-transparent  p-3 transition-all duration-300 ease-in-out hover:border-blue-600 hover:text-blue-600 hover:font-semibold text-lg md:text-xl lg:text-2xl text-gray-800"
+          className={({ isActive }) =>
+            "w-full sm:w-auto px-6 py-3 font-bold text-base sm:text-lg md:text-xl uppercase transition-colors duration-300 text-center border-b-4 " +
+            (isActive
+              ? "border-blue-600 text-blue-600"
+              : "border-transparent text-gray-800 hover:border-blue-600 hover:text-blue-600")
+          }
         >
-          AnemeDesign
-        </Link>
+          Aneme Design
+        </NavLink>
       </div>
     </section>
   );

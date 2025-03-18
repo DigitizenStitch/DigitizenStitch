@@ -3,90 +3,77 @@ import React, { useEffect, useState } from 'react';
 const ClientRemarks = () => {
   const testimonials = [
     {
-      quote: "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project.",
-      name: "Michael Johnson",
-      title: "Director of AlphaStream Technologies",
-      image: "https://randomuser.me/api/portraits/men/1.jpg", // Random user image
+      quote:
+        "Working with Stitches transformed our branding. Their creative execution and attention to detail are unmatched.",
+      name: "John Smith",
+      title: "CEO, XYZ Innovations",
+      image: "https://randomuser.me/api/portraits/men/1.jpg",
     },
     {
-      quote: "Working with this Marketing Agency has been an exceptional experience. Their dedication to understanding our needs and delivering results that exceeded our expectations has been truly remarkable.",
-      name: "Sarah Parker",
-      title: "CEO of CreativeMind Studio",
-      image: "https://randomuser.me/api/portraits/women/2.jpg", // Random user image
+      quote:
+        "Their digital precision and vector expertise elevated our product design to new heights.",
+      name: "Mary Johnson",
+      title: "Creative Director, ABC Inc.",
+      image: "https://randomuser.me/api/portraits/women/2.jpg",
     },
     {
-      quote: "The team went above and beyond to ensure our website was top-notch. From innovative strategies to impeccable execution, they have become an invaluable partner in our success.",
-      name: "John Doe",
-      title: "Founder of BrightPath Ventures",
-      image: "https://randomuser.me/api/portraits/men/3.jpg", // Random user image
+      quote:
+        "I was impressed by their swift turnaround and commitment to quality. Highly recommended.",
+      name: "David Lee",
+      title: "Founder, Startup Co.",
+      image: "https://randomuser.me/api/portraits/men/3.jpg",
     },
     {
-      quote: "Their attention to detail and creative approach has truly elevated our brand. We've seen remarkable growth since collaborating with their team!",
-      name: "Emma Williams",
-      title: "Marketing Manager at Innovate Solutions",
-      image: "https://randomuser.me/api/portraits/women/4.jpg", // Random user image
-    },
-    {
-      quote: "Outstanding service, fast delivery, and incredible results. Highly recommend to anyone looking to revamp their website!",
-      name: "James Brown",
-      title: "CEO at TechLeap",
-      image: "https://randomuser.me/api/portraits/men/5.jpg", // Random user image
+      quote:
+        "Their innovative digital solutions gave us a competitive edge in a saturated market.",
+      name: "Linda Kim",
+      title: "Marketing Manager, Global Brands",
+      image: "https://randomuser.me/api/portraits/women/4.jpg",
     },
   ];
 
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSlideIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 3000); // Change the quote every 3 seconds
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 5000); // Change testimonial every 5 seconds
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, [testimonials.length]);
 
   return (
-    <section className="bg-white py-20 overflow-hidden">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900">Client <span className='text-blue-800 font-extrabold'>Satisfaction</span> </h2>
-      </div>
-
-      <div className="relative w-full overflow-hidden">
-        <div
-          className="flex transition-transform ease-linear duration-1000"
-          style={{ transform: `translateX(-${slideIndex * 100 / testimonials.length}%)` }}
-        >
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <div key={index} className="w-1/5 px-4 flex-shrink-0">
-              <div className="bg-black p-6 rounded-lg shadow-lg h-full flex flex-col justify-center items-center text-white">
-                {/* Image */}
+    <section className="bg-white py-20 px-4">
+      <div className="max-w-screen-xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-12 uppercase tracking-wide">
+          CLIENTS <span className="text-blue-700">SATISFACTION</span>
+        </h2>
+        <div className="relative w-full h-auto min-h-[300px] overflow-hidden">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out flex justify-center items-center px-4 ${
+                index === currentIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <div className="bg-gray-100 p-8 rounded-lg shadow-lg flex flex-col items-center text-center max-w-lg">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-16 h-16 rounded-full mb-4 object-cover"
+                  className="w-16 h-16 rounded-full object-cover mb-4"
                 />
-
-                {/* Quote */}
-                <p className="text-lg italic text-white mb-4 text-center">
+                <p className="text-lg italic text-gray-600 mb-6">
                   "{testimonial.quote}"
                 </p>
-
-                {/* Name and Title */}
-                <p className="text-white font-bold">{testimonial.name}</p>
-                <p className="text-gray-400 text-sm">{testimonial.title}</p>
+                <p className="text-xl font-bold text-gray-800 uppercase">
+                  {testimonial.name}
+                </p>
+                <p className="text-sm text-gray-500">{testimonial.title}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      <style>
-        {`
-          .slide-container {
-            display: flex;
-            transition: transform 1s ease-in-out;
-          }
-        `}
-      </style>
     </section>
   );
 };

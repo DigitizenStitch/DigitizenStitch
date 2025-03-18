@@ -4,17 +4,13 @@ const Hiring = () => {
   return (
     <div className="bg-white bg-opacity-50 p-8 rounded-md shadow-md max-w-7xl mx-auto my-8">
       {/* Banner with a Quote */}
-      <div className="  bg-gradient-to-r from-blue-400 to-purple-600 text-white p-8 rounded-lg shadow-lg mb-12 animate-fade-in">
-        <h1 className="animate-pulse text-3xl md:text-4xl font-bold text-center hover:animate-bounce">
-          "Hiring Stitches is the key to unlocking quality and speed in design!"
-        </h1>
-      </div>
 
       {/* Main Heading */}
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-12 text-center animate-slide-up">
-        Benefits Of Hiring <br />
-        <span className="text-blue-700">Stitches</span>
-      </h1>
+        <h1 className="uppercase text-4xl md:text-5xl font-extrabold mb-12 text-center animate-slide-up">
+            Benefits Of Hiring <br />
+            <span className="text-blue-700">Digitize'NStitch</span>
+        </h1>
+
 
       {/* Card Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

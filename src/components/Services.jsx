@@ -1,57 +1,86 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaPencilAlt, FaVectorSquare, FaBell } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 const Services = () => {
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2, // Trigger when 20% of the section is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        } else {
+          setIsInView(false);
+        }
+      });
+    }, observerOptions);
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="services" className="bg-gray-100 py-20">
-      <div className="animate-bounce relative left-[43%] flex justify-center items-center h-16 w-48 text-blue-900 border-separate border-b-8 border-blue-900 text-lg font-bold rounded-full shadow-lg">
-        Service
+    <section
+      id="services"
+      ref={sectionRef}
+      className={`py-20 bg-white transition-opacity duration-1000 ${
+        isInView ? 'opacity-100 animate-slide-in' : 'opacity-0'
+      }`}
+    >
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h2 className="inline-block px-6 py-4 bg-blue-50 text-xl md:text-2xl font-sans rounded-lg tracking-wider text-black uppercase shadow-sm transition-transform duration-500 hover:scale-105">
+          SERVICES
+        </h2>
       </div>
-      <div className="container mx-auto text-center animate-slide-in">
-        <br />
-        <h2 className="text-5xl font-bold text-black">What We Do</h2>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 animate-slide-in">
-          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 hover:bg-black hover:text-white duration-300" style={{ minHeight: '400px' }}>
-            <FaPencilAlt className="text-6xl mx-auto mb-4" />
-            <h3 className="text-2xl font-bold">Digitizing</h3>
-            <p className="mt-4 text-lg">
-              We offer high-quality digitizing services for embroidery and more. Our team uses advanced technology and techniques to ensure that your designs are accurately transformed into high-resolution digital formats, providing exceptional results and clarity.
+      <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8 uppercase">
+          WHAT <span className="text-blue-700">WE</span> DO
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Service 1 */}
+          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 duration-300 min-h-[350px] flex flex-col justify-center">
+            <div className="mb-4">
+              <FaPencilAlt className="text-6xl mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold uppercase mb-4">Digitizing</h3>
+            <p className="text-lg">
+              We provide high-quality digitizing services, ensuring your designs are transformed into high-resolution digital formats with precision.
             </p>
-            <Link
-              href="/digitizing"
-              className="mt-6 block px-4 py-2 bg-white text-black italic rounded text-center hover:bg-blue-500 hover:text-white transition-colors duration-300"
-            >
-              Learn More
-            </Link>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 hover:bg-black hover:text-white duration-300" style={{ minHeight: '400px' }}>
-            <FaVectorSquare className="text-6xl mx-auto mb-4" />
-            <h3 className="text-2xl font-bold">Vector Graphics</h3>
-            <p className="mt-4 text-lg">
-              Professional vector graphics for your design needs. We create scalable and versatile vector designs that are perfect for various applications, from digital media to print. Our expertise ensures that every detail is sharp and precise, enhancing your visual communication.
+          {/* Service 2 */}
+          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 duration-300 min-h-[350px] flex flex-col justify-center">
+            <div className="mb-4">
+              <FaVectorSquare className="text-6xl mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold uppercase mb-4">Vector Graphics</h3>
+            <p className="text-lg">
+              Our expertise in vector graphics delivers scalable, versatile designs that are perfect for digital media and print with outstanding precision.
             </p>
-            <Link
-              to="/digitizing"
-              className="mt-6 block px-4 py-2 bg-white text-black italic rounded text-center hover:bg-blue-500 hover:text-white transition-colors duration-300"
-            >
-              Learn More
-            </Link>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 hover:bg-black hover:text-white duration-300" style={{ minHeight: '400px' }}>
-            <FaBell className="text-6xl mx-auto mb-4" />
-            <h3 className="text-2xl font-bold">Pushes</h3>
-            <p className="mt-4 text-lg">
-              Custom push notifications and more. We design and implement tailored push notification solutions to engage your audience effectively. Our services include creating notifications that are timely, relevant, and aligned with your marketing strategies to maximize impact.
+          {/* Service 3 */}
+          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white p-6 shadow-lg transform transition-transform hover:scale-105 duration-300 min-h-[350px] flex flex-col justify-center">
+            <div className="mb-4">
+              <FaBell className="text-6xl mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold uppercase mb-4">Push Notifications</h3>
+            <p className="text-lg">
+              We craft custom push notification solutions that engage your audience effectively, ensuring timely and relevant communication.
             </p>
-            <Link
-              to="#"
-              className="mt-6 block px-4 py-2 bg-white text-black italic rounded text-center hover:bg-blue-500 hover:text-white transition-colors duration-300"
-            >
-              Learn More
-            </Link>
           </div>
         </div>
       </div>
@@ -66,7 +95,6 @@ const Services = () => {
             opacity: 1;
           }
         }
-
         .animate-slide-in {
           animation: slideIn 1s ease-out forwards;
         }

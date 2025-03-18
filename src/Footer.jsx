@@ -1,88 +1,102 @@
-import { ChevronRight, ChevronUp } from 'lucide-react';
 import React from 'react';
-
-import LogoImage from './assets/stitches.png';
-import { FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
+import { ChevronRight, ChevronUp } from 'lucide-react';
+import LogoImage from './assets/logo.png';
+import { FaInstagram, FaFacebookF, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 export function FooterTwo() {
   return (
-    <footer className="w-full mt-8 relative">
-      <div className="mx-auto flex max-w-6xl flex-col items-start space-x-8 md:flex-row">
-        <div className="w-full px-4 md:w-1/2 lg:px-0">
-          <h1 className="max-w-sm text-3xl font-extrabold">
-            Subscribe to our <br /> <span className='font-extrabold text-blue-700'>Stitches</span>
+    <footer className="w-full relative bg-gray-900 text-gray-200 pt-12 pb-8">
+      {/* Subscribe Section */}
+      <div className="flex flex-col m-2 md:flex-row items-center justify-around gap-5 border-b border-gray-700 pb-8">
+
+        <div className="w-full md:w-1/2">
+          <h1 className="text-3xl sm:text-4xl font-extrabold uppercase">
+            Follow<br />
+            <span className="text-blue-700">Digitize'NStitch</span><br />
+            For more updates
           </h1>
-          <p className="mt-2 text-lg text-gray-600">Stay updated with our latest news and offers.</p>
-          <form action="" className="mt-4 inline-flex w-full items-center md:w-3/4">
-            <input
-              className="flex h-10 w-full rounded-md border border-black/20 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-              type="email"
-              placeholder="Email"
-            />
-            <button
-              type="button"
-              className="ml-4 rounded-full bg-black px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </form>
+          <p className="mt-4 text-lg">
+            Stay updated with our latest news and exclusive offers.
+          </p>
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-6 md:mt-0 lg:w-3/4 lg:grid-cols-3">
-          <div className="mb-8 lg:mb-0">
-            <p className="mb-6 text-lg font-semibold text-gray-700">Company</p>
-            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
-              <li className="hover:text-gray-300"><a href="#home">Home</a></li>
-              <li className="hover:text-gray-300"><a href="#about">About</a></li>
-              <li className="hover:text-gray-300"><a href="#portfolio">Portfolio</a></li>
-              <li className="hover:text-gray-300"><a href="#contact">Contact</a></li>
+        {/* Subscription Form */}
+        <form className="w-full md:w-1/2  flex flex-col sm:flex-row items-center">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full h-12 px-4 mb-4  rounded-md border border-gray-600 bg-gray-800 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+          <button
+            type="button"
+            className="mt-4 sm:mt-0 sm:ml-4 rounded-full bg-blue-600 px-5 py-3 text-white shadow-md transition-all duration-300 hover:bg-blue-500"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </form>
+      </div>
+
+
+      {/* Navigation Links */}
+      <div className="max-w-screen-xl  mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <p className="mb-4 text-lg font-semibold text-gray-300 uppercase">Company</p>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li className="hover:text-gray-200 transition-colors"><a href="#home">Home</a></li>
+              <li className="hover:text-gray-200 transition-colors"><a href="#about">About</a></li>
+              <li className="hover:text-gray-200 transition-colors"><a href="#portfolio">Portfolio</a></li>
+              <li className="hover:text-gray-200 transition-colors"><a href="#contact">Contact</a></li>
             </ul>
           </div>
-          <div className="mb-8 lg:mb-0">
-            <p className="mb-6 text-lg font-semibold text-gray-700">Support</p>
-            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
-              <li>Contact Us</li>
-              <li>Help Center</li>
-              <li>Community</li>
-              <li>Live Chat</li>
+          <div>
+            <p className="mb-4 text-lg font-semibold text-gray-300 uppercase">Support</p>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li className="hover:text-gray-200 transition-colors">Contact Us</li>
+              <li className="hover:text-gray-200 transition-colors">Help Center</li>
+              <li className="hover:text-gray-200 transition-colors">Community</li>
+              <li className="hover:text-gray-200 transition-colors">Live Chat</li>
             </ul>
           </div>
-          <div className="mb-8 lg:mb-0">
-            <p className="mb-6 text-lg font-semibold text-gray-700">Legal</p>
-            <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
-              <li>About Us</li>
-              <li>Careers</li>
-              <li>Press</li>
-              <li>Privacy Policy</li>
+          <div>
+            <p className="mb-4 text-lg font-semibold text-gray-300 uppercase">Legal</p>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li className="hover:text-gray-200 transition-colors">About Us</li>
+              <li className="hover:text-gray-200 transition-colors">Careers</li>
+              <li className="hover:text-gray-200 transition-colors">Press</li>
+              <li className="hover:text-gray-200 transition-colors">Privacy Policy</li>
             </ul>
           </div>
         </div>
       </div>
-      <hr className="my-4" />
-      <div className="mx-auto max-w-6xl items-center justify-between px-4 md:flex lg:px-0">
-        <div className="inline-flex items-center">
-          <img src={LogoImage} alt="DevUI Logo" className="h-20 w-auto rounded-3xl" />
-          <span className="ml-4 text-lg">Stitches</span>
+
+      <hr className="my-8 border-gray-700" />
+
+      {/* Footer Bottom */}
+      <div className="max-w-screen-xl  mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+        <div className="flex items-center">
+        <img src={LogoImage} alt="Stitches Logo" className="h-36 w-28 md:w-48 md:h-44" />
         </div>
         <div className="mt-4 md:mt-0">
-          <p className="text-sm font-medium text-gray-500">© 2024 Stitches. All rights reserved.</p>
+          <p className="text-sm">&copy; 2024 Digitize'NStitch. All rights reserved.</p>
           <div className="mt-4 flex space-x-4">
-            <a href="https://instagram.com" className="text-gray-500 hover:text-gray-700">
-              <FaInstagram className="h-6 w-6 transition-transform transform hover:rotate-180" />
+            <a target='_blank' href="https://www.instagram.com/digitizenstitch_?igsh=MTlzN3J5N2xnczhnbA==" className="text-gray-400 hover:text-gray-200 transition-colors">
+              <FaInstagram className="h-6 w-6" />
             </a>
-            <a href="https://facebook.com" className="text-gray-500 hover:text-gray-700">
-              <FaFacebookF className="h-6 w-6 transition-transform transform hover:rotate-180" />
+            <a target='_blank' href="https://www.facebook.com/share/19WE5X4obH/" className="text-gray-400 hover:text-gray-200 transition-colors">
+              <FaFacebookF className="h-6 w-6" />
             </a>
-            <a href="https://twitter.com" className="text-gray-500 hover:text-gray-700">
-              <FaTwitter className="h-6 w-6 transition-transform transform hover:rotate-180" />
+            <a target='_blank' href="https://wa.me/message/ERBPA4SEF47CE1" className="text-gray-400 hover:text-gray-200 transition-colors">
+              <FaWhatsapp className="h-6 w-6" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* Floating button to scroll to the top */}
+      {/* Floating Scroll to Top Button */}
       <a href="#top" className="absolute bottom-4 right-4">
         <button
-          className="p-3 rounded-full bg-black text-white shadow-md hover:bg-gray-800 transition-all"
+          className="p-3 rounded-full bg-blue-600 text-white shadow-md hover:bg-blue-500 transition-all"
           aria-label="Scroll to top"
         >
           <ChevronUp className="h-6 w-6" />
