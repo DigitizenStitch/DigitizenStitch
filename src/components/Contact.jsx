@@ -20,29 +20,26 @@ const Contact = () => {
   // ✅ Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // ✅ Encode Form Data for Netlify
-    const encodedData = new URLSearchParams();
-    for (const key in formData) {
-      encodedData.append(key, formData[key]);
-    }
-
-    // ✅ Submit Form to Netlify
+  
+    const form = e.target;
+    const formData = new FormData(form);
+    const encodedData = new URLSearchParams(formData).toString();
+  
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodedData.toString(),
+      body: encodedData,
     })
     .then(() => {
       alert("Message sent successfully!");
-      setFormData({ first_name: '', last_name: '', email: '', phone_number: '', message: '' }); // ✅ Reset Form
+      setFormData({ first_name: '', last_name: '', email: '', phone_number: '', message: '' });
     })
     .catch((error) => {
       alert("Something went wrong!");
       console.error(error);
     });
   };
-
+  
   return (
     <section id="contact" className="bg-gray-50 py-20">
       {/* 📍 Map Section */}
@@ -71,14 +68,15 @@ const Contact = () => {
             Our friendly team would love to hear from you. Fill out the form below and we’ll get back to you soon.
           </p>
 
-          <form
+          <form 
             name="contact"
             method="POST"
+            action="/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            className="mt-8 space-y-4"
             onSubmit={handleSubmit}
           >
+
             <input type="hidden" name="form-name" value="contact" />
             <p className="hidden">
               <label>Don’t fill this out: <input name="bot-field" /></label>
