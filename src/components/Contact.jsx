@@ -3,23 +3,31 @@ import { Formik } from 'formik';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 
+// ✅ Form Validation
 const validate = (values) => {
   const errors = {};
   if (!values.first_name) errors.first_name = 'First Name is required';
   if (!values.last_name) errors.last_name = 'Last Name is required';
   if (!values.email) {
     errors.email = 'Email is required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z]{2,}$/i.test(values.email)) {
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
   if (!values.phone_number) errors.phone_number = 'Phone number is required';
   return errors;
 };
 
+// ✅ Netlify ke liye form data encode karna zaroori hai
+const encodeFormData = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 const Contact = () => {
   return (
     <section id="contact" className="bg-gray-50 py-20">
-      {/* Map Section */}
+      {/* 📍 Map Section */}
       <div className="w-full">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="overflow-hidden rounded-lg shadow-xl">
@@ -36,7 +44,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Contact Form and Details */}
+      {/* 📝 Contact Form & Details */}
       <div className="max-w-screen-xl mx-auto px-4 lg:px-12 mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-12">
         {/* Left Section - Contact Form */}
         <div className="flex-1 w-full">
@@ -54,27 +62,28 @@ const Contact = () => {
               message: '',
             }}
             validate={validate}
-            onSubmit={(values, { setSubmitting }) => {
-              const form = document.getElementById('contact-form');
-              const formData = new FormData(form);
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(true);
               fetch("/", {
                 method: "POST",
-                body: formData,
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encodeFormData({ "form-name": "contact", ...values }),
               })
                 .then(() => {
                   alert("Message sent successfully!");
-                  setSubmitting(false);
+                  resetForm(); // ✅ Form ko reset karo
                 })
                 .catch((error) => {
                   alert("Something went wrong!");
                   console.error(error);
+                })
+                .finally(() => {
                   setSubmitting(false);
                 });
             }}
           >
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
               <form
-                id="contact-form"
                 name="contact"
                 method="POST"
                 data-netlify="true"
@@ -89,16 +98,13 @@ const Contact = () => {
                     <input
                       type="text"
                       name="first_name"
-                      placeholder="First Name"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.first_name}
                       className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
                       required
                     />
-                    {errors.first_name && touched.first_name && (
-                      <p className="text-red-600 text-sm mt-1">{errors.first_name}</p>
-                    )}
+                    {errors.first_name && touched.first_name && <p className="text-red-600 text-sm mt-1">{errors.first_name}</p>}
                   </div>
 
                   <div>
@@ -106,16 +112,13 @@ const Contact = () => {
                     <input
                       type="text"
                       name="last_name"
-                      placeholder="Last Name"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.last_name}
                       className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
                       required
                     />
-                    {errors.last_name && touched.last_name && (
-                      <p className="text-red-600 text-sm mt-1">{errors.last_name}</p>
-                    )}
+                    {errors.last_name && touched.last_name && <p className="text-red-600 text-sm mt-1">{errors.last_name}</p>}
                   </div>
                 </div>
 
@@ -124,16 +127,13 @@ const Contact = () => {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email Address"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
                     className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
-                  {errors.email && touched.email && (
-                    <p className="text-red-600 text-sm mt-1">{errors.email}</p>
-                  )}
+                  {errors.email && touched.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
@@ -141,23 +141,19 @@ const Contact = () => {
                   <input
                     type="tel"
                     name="phone_number"
-                    placeholder="Phone Number"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.phone_number}
                     className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
-                  {errors.phone_number && touched.phone_number && (
-                    <p className="text-red-600 text-sm mt-1">{errors.phone_number}</p>
-                  )}
+                  {errors.phone_number && touched.phone_number && <p className="text-red-600 text-sm mt-1">{errors.phone_number}</p>}
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-gray-700">Message</label>
                   <textarea
                     name="message"
-                    placeholder="Your message..."
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.message}
@@ -178,8 +174,10 @@ const Contact = () => {
           </Formik>
         </div>
 
-        {/* Right Section - Contact Info */}
-        <div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
+
+
+{/* Right Section - Contact Info */}
+<div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
           <h3 className="text-2xl text-center font-semibold text-gray-800 mb-6">Contact Information</h3>
 
           <div className="flex items-center gap-4 mb-6">
@@ -242,6 +240,11 @@ const Contact = () => {
               </div>
 
         </div>
+
+
+
+
+
       </div>
     </section>
   );
