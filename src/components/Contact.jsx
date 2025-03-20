@@ -1,30 +1,48 @@
-import React from 'react';
-import { Formik } from 'formik';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 
-// ✅ Form Validation
-const validate = (values) => {
-  const errors = {};
-  if (!values.first_name) errors.first_name = 'First Name is required';
-  if (!values.last_name) errors.last_name = 'Last Name is required';
-  if (!values.email) {
-    errors.email = 'Email is required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-  if (!values.phone_number) errors.phone_number = 'Phone number is required';
-  return errors;
-};
-
-// ✅ Netlify ke liye form data encode karna zaroori hai
-const encodeFormData = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
 const Contact = () => {
+  // ✅ State to Handle Form Data
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_number: '',
+    message: '',
+  });
+
+  // ✅ Handle Input Change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // ✅ Handle Form Submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // ✅ Encode Form Data for Netlify
+    const encodedData = new URLSearchParams();
+    for (const key in formData) {
+      encodedData.append(key, formData[key]);
+    }
+
+    // ✅ Submit Form to Netlify
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodedData.toString(),
+    })
+    .then(() => {
+      alert("Message sent successfully!");
+      setFormData({ first_name: '', last_name: '', email: '', phone_number: '', message: '' }); // ✅ Reset Form
+    })
+    .catch((error) => {
+      alert("Something went wrong!");
+      console.error(error);
+    });
+  };
+
   return (
     <section id="contact" className="bg-gray-50 py-20">
       {/* 📍 Map Section */}
@@ -53,131 +71,91 @@ const Contact = () => {
             Our friendly team would love to hear from you. Fill out the form below and we’ll get back to you soon.
           </p>
 
-          <Formik
-            initialValues={{
-              first_name: '',
-              last_name: '',
-              email: '',
-              phone_number: '',
-              message: '',
-            }}
-            validate={validate}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true);
-              fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: encodeFormData({ "form-name": "contact", ...values }),
-              })
-                .then(() => {
-                  alert("Message sent successfully!");
-                  resetForm(); // ✅ Form ko reset karo
-                })
-                .catch((error) => {
-                  alert("Something went wrong!");
-                  console.error(error);
-                })
-                .finally(() => {
-                  setSubmitting(false);
-                });
-            }}
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            className="mt-8 space-y-4"
+            onSubmit={handleSubmit}
           >
-            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-              <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                className="mt-8 space-y-4"
-                onSubmit={handleSubmit}
-              >
-                <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">First Name</label>
-                    <input
-                      type="text"
-                      name="first_name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.first_name}
-                      className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                    {errors.first_name && touched.first_name && <p className="text-red-600 text-sm mt-1">{errors.first_name}</p>}
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-gray-700">First Name</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  onChange={handleChange}
+                  value={formData.first_name}
+                  className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
 
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Last Name</label>
-                    <input
-                      type="text"
-                      name="last_name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.last_name}
-                      className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                    {errors.last_name && touched.last_name && <p className="text-red-600 text-sm mt-1">{errors.last_name}</p>}
-                  </div>
-                </div>
+              <div>
+                <label className="text-sm font-medium text-gray-700">Last Name</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  onChange={handleChange}
+                  value={formData.last_name}
+                  className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+            </div>
 
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
-                  {errors.email && touched.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
-                </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                value={formData.email}
+                className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
 
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone_number"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.phone_number}
-                    className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
-                  {errors.phone_number && touched.phone_number && <p className="text-red-600 text-sm mt-1">{errors.phone_number}</p>}
-                </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Phone Number</label>
+              <input
+                type="tel"
+                name="phone_number"
+                onChange={handleChange}
+                value={formData.phone_number}
+                className="w-full h-12 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
 
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Message</label>
-                  <textarea
-                    name="message"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.message}
-                    className="w-full h-32 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
-                </div>
+            <div>
+              <label className="text-sm font-medium text-gray-700">Message</label>
+              <textarea
+                name="message"
+                onChange={handleChange}
+                value={formData.message}
+                className="w-full h-32 px-3 border rounded-md focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-900 text-white py-3 rounded-md text-lg font-semibold hover:bg-black transition"
-                >
-                  Send Message
-                </button>
-              </form>
-            )}
-          </Formik>
+            <button
+              type="submit"
+              className="w-full bg-blue-900 text-white py-3 rounded-md text-lg font-semibold hover:bg-black transition"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
 
-
-
-{/* Right Section - Contact Info */}
-<div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
+          {/* Right Section - Contact Info */}
+        <div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
           <h3 className="text-2xl text-center font-semibold text-gray-800 mb-6">Contact Information</h3>
 
           <div className="flex items-center gap-4 mb-6">
