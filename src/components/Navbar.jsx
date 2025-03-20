@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import LOGO from "../assets/Logo.png";
-
+import LOGO from "/src/assets/logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,12 +27,13 @@ const Navbar = () => {
     <nav className="bg-blue-950 text-white p-6 h-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between">
       <div className="container mx-auto flex justify-between items-center w-full">
         {/* Logo */}
-        <div className="flex items-center justify-center md:justify-start p-4">
+        <div className="flex items-center justify-center md:justify-start">
+        {/* <div className="flex items-center justify-center w-full md:w-auto "> */}
       <a href="#home" className="flex items-center">
       <img
         src={LOGO}
         alt="Logo"
-        className=" w-32 md:w-40 object-contain p-2"
+        className=" w-32 md:w-40 object-contain "
       />
 
 

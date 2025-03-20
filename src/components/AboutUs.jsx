@@ -61,7 +61,7 @@ const AboutUs = () => {
                 ABOUT <span className="text-blue-700 uppercase">OUR DIGITIZE'NSTITCH COMPANY</span>
               </h2>
               <p className="text-gray-900 text-base sm:text-lg md:text-xl">
-                At Stitches, we take pride in turning your creative concepts into stunning digital realities.
+                At <b>Digitize'NStitch</b>, we take pride in turning your creative concepts into stunning digital realities.
                 Specializing in Digitizing, Vector Art, Anime Design, and Patches, we transform intricate designs
                 into vibrant, high-quality graphics that stand out. Whether it's a logo, detailed illustration, or custom artwork,
                 our team ensures every design is brought to life with precision, creativity, and professionalism.

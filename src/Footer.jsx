@@ -79,7 +79,7 @@ export function FooterTwo() {
         </div>
         <div className="mt-4 md:mt-0">
           <p className="text-sm">&copy; 2024 Digitize'NStitch. All rights reserved.</p>
-          <div className="mt-4 flex space-x-4">
+          <div className="mt-4 flex justify-center space-x-4">
             <a target='_blank' href="https://www.instagram.com/digitizenstitch_?igsh=MTlzN3J5N2xnczhnbA==" className="text-gray-400 hover:text-gray-200 transition-colors">
               <FaInstagram className="h-6 w-6" />
             </a>
