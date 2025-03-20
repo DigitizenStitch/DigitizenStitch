@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, ChevronUp } from 'lucide-react';
-import LogoImage from "../assets/logo.png";
+import LogoImage from "./assets/logo.png"; 
 import { FaInstagram, FaFacebookF, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 export function FooterTwo() {
