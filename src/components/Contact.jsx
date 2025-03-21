@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
+// ✅ State to Handle Form Data
   // ✅ State to Handle Form Data
   const [formData, setFormData] = useState({
     first_name: '',
@@ -12,34 +13,55 @@ const Contact = () => {
     message: '',
   });
 
-  // ✅ Handle Input Change
+  // ✅ Handle Input Change with Trimmed Values
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
   };
 
-  // ✅ Handle Form Submission
-  const handleSubmit = (e) => {
+  // ✅ Handle Form Submission (Updated)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
     const form = e.target;
+
+    // Stop submission if honeypot field is filled
+    if (form["bot-field"].value) {
+      console.log("Bot detected, stopping submission.");
+      return;
+    }
+
+    console.log("Submitting form to Netlify...");
+
+    // ✅ Append "form-name" explicitly (required for Netlify)
     const formData = new FormData(form);
-    const encodedData = new URLSearchParams(formData).toString();
-  
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encodedData,
-    })
-    .then(() => {
-      alert("Message sent successfully!");
-      setFormData({ first_name: '', last_name: '', email: '', phone_number: '', message: '' });
-    })
-    .catch((error) => {
-      alert("Something went wrong!");
-      console.error(error);
-    });
+    formData.append("form-name", "contact");
+
+    // ✅ Convert to URL-encoded string for safe submission
+    const encodedData = new URLSearchParams();
+    for (const [key, value] of formData.entries()) {
+      encodedData.append(key, value);
+    }
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        body: encodedData.toString(),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({ first_name: '', last_name: '', email: '', phone_number: '', message: '' });
+      } else {
+        throw new Error("Failed to submit the form");
+      }
+    } catch (error) {
+      alert("Something went wrong! Please try again.");
+      console.error("Form submission error:", error);
+    }
   };
+
   
+
   return (
     <section id="contact" className="bg-gray-50 py-20">
       {/* 📍 Map Section */}
@@ -75,11 +97,10 @@ const Contact = () => {
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
           >
-
             <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
+            <div className="hidden">
               <label>Don’t fill this out: <input name="bot-field" /></label>
-            </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -152,8 +173,8 @@ const Contact = () => {
         </div>
 
           {/* Right Section - Contact Info */}
-        <div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
-          <h3 className="text-2xl text-center font-semibold text-gray-800 mb-6">Contact Information</h3>
+          <div className="flex-1 w-full bg-white p-8 shadow-lg rounded-lg">
+            <h3 className="text-2xl text-center font-semibold text-gray-800 mb-6">Contact Information</h3>
 
           <div className="flex items-center gap-4 mb-6">
             <Phone className="text-blue-900 w-8 h-8" />
@@ -215,8 +236,6 @@ const Contact = () => {
               </div>
 
         </div>
-
-
 
 
 
