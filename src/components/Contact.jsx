@@ -3,7 +3,6 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
-// ✅ State to Handle Form Data
   // ✅ State to Handle Form Data
   const [formData, setFormData] = useState({
     first_name: '',
@@ -15,8 +14,14 @@ const Contact = () => {
 
   // ✅ Handle Input Change with Trimmed Values
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
+    const { name, value } = e.target;
+    
+    setFormData({
+      ...formData,
+      [name]: name === "message" ? value : value.trim(), // Trim all fields EXCEPT "message"
+    });
   };
+  
 
   // ✅ Handle Form Submission (Updated)
   const handleSubmit = async (e) => {
