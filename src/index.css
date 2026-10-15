@@ -1,3 +1,140 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory text-slate-700 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply text-navy-950 font-display tracking-tight;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { @apply bg-navy-900 text-white; }
+  :focus-visible {
+    @apply outline-none ring-2 ring-navy-500 ring-offset-2 ring-offset-white rounded-md;
+  }
+  [id] { scroll-margin-top: 6rem; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-20 sm:py-28; }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-navy-800;
+  }
+  .eyebrow::before { content: ''; @apply h-px w-6 bg-current opacity-60; }
+  .eyebrow-light { @apply text-navy-200; }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3 text-sm font-semibold
+      transition-all duration-300 ease-premium active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-navy-900 text-white shadow-soft hover:bg-navy-950 hover:shadow-lift hover:-translate-y-0.5;
+  }
+  .btn-light {
+    @apply btn bg-white text-navy-950 shadow-soft hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  .btn-outline {
+    @apply btn border border-navy-900/20 text-navy-950 hover:border-navy-900 hover:bg-navy-950 hover:text-white;
+  }
+  .btn-ghost-light {
+    @apply btn border border-white/25 text-white hover:border-white hover:bg-white hover:text-navy-950;
+  }
+  .btn-whatsapp {
+    @apply btn bg-[#1f8f4e] text-white shadow-soft hover:bg-[#187a41] hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  /* sheen sweep on hover */
+  .btn-primary::after, .btn-light::after, .btn-whatsapp::after {
+    content: '';
+    @apply pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 opacity-0 transition-all duration-700 ease-premium;
+  }
+  .btn-primary:hover::after, .btn-light:hover::after, .btn-whatsapp:hover::after { @apply left-[120%] opacity-100; }
+
+  .card {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-soft transition-all duration-500 ease-premium;
+  }
+  .card-hover { @apply hover:-translate-y-1 hover:border-navy-200 hover:shadow-lift; }
+
+  .link-underline {
+    @apply relative;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .link-underline:hover, .link-underline[aria-current='page'] { background-size: 100% 1px; }
+
+  .prose-legal { @apply max-w-3xl text-slate-700 leading-relaxed; }
+  .prose-legal h2 { @apply mt-12 mb-4 text-2xl; }
+  .prose-legal p { @apply mb-4; }
+  .prose-legal ul { @apply mb-4 list-disc space-y-2 pl-6; }
+  .prose-legal a { @apply font-medium text-navy-800 underline underline-offset-4 hover:text-navy-950; }
+
+  .field-label { @apply mb-1.5 block text-sm font-medium text-navy-950; }
+  .field {
+    @apply block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[15px] text-navy-950 placeholder:text-slate-400
+      transition focus:border-navy-700 focus:outline-none focus:ring-4 focus:ring-navy-100;
+  }
+  .field[aria-invalid='true'] { @apply border-red-500 focus:ring-red-100; }
+  .field-error { @apply mt-1.5 text-sm text-red-700; }
+
+  .stitch-line { background-image: linear-gradient(90deg, currentColor 50%, transparent 0); background-size: 10px 1px; background-repeat: repeat-x; }
+}
+
+/* ---------- Motion (one consistent style: soft rise + fade) ---------- */
+/* Content is only hidden when JS is running and motion is allowed (html.js-motion). */
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--d, 0ms);
+}
+.js-motion .reveal.is-visible { opacity: 1; transform: none; }
+
+.page-enter { animation: pageIn .55s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float-slow { animation: floatY 7s ease-in-out infinite; }
+.float-slower { animation: floatY 9s ease-in-out infinite; animation-delay: -3s; }
+
+@keyframes stitchDraw { to { stroke-dashoffset: 0; } }
+.stitch-draw { stroke-dasharray: 6 8; animation: stitchMove 30s linear infinite; }
+@keyframes stitchMove { to { stroke-dashoffset: -400; } }
+
+@keyframes fadeScale { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+.anim-fade-scale { animation: fadeScale .35s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.anim-fade { animation: fadeIn .3s ease both; }
+
+/* ---------- Custom cursor (fine pointers only, never intercepts clicks) ---------- */
+.cursor-ring, .cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 9999px;
+  opacity: 0; transition: opacity .3s ease, width .3s cubic-bezier(.2,.7,.2,1), height .3s cubic-bezier(.2,.7,.2,1),
+    background-color .3s ease, border-color .3s ease, margin .3s cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+.cursor-ring { width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1.5px solid rgba(30,58,138,.55); }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: #1e3a8a; }
+.cursor-on .cursor-ring, .cursor-on .cursor-dot { opacity: 1; }
+.cursor-hover .cursor-ring { width: 56px; height: 56px; margin: -28px 0 0 -28px; background: rgba(147,197,253,.18); border-color: rgba(30,58,138,.35); }
+.cursor-hover .cursor-dot { opacity: 0; }
+.cursor-view .cursor-ring { width: 76px; height: 76px; margin: -38px 0 0 -38px; background: rgba(23,37,84,.85); border-color: transparent; }
+.cursor-ring span { position: absolute; inset: 0; display: grid; place-items: center; font: 600 11px/1 'Inter Variable', sans-serif; letter-spacing: .12em; color: #fff; opacity: 0; transition: opacity .2s; }
+.cursor-view .cursor-ring span { opacity: 1; }
+.cursor-dark .cursor-ring { border-color: rgba(255,255,255,.6); }
+.cursor-dark .cursor-dot { background: #fff; }
+
+@media (hover: none), (pointer: coarse) { .cursor-ring, .cursor-dot { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .cursor-ring, .cursor-dot { display: none; }
+}

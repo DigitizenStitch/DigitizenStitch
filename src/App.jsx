@@ -1,60 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import AboutUs from './components/AboutUs';
-import Services from './components/Services';
-import Contact from './components/Contact';
-import Portfolio from './components/Portfolio';
-import PortfolioHeader from './components/PortfolioHeader';
-import Digitaizing from './components/Digitaizing';
-import VectorArt from './components/VectorArt';
-import Patches from './components/Patches';
-import AnemeDesign from './components/AnemeDesign';
-import SocialLinks from './components/SocialLinks';
-import VerticalCarousel from './components/VerticalCarousel';
-import WhyChooseUs from './components/WhyChooseUs';
-import BannerCounter from './components/BannerCounter';
-import Hiring from './components/Hiring';
-import MeetOurTeam from './components/MeetOurTeam';
-import Account from './components/Accounts';
-import { FooterTwo } from './Footer';
-import ClientRemarks from './components/ClientRemarks';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import { EmbroideryDigitizing, Patches, VectorArt } from './pages/Services';
+import Portfolio from './pages/Portfolio';
+import { About, Faq, HowItWorks, NotFound, Quote } from './pages/InfoPages';
+import { Privacy, RefundPolicy, Terms } from './pages/Legal';
 
-const App = () => {
+export default function App() {
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <HeroSection />
-        <SocialLinks />
-        <VerticalCarousel />
-        <AboutUs />
-        <BannerCounter />
-        <WhyChooseUs />
-        <Services />
-        <ClientRemarks />
-        <Hiring />
-        <Portfolio />
-        <PortfolioHeader />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/embroidery-digitizing" element={<EmbroideryDigitizing />} />
+        <Route path="/vector-art" element={<VectorArt />} />
+        <Route path="/patches" element={<Patches />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/quote" element={<Quote />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+        <Route path="/terms-of-service" element={<Terms />} />
+        <Route path="/refund-revision-policy" element={<RefundPolicy />} />
 
-        {/* ✅ Routes */}
-        <Routes>
-          {/* 👇 Redirect Home `/` to `/digitizing` */}
-          <Route path="/" element={<Navigate to="/digitizing" />} />
-          <Route path="/digitizing" element={<Digitaizing />} />
-          <Route path="/vectorArt" element={<VectorArt />} />
-          <Route path="/patches" element={<Patches />} />
-          <Route path="/AnemeDesign" element={<AnemeDesign />} />
-        </Routes>
+        {/* Old URLs (also 301-redirected in public/_redirects) */}
+        <Route path="/digitizing" element={<Navigate replace to="/portfolio?category=embroidery" />} />
+        <Route path="/AnemeDesign" element={<Navigate replace to="/portfolio?category=embroidery" />} />
+        <Route path="/vectorArt" element={<Navigate replace to="/portfolio?category=vector" />} />
+        <Route path="/contact" element={<Navigate replace to="/quote" />} />
 
-        <MeetOurTeam />
-        <Contact />
-        <Account />
-        <FooterTwo />
-      </div>
-    </Router>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
-};
-
-export default App;
+}
