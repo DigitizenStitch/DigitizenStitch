@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CheckCircle2, Loader2, Paperclip, X } from 'lucide-react';
-import { CONTACT, FORMAT_OPTIONS, SERVICE_OPTIONS } from '../data/site';
+import { CONTACT, FORMAT_OPTIONS, PACKAGES, SERVICE_OPTIONS, packageById, packageLabel } from '../data/site';
 
 // Submitted to Netlify Forms. The form name "contact" is kept so existing
 // submission notifications keep working. A matching static copy of this form
@@ -10,7 +11,7 @@ const MAX_MB = 8; // Netlify Forms limit per submission
 const ACCEPT = '.jpg,.jpeg,.png,.webp,.gif,.pdf,.svg,.ai,.eps';
 const ALLOWED_EXT = ACCEPT.split(',').map((e) => e.slice(1));
 
-const EMPTY = { name: '', email: '', service: '', design_size: '', file_format: '', message: '' };
+const EMPTY = { name: '', email: '', service: '', package: '', design_size: '', file_format: '', message: '' };
 
 function validate(values, file) {
   const e = {};
@@ -32,6 +33,13 @@ export default function QuoteForm({ defaultService = '' }) {
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
   const fileRef = useRef(null);
   const formRef = useRef(null);
+  const [params] = useSearchParams();
+
+  // Preselect the package chosen on a pricing card (/quote?package=under-5).
+  useEffect(() => {
+    const pkg = packageById(params.get('package'));
+    if (pkg) setValues((v) => ({ ...v, service: 'Embroidery Digitizing', package: packageLabel(pkg) }));
+  }, [params]);
 
   const update = (e) => {
     const { name, value } = e.target;
@@ -70,6 +78,7 @@ export default function QuoteForm({ defaultService = '' }) {
       setStatus('success');
       setValues({ ...EMPTY, service: defaultService });
       clearFile();
+      formRef.current?.scrollIntoView({ block: 'center' });
     } catch (err) {
       console.error('Quote form submission failed', err);
       setStatus('error');
@@ -112,7 +121,7 @@ export default function QuoteForm({ defaultService = '' }) {
       data-netlify-honeypot="bot-field"
       noValidate
       onSubmit={submit}
-      className="card space-y-5 p-6 sm:p-8"
+      className="card space-y-5 p-6 sm:p-9"
     >
       <input type="hidden" name="form-name" value={FORM_NAME} />
       <p className="hidden">
@@ -149,6 +158,21 @@ export default function QuoteForm({ defaultService = '' }) {
           </select>
         </div>
       </div>
+
+      {values.service === 'Embroidery Digitizing' && (
+        <div className="anim-fade">
+          <label htmlFor="q-package" className="field-label">Size package</label>
+          <select {...fieldProps('package')}>
+            <option value="">Not sure / help me choose</option>
+            {PACKAGES.map((p) => <option key={p.id}>{packageLabel(p)}</option>)}
+          </select>
+          {packageById(PACKAGES.find((p) => packageLabel(p) === values.package)?.id) && (
+            <p className="mt-1.5 text-sm text-slate-500">
+              Turnaround: {PACKAGES.find((p) => packageLabel(p) === values.package).turnaround}. The exact price within the range is confirmed before work begins.
+            </p>
+          )}
+        </div>
+      )}
 
       <div>
         <label htmlFor="q-design_size" className="field-label">Design size</label>
@@ -192,7 +216,7 @@ export default function QuoteForm({ defaultService = '' }) {
 
       <div>
         <label htmlFor="q-message" className="field-label">Additional instructions</label>
-        <textarea rows={4} placeholder="Garment or fabric, colours, quantity, deadline, rush request…" {...fieldProps('message')} />
+        <textarea rows={4} placeholder="Garment or fabric, colours, placement, quantity, deadline…" {...fieldProps('message')} />
       </div>
 
       {status === 'error' && (
@@ -202,8 +226,8 @@ export default function QuoteForm({ defaultService = '' }) {
         </p>
       )}
 
-      <button type="submit" disabled={status === 'sending'} className="btn-primary w-full !py-4 text-base">
-        {status === 'sending' ? (<><Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Sending…</>) : 'Request my quote'}
+      <button type="submit" disabled={status === 'sending'} className="btn-gold w-full !py-4 text-base">
+        {status === 'sending' ? (<><Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Sending…</>) : values.package.startsWith('Over') || !values.package ? 'Request my quote' : 'Send my order request'}
       </button>
       <p className="text-center text-xs text-slate-500">
         We use your details only to reply to your request. See our <a href="/privacy-policy" className="underline underline-offset-2">Privacy Policy</a>.

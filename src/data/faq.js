@@ -3,29 +3,27 @@
 
 import { CONTACT, FORMATS, PRICE_NOTE } from './site';
 
+const PRICING_SUMMARY =
+  'Embroidery digitizing: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, over 7 inches on quote. Vector art starts at $12. Custom patches are priced on quote.';
+
 export const FAQ_GROUPS = [
   {
     title: 'Pricing & payment',
     items: [
       {
         q: 'What are your prices?',
-        a: `Embroidery digitizing starts at $10, vector art at $12 and patch digitizing at $10. Physical patches are priced by custom quote. ${PRICE_NOTE}`,
-        keywords: ['price', 'prices', 'pricing', 'rates', 'cost', 'costs', 'charges', 'packages'],
+        a: `${PRICING_SUMMARY} ${PRICE_NOTE}`,
+        keywords: ['price', 'prices', 'pricing', 'rates', 'cost', 'costs', 'charges', 'packages', 'package'],
       },
       {
         q: 'How much does embroidery digitizing cost?',
-        a: `Embroidery digitizing starts at $10. ${PRICE_NOTE}`,
-        keywords: ['digitizing', 'digitize', 'embroidery', 'stitch', 'price', 'cost', 'how much', 'fee'],
+        a: `Designs under 5 inches (sleeve, cap logo, left-chest, 4×4 and 5×5 hoop) cost $4.99–$9.99. Designs of 5–7 inches (mid-chest, sweatshirt or hoodie chest, tote bags, 5×7 hoop) cost $9.99–$14.99. Designs over 7 inches (full-front, jacket back, large appliqué, 6×10 and 8×12 hoops) are priced on quote. The final price within each range depends on design complexity.`,
+        keywords: ['digitizing', 'digitize', 'embroidery', 'stitch', 'price', 'cost', 'how much', 'fee', 'logo', 'cap', 'chest'],
       },
       {
         q: 'How much does vector art cost?',
-        a: `Vector art starts at $12. ${PRICE_NOTE}`,
+        a: 'Vector art starts at $12. The final price depends on the complexity of your artwork and is confirmed in your quote.',
         keywords: ['vector', 'vectorize', 'vectorizing', 'vectorization', 'redraw', 'price', 'cost', 'how much'],
-      },
-      {
-        q: 'How much do patches cost?',
-        a: 'Patch digitizing starts at $10. Physical patches are priced by custom quote, because cost depends on the patch type, size, quantity and details. Send your design through the quote form for an exact price.',
-        keywords: ['patch', 'patches', 'price', 'cost', 'physical', 'how much'],
       },
       {
         q: 'Which payment methods do you accept?',
@@ -33,9 +31,9 @@ export const FAQ_GROUPS = [
         keywords: ['pay', 'payment', 'paypal', 'card', 'credit card', 'debit', 'bank', 'transfer', 'stripe', 'invoice', 'wise'],
       },
       {
-        q: 'Why can the final price differ from the starting price?',
-        a: 'Starting prices cover simpler designs. Larger sizes, high stitch counts, fine detail or special requirements take more work, so the final price is confirmed in your quote before any work begins.',
-        keywords: ['final', 'starting', 'differ', 'quote', 'complexity', 'size'],
+        q: 'Why is the price shown as a range?',
+        a: 'Two designs of the same size can need very different amounts of work. Simple shapes sit at the lower end of the range; dense or highly detailed artwork sits at the higher end. You always see the exact price before any work begins.',
+        keywords: ['range', 'final', 'differ', 'exact', 'why', 'complexity'],
       },
     ],
   },
@@ -45,7 +43,7 @@ export const FAQ_GROUPS = [
       {
         q: 'Which embroidery file formats do you provide?',
         a: `Our standard embroidery machine formats are ${FORMATS.embroidery.join(', ')}. Other machine formats, such as ${FORMATS.embroideryOnRequest.join(' and ')}, can be requested and are provided when supported. Please mention your machine format when you request a quote.`,
-        keywords: ['format', 'formats', 'dst', 'pes', 'emb', 'exp', 'jef', 'machine', 'file', 'embroidery'],
+        keywords: ['format', 'formats', 'dst', 'pes', 'emb', 'exp', 'jef', 'machine', 'brother', 'tajima', 'file', 'embroidery'],
       },
       {
         q: 'Which vector art formats do you provide?',
@@ -58,6 +56,11 @@ export const FAQ_GROUPS = [
         keywords: ['upload', 'artwork', 'image', 'jpg', 'photo', 'attach', 'accept'],
       },
       {
+        q: 'Which hoop sizes do you digitize for?',
+        a: 'Our packages cover 4×4 and 5×5 hoops (under 5 inches), 5×7 hoops (5–7 inches), and 6×10 and 8×12 hoops (over 7 inches, on quote).',
+        keywords: ['hoop', 'hoops', '4x4', '5x5', '5x7', '6x10', '8x12', 'size', 'sizes'],
+      },
+      {
         q: 'How do I receive my finished files?',
         a: 'Final completed design files are delivered to you by email.',
         keywords: ['receive', 'deliver', 'delivered', 'delivery', 'download', 'finished'],
@@ -68,19 +71,14 @@ export const FAQ_GROUPS = [
     title: 'Turnaround & revisions',
     items: [
       {
-        q: 'How long does an order take?',
-        a: 'Standard turnaround depends on the complexity of the design. We confirm the expected timing with your quote.',
-        keywords: ['how long', 'turnaround', 'delivery time', 'days', 'deadline', 'timeline', 'take'],
-      },
-      {
-        q: 'Do you offer rush orders?',
-        a: 'Yes. A 2-hour rush turnaround is available. Whether a specific design qualifies depends on its complexity, so please ask for rush delivery when you request your quote.',
-        keywords: ['rush', 'urgent', 'asap', '2 hour', '2-hour', 'two hour', 'express', 'same day'],
+        q: 'How long does embroidery digitizing take?',
+        a: 'Designs under 5 inches and designs of 5–7 inches are delivered within 12–24 hours. Designs over 7 inches take 24–48 hours.',
+        keywords: ['how long', 'turnaround', 'delivery time', 'days', 'hours', 'deadline', 'timeline', 'take', 'fast', 'quick', 'rush', 'urgent'],
       },
       {
         q: 'Do you offer revisions?',
-        a: 'Yes, revisions are free. If something needs adjusting, reply to the delivery email and tell us what to change.',
-        keywords: ['revision', 'revisions', 'change', 'edit', 'fix', 'modify', 'adjust', 'free'],
+        a: 'Yes, edits and revisions are free. If something needs adjusting, reply to the delivery email and tell us what to change.',
+        keywords: ['revision', 'revisions', 'change', 'edit', 'edits', 'fix', 'modify', 'adjust', 'free'],
       },
       {
         q: 'What is your refund policy?',
@@ -94,17 +92,17 @@ export const FAQ_GROUPS = [
     items: [
       {
         q: 'What services do you offer?',
-        a: 'We offer embroidery digitizing, vector art, patch digitizing and physical patches (custom quote).',
+        a: 'We offer embroidery digitizing, vector art conversion and custom physical patches (priced on quote).',
         keywords: ['service', 'services', 'offer', 'provide'],
       },
       {
         q: 'Do you make physical patches?',
-        a: 'Yes, physical patches are available by custom quote. Share your design, size, quantity and patch type through the quote form, and we will reply with pricing.',
-        keywords: ['physical', 'patch', 'patches', 'manufacture', 'pvc', 'woven', 'leather', 'iron'],
+        a: 'Yes, custom physical patches are available on quote. Share your design, size, quantity and patch type through the quote form, and we will reply with pricing.',
+        keywords: ['patch digitizing', 'physical', 'patch', 'patches', 'manufacture', 'pvc', 'woven', 'leather', 'iron'],
       },
       {
         q: 'How do I place an order?',
-        a: 'Send your artwork through the Get a Quote form, or message us on WhatsApp or by email. We review the design, confirm the price, and start work once you approve and pay through PayPal.',
+        a: 'Choose a package and click Order Now, or send your artwork through the Get a Quote form, WhatsApp or email. We confirm the price, you pay through PayPal, and your files arrive by email.',
         keywords: ['order', 'start', 'begin', 'place', 'quote', 'process', 'buy'],
       },
       {

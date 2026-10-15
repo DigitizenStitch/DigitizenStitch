@@ -57,17 +57,17 @@ export function Terms() {
   return (
     <LegalLayout crumb="Terms of Service" title="Terms of Service" intro="The terms that apply when you use our website and order our services.">
       <h2>Services</h2>
-      <p>Digitize&rsquo;NStitch provides embroidery digitizing, vector art, patch digitizing and physical patches. Service details are described on our service pages.</p>
+      <p>Digitize&rsquo;NStitch provides embroidery digitizing, vector art and custom physical patches. Service details are described on our service pages.</p>
       <h2>Quotes and pricing</h2>
-      <p>Published prices are starting prices. The final price depends on artwork complexity, size and requirements and is confirmed in your quote before work begins. Physical patches are priced by custom quote.</p>
+      <p>Embroidery digitizing is priced by design size: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, and over 7 inches on quote. The final price within each range depends on design complexity and is confirmed before work begins. Vector art starts at $12. Custom patches are priced on quote.</p>
       <h2>Payment</h2>
       <p>Payment is accepted through PayPal only.</p>
       <h2>Turnaround and delivery</h2>
-      <p>Standard turnaround depends on design complexity. A 2-hour rush turnaround is available for eligible designs. Completed digital files are delivered by email.</p>
+      <p>Embroidery digitizing turnaround is 12–24 hours for designs under 5 inches and 5–7 inches, and 24–48 hours for designs over 7 inches. Timing for vector art and custom patches is confirmed with your quote. Completed digital files are delivered by email.</p>
       <h2>File formats</h2>
       <p>Standard embroidery formats are DST, PES and EMB. Other machine formats can be requested and are provided when supported. Vector art is delivered as AI, EPS, PDF, SVG or PNG. Vector files are artwork files, not embroidery machine files.</p>
       <h2>Revisions and refunds</h2>
-      <p>Revisions are free. Refund requests are handled case by case. See our <Link to="/refund-revision-policy">Refund &amp; Revision Policy</Link>.</p>
+      <p>Edits and revisions are free. Refund requests are handled case by case. See our <Link to="/refund-revision-policy">Refund &amp; Revision Policy</Link>.</p>
       <h2>Your artwork</h2>
       <p>By sending artwork, you confirm that you have the right to use it and to have it digitized or reproduced.</p>
     </LegalLayout>

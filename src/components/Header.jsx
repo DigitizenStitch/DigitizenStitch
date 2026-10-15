@@ -49,12 +49,12 @@ export default function Header() {
   return (
     <header
       className={`on-dark fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium ${
-        scrolled || open ? 'bg-navy-950/95 shadow-lift backdrop-blur-md' : 'bg-navy-950'
+        scrolled || open ? 'border-b border-white/10 bg-ink/85 shadow-lift backdrop-blur-xl' : 'bg-transparent'
       }`}
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-navy-950"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
       >
         Skip to content
       </a>
@@ -64,7 +64,7 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-1 text-[15px] text-white/85">
+          <ul className="flex items-center gap-1 text-[15px] text-slate-300">
             {NAV.map((item) =>
               item.children ? (
                 <li key={item.label} className="relative" ref={dropdownRef}>
@@ -80,7 +80,7 @@ export default function Header() {
                   </button>
                   <ul
                     id="services-menu"
-                    className={`absolute left-1/2 top-full mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-white p-2 shadow-lift transition-all duration-300 ease-premium ${
+                    className={`absolute left-1/2 top-full mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-900/95 p-2 shadow-lift backdrop-blur-xl transition-all duration-300 ease-premium ${
                       servicesOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                     }`}
                   >
@@ -89,10 +89,11 @@ export default function Header() {
                         <NavLink
                           to={c.to}
                           className={({ isActive }) =>
-                            `block rounded-xl px-4 py-3 text-navy-950 transition hover:bg-navy-50 ${isActive ? 'bg-navy-50 font-semibold' : ''}`
+                            `group block rounded-xl px-4 py-3 transition hover:bg-white/5 ${isActive ? 'bg-white/10' : ''}`
                           }
                         >
-                          {c.label}
+                          <span className="block font-medium text-white">{c.label}</span>
+                          <span className="block text-xs text-slate-400 group-hover:text-thread">{c.note}</span>
                         </NavLink>
                       </li>
                     ))}
@@ -103,7 +104,7 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     end
-                    className={({ isActive }) => `link-underline mx-3 py-1 transition hover:text-white ${isActive ? 'text-white' : ''}`}
+                    className={({ isActive }) => `link-underline mx-2.5 py-1 transition hover:text-white ${isActive ? 'text-thread' : ''}`}
                   >
                     {item.label}
                   </NavLink>
@@ -119,11 +120,11 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp (opens in a new tab)"
-            className="hidden h-10 w-10 place-items-center rounded-full border border-white/20 text-white transition hover:bg-white hover:text-navy-950 sm:grid"
+            className="hidden h-10 w-10 place-items-center rounded-full border border-white/20 text-white transition hover:border-thread hover:text-thread sm:grid"
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" aria-hidden="true" />
           </a>
-          <Link to="/quote" className="btn-light hidden !py-2.5 sm:inline-flex">
+          <Link to="/quote" className="btn-gold hidden !min-h-[42px] !py-2 sm:inline-flex">
             Get a Quote
           </Link>
           <button
@@ -142,7 +143,7 @@ export default function Header() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`overflow-y-auto border-t border-white/10 bg-navy-950 transition-all duration-500 ease-premium lg:hidden ${
+        className={`overflow-y-auto border-t border-white/10 bg-ink transition-all duration-500 ease-premium lg:hidden ${
           open ? 'visible max-h-[calc(100dvh-4rem)] opacity-100' : 'invisible max-h-0 opacity-0'
         }`}
       >
@@ -153,7 +154,7 @@ export default function Header() {
                 <NavLink
                   to={item.to}
                   end
-                  className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 transition hover:bg-white/5 ${isActive ? 'bg-white/10 font-semibold' : 'text-white/85'}`}
+                  className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 transition hover:bg-white/5 ${isActive ? 'bg-white/10 font-semibold text-thread' : 'text-slate-200'}`}
                 >
                   {item.label}
                 </NavLink>
@@ -161,7 +162,7 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <Link to="/quote" className="btn-light w-full">Get a Quote</Link>
+            <Link to="/quote" className="btn-gold w-full">Get a Quote</Link>
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp w-full">
               <WhatsAppIcon className="h-4 w-4" aria-hidden="true" /> Chat on WhatsApp
             </a>

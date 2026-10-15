@@ -5,6 +5,10 @@ export const SITE_URL = 'https://digitizenstitch.com';
 
 export const BRAND = "Digitize'NStitch";
 
+// While true, unverified sections (client count, testimonials) render as clearly
+// labelled placeholders. Set to false before going live, or fill in real data below.
+export const SHOW_PLACEHOLDERS = true;
+
 export const CONTACT = {
   email: 'digitizenstitch@gmail.com',
   phone: '+923701081851',
@@ -19,15 +23,54 @@ export const CONTACT = {
 export const whatsappLink = (text) =>
   text ? `${CONTACT.whatsappUrl}?text=${encodeURIComponent(text)}` : CONTACT.whatsappUrl;
 
-export const PRICES = [
-  { service: 'Embroidery Digitizing', price: 'Starting at $10', amount: 10, path: '/embroidery-digitizing' },
-  { service: 'Vector Art', price: 'Starting at $12', amount: 12, path: '/vector-art' },
-  { service: 'Patch Digitizing', price: 'Starting at $10', amount: 10, path: '/patches' },
-  { service: 'Physical Patches', price: 'Custom Quote', amount: null, path: '/patches' },
+// Exact embroidery digitizing packages supplied by the business owner.
+export const PACKAGES = [
+  {
+    id: 'under-5',
+    name: 'Under 5 Inches',
+    size: 'Up to 5"',
+    price: '$4.99–$9.99',
+    min: 4.99,
+    max: 9.99,
+    turnaround: '12–24 hours',
+    features: ['Sleeve Design', 'Cap Logo', 'Left-Chest', '4×4 and 5×5 Hoop', 'Free Edits/Revisions', '12–24 Hours Turnaround'],
+    cta: 'Order Now',
+    accent: 'cyan',
+  },
+  {
+    id: '5-7',
+    name: '5–7 Inches',
+    size: '5" to 7"',
+    price: '$9.99–$14.99',
+    min: 9.99,
+    max: 14.99,
+    turnaround: '12–24 hours',
+    features: ['Mid-Chest', 'Sweatshirt/Hoodie Chest', 'Tote Bags', '5×7 Hoop', 'Free Edits/Revisions', '12–24 Hours Turnaround'],
+    cta: 'Order Now',
+    accent: 'gold',
+    featured: true,
+  },
+  {
+    id: 'over-7',
+    name: 'Over 7 Inches',
+    size: 'Larger than 7"',
+    price: 'On Quote',
+    min: null,
+    max: null,
+    turnaround: '24–48 hours',
+    features: ['Full-Front', 'Jacket Back', 'Large Appliqué Designs', '6×10 and 8×12 Hoops', 'Free Edits/Revisions', '24–48 Hours Turnaround'],
+    cta: 'Get a Quote',
+    accent: 'violet',
+  },
 ];
 
+export const packageById = (id) => PACKAGES.find((p) => p.id === id);
+export const packageLabel = (p) => `${p.name} (${p.price})`;
+
 export const PRICE_NOTE =
-  'Final pricing depends on artwork complexity, size and requirements. You will always receive a quote before any work begins.';
+  'Prices are shown as ranges: the final price within each range depends on design complexity and detail. For anything outside these packages, request a quote.';
+
+export const VECTOR_PRICE = 'Starting at $12';
 
 export const FORMATS = {
   embroidery: ['DST', 'PES', 'EMB'],
@@ -36,20 +79,12 @@ export const FORMATS = {
 };
 
 export const POLICIES = {
-  revisions: 'Free revisions',
+  revisions: 'Free edits and revisions',
   refunds: 'Handled case by case',
-  turnaround: 'Depends on design complexity',
-  rush: '2-hour rush turnaround available',
   delivery: 'Final files are delivered by email',
 };
 
-export const SERVICE_OPTIONS = [
-  'Embroidery Digitizing',
-  'Vector Art',
-  'Patch Digitizing',
-  'Physical Patches',
-  'Not sure yet',
-];
+export const SERVICE_OPTIONS = ['Embroidery Digitizing', 'Vector Art', 'Custom Patches', 'Not sure yet'];
 
 export const FORMAT_OPTIONS = [
   'DST',
@@ -70,13 +105,32 @@ export const NAV = [
   {
     label: 'Services',
     children: [
-      { label: 'Embroidery Digitizing', to: '/embroidery-digitizing' },
-      { label: 'Vector Art', to: '/vector-art' },
-      { label: 'Patch Design & Digitizing', to: '/patches' },
+      { label: 'Embroidery Digitizing', to: '/embroidery-digitizing', note: 'Stitch files from $4.99' },
+      { label: 'Vector Art', to: '/vector-art', note: 'Clean vectors from $12' },
+      { label: 'Custom Patches', to: '/patches', note: 'Physical patches on quote' },
     ],
   },
+  { label: 'Pricing', to: '/pricing' },
   { label: 'Portfolio', to: '/portfolio' },
-  { label: 'How It Works', to: '/how-it-works' },
+  { label: 'Process', to: '/how-it-works' },
   { label: 'About', to: '/about' },
   { label: 'FAQ', to: '/faq' },
 ];
+
+// Only verified figures. Everything here comes from the owner's published packages.
+export const VERIFIED_STATS = [
+  { value: 12, suffix: '–24 h', label: 'Turnaround for designs up to 7"' },
+  { value: 4.99, prefix: '$', decimals: 2, label: 'Digitizing packages start at' },
+  { value: 3, label: 'Standard machine formats: DST, PES, EMB' },
+  { value: 0, prefix: '$', label: 'Charged for edits and revisions' },
+];
+
+// Placeholder metrics: shown only while SHOW_PLACEHOLDERS is true, always labelled.
+export const PLACEHOLDER_STATS = [
+  { label: 'Clients served', value: '[add verified number]' },
+  { label: 'Designs digitized', value: '[add verified number]' },
+];
+
+// Add genuine reviews here (with the client's permission). Leave empty to hide names.
+// { quote: '', name: '', business: '', project: '', image: importedImage }
+export const TESTIMONIALS = [];

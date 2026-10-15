@@ -18,7 +18,7 @@ export function SocialLinks({ className = '', iconClass = 'h-4 w-4' }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/20 transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-navy-950"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/20 transition duration-300 hover:-translate-y-0.5 hover:border-thread hover:text-thread"
           >
             <Icon className={iconClass} aria-hidden="true" />
           </a>

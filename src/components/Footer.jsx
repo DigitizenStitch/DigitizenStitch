@@ -10,7 +10,8 @@ const COLUMNS = [
     links: [
       { label: 'Embroidery Digitizing', to: '/embroidery-digitizing' },
       { label: 'Vector Art', to: '/vector-art' },
-      { label: 'Patch Design & Digitizing', to: '/patches' },
+      { label: 'Custom Patches', to: '/patches' },
+      { label: 'Pricing', to: '/pricing' },
       { label: 'Get a Quote', to: '/quote' },
     ],
   },
@@ -35,15 +36,15 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="on-dark relative overflow-hidden bg-navy-ink text-white/70">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-navy-800/30 blur-3xl" />
+    <footer className="on-dark relative overflow-hidden bg-ink text-slate-400">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-navy-800/40 blur-[120px]" />
       <div className="container-x relative grid gap-12 py-16 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Link to="/" aria-label="Digitize'NStitch home">
             <img src={logo} alt="Digitize'NStitch" width="520" height="273" loading="lazy" className="h-14 w-auto" />
           </Link>
           <p className="mt-5 max-w-sm text-[15px] leading-relaxed">
-            Production-ready embroidery digitizing, clean vector art and patch design. Crafting excellence, one stitch at a time.
+            Premium embroidery digitizing and vector art, delivered by email. Crafting excellence, one stitch at a time.
           </p>
           <ul className="mt-6 space-y-3 text-[15px]">
             <li>

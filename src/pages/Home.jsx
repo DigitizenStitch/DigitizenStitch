@@ -1,115 +1,145 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, FileCheck2, Globe2, RefreshCw, Mail, ShieldCheck } from 'lucide-react';
-import { Backdrop, CtaBand, PriceGrid, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
+import { ArrowRight, ArrowUpRight, CreditCard, FileCheck2, Globe2, Layers, Mail, RefreshCw, Ruler, Timer } from 'lucide-react';
+import { Backdrop, CtaBand, FormatChips, Marquee, QuoteButtons, Reveal, SectionHeading, WordReveal } from '../components/ui';
+import { PricingTiers, StatsBand, Testimonials } from '../components/sections';
+import { BeforeAfter, Cap, Hoop, PoloShirt, SoftwareWindow } from '../components/art/Scenes';
+import { StitchSwatch } from '../components/art/StitchArt';
 import Gallery from '../components/Gallery';
-import { PORTFOLIO, byCategory } from '../data/portfolio';
-import { CONTACT } from '../data/site';
+import { byCategory } from '../data/portfolio';
+import { FAQ_GROUPS } from '../data/faq';
+import { FORMATS } from '../data/site';
+
+/** Moves layered hero elements slightly with the pointer (desktop, motion allowed). */
+function useParallax() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) return undefined;
+    let raf = 0;
+    const onMove = (e) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        el.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      });
+    };
+    el.addEventListener('pointermove', onMove);
+    return () => el.removeEventListener('pointermove', onMove);
+  }, []);
+  return ref;
+}
+
+const layer = (depth) => ({ transform: `translate3d(calc(var(--px,0) * ${depth}px), calc(var(--py,0) * ${depth}px), 0)`, transition: 'transform .4s cubic-bezier(.2,.7,.2,1)' });
 
 const SERVICES = [
-  {
-    to: '/embroidery-digitizing',
-    title: 'Embroidery Digitizing',
-    price: 'From $10',
-    text: 'Logos and artwork converted into clean, production-ready stitch files for your embroidery machine.',
-    image: byCategory('embroidery').find((p) => p.id === 'embroidery/d5'),
-  },
-  {
-    to: '/vector-art',
-    title: 'Vector Art',
-    price: 'From $12',
-    text: 'Blurry or low-resolution images redrawn as sharp, scalable vector artwork for print and production.',
-    image: byCategory('vector').find((p) => p.id === 'vector/p8'),
-  },
-  {
-    to: '/patches',
-    title: 'Patch Design & Digitizing',
-    price: 'From $10',
-    text: 'Patch digitizing for your machine, plus physical patches made to your requirements by custom quote.',
-    image: byCategory('patches').find((p) => p.id === 'patches/pa6'),
-  },
+  { to: '/embroidery-digitizing', k: '01', title: 'Embroidery Digitizing', price: '$4.99–$14.99 · large on quote', text: 'Your logo or artwork rebuilt stitch by stitch for your machine, hoop and fabric. Left-chest and cap logos to jacket backs and large appliqué.' },
+  { to: '/vector-art', k: '02', title: 'Vector Art', price: 'From $12', text: 'Blurry, pixelated images redrawn as clean vector artwork, sharp at any size for print and production.' },
+  { to: '/patches', k: '03', title: 'Custom Patches', price: 'On quote', text: 'Physical patches made to your design, size and quantity. Send your requirements for a custom quote.' },
 ];
 
-const PROMISES = [
-  { Icon: RefreshCw, title: 'Free revisions', text: 'If something needs adjusting, we revise it at no extra cost.' },
-  { Icon: Clock, title: '2-hour rush available', text: 'Rush turnaround for eligible designs when you are on a deadline.' },
-  { Icon: FileCheck2, title: 'Machine-ready formats', text: 'DST, PES and EMB as standard. Other formats on request.' },
-  { Icon: Mail, title: 'Delivered by email', text: 'Your finished files arrive straight in your inbox.' },
-  { Icon: ShieldCheck, title: 'Quote before work', text: 'You approve the price before we start. PayPal only.' },
-  { Icon: Globe2, title: 'Serving clients worldwide', text: 'We work online with customers in every time zone.' },
+const WHY = [
+  { Icon: Ruler, title: 'Digitized for real production', text: 'Stitch direction, density and underlay are planned for your size, hoop and fabric, not just for the screen.' },
+  { Icon: Timer, title: '12–24 hour turnaround', text: 'Designs up to 7 inches are delivered within 12–24 hours. Larger designs take 24–48 hours.' },
+  { Icon: RefreshCw, title: 'Free edits and revisions', text: 'If a detail needs adjusting after your test sew-out, we revise it at no extra cost.' },
+  { Icon: FileCheck2, title: 'The format your machine needs', text: 'DST, PES and EMB as standard. EXP, JEF and other formats on request when supported.' },
+  { Icon: CreditCard, title: 'Clear price before work', text: 'Transparent package ranges, an exact price confirmed up front, and secure PayPal payment.' },
+  { Icon: Globe2, title: 'Serving clients worldwide', text: 'We work online with print shops, embroidery businesses and brands in every time zone.' },
 ];
 
-const heroImages = ['embroidery/d1', 'vector/p9', 'patches/pa8'].map((id) => PORTFOLIO.find((p) => p.id === id));
+const WORKFLOW = [
+  ['Upload', 'Send your artwork with size, placement and format.'],
+  ['Quote', 'We confirm your package and exact price.'],
+  ['Pay', 'Approve and pay securely through PayPal.'],
+  ['Digitize', 'Your design is digitized for your machine and fabric.'],
+  ['Deliver', 'Files arrive by email; edits are free.'],
+];
 
 export default function Home() {
+  const hero = useParallax();
+  const featured = byCategory('embroidery');
+  const faqs = FAQ_GROUPS.flatMap((g) => g.items).filter((f) =>
+    ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Do you offer revisions?', 'Which payment methods do you accept?'].includes(f.q),
+  );
+
   return (
     <>
-      {/* Hero */}
-      <section className="on-dark relative overflow-hidden bg-navy-950 pb-20 pt-32 text-white sm:pt-40 lg:pb-28">
+      {/* ───────────── HERO ───────────── */}
+      <section ref={hero} className="dark-surface grain relative overflow-hidden bg-mesh pt-32 sm:pt-40">
         <Backdrop />
-        <div className="container-x relative grid items-center gap-14 lg:grid-cols-12">
+        <div className="container-x relative grid items-center gap-16 pb-20 lg:grid-cols-12 lg:pb-28">
           <div className="lg:col-span-6">
-            <p className="eyebrow eyebrow-light page-enter">Crafting Excellence, One Stitch at a Time</p>
-            <h1 className="page-enter mt-5 text-[2.6rem] leading-[1.05] text-white sm:text-6xl lg:text-[4.2rem]" style={{ animationDelay: '80ms' }}>
-              Embroidery digitizing &amp; vector art, <em className="font-normal text-navy-200">ready for production.</em>
+            <p className="eyebrow eyebrow-gold page-enter">Premium embroidery digitizing studio</p>
+            <h1 className="mt-6 text-[2.75rem] leading-[1.02] sm:text-7xl lg:text-[5.2rem]">
+              <WordReveal text="Every stitch," start={120} />
+              <br />
+              <WordReveal text="engineered." start={300} className="text-gold pb-2" />
             </h1>
-            <p className="page-enter mt-6 max-w-xl text-lg leading-relaxed text-white/75" style={{ animationDelay: '160ms' }}>
-              Send us your logo or artwork. We turn it into clean stitch files and sharp vector art, with free revisions and a 2-hour rush option when you need it fast.
+            <p className="page-enter mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl" style={{ animationDelay: '550ms' }}>
+              We turn logos and artwork into clean, machine-ready embroidery files and sharp vector art, delivered in 12–24 hours for designs up to 7 inches, with free edits.
             </p>
-            <div className="page-enter" style={{ animationDelay: '240ms' }}>
-              <QuoteButtons light className="mt-9" />
+            <div className="page-enter" style={{ animationDelay: '700ms' }}>
+              <QuoteButtons secondary="work" className="mt-10" />
             </div>
-            <dl className="page-enter mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8" style={{ animationDelay: '320ms' }}>
-              {[['$10', 'Digitizing from'], ['$12', 'Vector art from'], ['2 hr', 'Rush option']].map(([v, l]) => (
-                <div key={l}>
-                  <dt className="text-xs uppercase tracking-[0.16em] text-white/50">{l}</dt>
-                  <dd className="mt-1 font-display text-3xl text-white">{v}</dd>
-                </div>
+            <ul className="page-enter mt-12 flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs uppercase tracking-widest text-slate-400" style={{ animationDelay: '850ms' }}>
+              {['From $4.99', '12–24 h delivery', 'Free revisions', 'PayPal'].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span className="h-1 w-1 rounded-full bg-thread" />{t}</li>
               ))}
-            </dl>
+            </ul>
           </div>
 
-          {/* Layered artwork collage */}
-          <div className="relative mx-auto aspect-square w-full max-w-md sm:max-w-lg lg:col-span-6" aria-hidden="true">
-            <div className="absolute inset-[8%] rounded-full border border-dashed border-white/15" />
-            <div className="float-slow absolute left-0 top-[6%] w-[62%] overflow-hidden rounded-3xl shadow-lift ring-1 ring-white/10">
-              <img src={heroImages[0].thumb} alt="" width="600" height="600" className="h-full w-full object-cover" />
+          {/* Layered composition */}
+          <div className="relative lg:col-span-6" aria-hidden="true">
+            <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/10 spin-slow" />
+            <div style={layer(18)} className="page-enter relative" >
+              <SoftwareWindow className="relative z-10 mx-auto max-w-xl lg:mr-10" />
             </div>
-            <div className="float-slower absolute bottom-[4%] right-0 w-[52%] overflow-hidden rounded-3xl shadow-lift ring-1 ring-white/10">
-              <img src={heroImages[1].thumb} alt="" width="600" height="600" className="h-full w-full object-cover" />
+            <div style={layer(-30)} className="absolute -bottom-10 -left-4 z-20 w-32 sm:-left-10 sm:w-44">
+              <div className="float-a"><Hoop className="w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.6)]" /></div>
             </div>
-            <div className="float-slow absolute bottom-[10%] left-[8%] w-[34%] overflow-hidden rounded-2xl shadow-lift ring-4 ring-navy-950">
-              <img src={heroImages[2].thumb} alt="" width="600" height="600" className="h-full w-full object-cover" />
+            <div style={layer(-22)} className="absolute -right-4 -top-24 z-20 hidden w-36 sm:block">
+              <div className="float-b glass p-3"><PoloShirt className="w-full" /><p className="mt-1 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Left-chest</p></div>
             </div>
-            <div className="absolute right-[4%] top-[2%] rounded-2xl bg-white/95 px-4 py-3 text-navy-950 shadow-lift backdrop-blur">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Formats</p>
-              <p className="mt-0.5 font-display text-lg">DST · PES · EMB</p>
+            <div style={layer(-14)} className="absolute -bottom-24 right-0 z-20 hidden w-40 sm:block">
+              <div className="float-a glass p-3"><Cap className="w-full" /><p className="mt-1 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Cap front</p></div>
             </div>
           </div>
         </div>
+        <div className="relative border-y border-white/10 bg-ink/60 py-6 backdrop-blur">
+          <Marquee items={['Left-chest logos', 'Cap logos', 'Sleeve designs', 'Hoodie chests', 'Tote bags', 'Jacket backs', 'Large appliqué', 'Vector redraws', 'DST · PES · EMB']} />
+        </div>
       </section>
 
-      {/* Services */}
-      <section className="section">
+      {/* ───────────── STATS ───────────── */}
+      <section className="dark-surface relative bg-ink pb-24 pt-20">
         <div className="container-x">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeading eyebrow="What we do" title="Three services, one standard of quality" intro="Each file is prepared for real production, not just to look good on screen." />
-            <Reveal><Link to="/portfolio" className="btn-outline">See our work <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Reveal>
+          <StatsBand />
+        </div>
+      </section>
+
+      {/* ───────────── SERVICES (editorial list) ───────────── */}
+      <section className="section">
+        <div className="container-x grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-32">
+              <SectionHeading eyebrow="Services" title="What we create for you" intro="Three focused services, one obsession with stitch quality." />
+              <Reveal className="mt-10 hidden lg:block"><Hoop animate className="w-64" /></Reveal>
+            </div>
           </div>
-          <ul className="mt-14 grid gap-6 md:grid-cols-3">
+          <ul className="divide-y divide-ink/10 border-y border-ink/10 lg:col-span-8">
             {SERVICES.map((s, i) => (
-              <Reveal as="li" key={s.to} delay={i * 90}>
-                <Link to={s.to} className="card card-hover group flex h-full flex-col overflow-hidden">
-                  <div className="aspect-[4/3] overflow-hidden bg-slate-100">
-                    <img src={s.image.thumb} alt={s.image.alt} loading="lazy" width="600" height="600" className="h-full w-full object-cover transition duration-700 ease-premium group-hover:scale-105" />
+              <Reveal as="li" key={s.to} delay={i * 80}>
+                <Link to={s.to} className="group grid gap-4 py-10 sm:grid-cols-[80px_1fr_auto] sm:items-start">
+                  <span className="font-mono text-sm text-slate-400">{s.k}</span>
+                  <div>
+                    <h3 className="text-3xl transition-colors group-hover:text-navy-800 sm:text-4xl">{s.title}</h3>
+                    <p className="mt-2 font-mono text-xs uppercase tracking-widest text-thread-deep">{s.price}</p>
+                    <p className="mt-4 max-w-xl text-slate-600">{s.text}</p>
                   </div>
-                  <div className="flex flex-1 flex-col p-7">
-                    <p className="text-sm font-semibold text-navy-800">{s.price}</p>
-                    <h3 className="mt-2 text-2xl">{s.title}</h3>
-                    <p className="mt-3 flex-1 text-slate-600">{s.text}</p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy-900 transition-all group-hover:gap-3">
-                      Explore service <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                  </div>
+                  <span className="grid h-14 w-14 place-items-center rounded-full border border-ink/15 transition-all duration-500 ease-premium group-hover:rotate-45 group-hover:border-ink group-hover:bg-ink group-hover:text-thread">
+                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  </span>
                 </Link>
               </Reveal>
             ))}
@@ -117,70 +147,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Promises */}
-      <section className="section bg-white">
-        <div className="container-x grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <SectionHeading eyebrow="Why Digitize'NStitch" title="Built for businesses that need files that simply work" />
-          </div>
-          <ul className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-8">
-            {PROMISES.map(({ Icon, title, text }, i) => (
-              <Reveal as="li" key={title} delay={(i % 2) * 90} className="flex gap-5">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-navy-950 text-white"><Icon className="h-5 w-5" aria-hidden="true" /></span>
-                <div>
-                  <h3 className="font-sans text-lg font-semibold">{title}</h3>
-                  <p className="mt-1.5 text-slate-600">{text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+      {/* ───────────── PRICING ───────────── */}
+      <section id="pricing" className="dark-surface grain relative overflow-hidden bg-mesh section">
+        <Backdrop stitch={false} />
+        <div className="container-x relative">
+          <SectionHeading dark center eyebrow="Embroidery digitizing prices" title="Our Embroidery Digitizing Prices" intro="Three packages by design size. Pick yours and click Order Now; we confirm the exact price before any work begins." />
+          <div className="mt-16"><PricingTiers /></div>
         </div>
       </section>
 
-      {/* Portfolio preview */}
-      <section className="section">
+      {/* ───────────── FEATURED WORK ───────────── */}
+      <section className="section overflow-hidden">
         <div className="container-x">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeading eyebrow="Portfolio" title="Recent work" intro="A selection of embroidery, vector and patch projects. Click any image to view it larger." />
-            <Reveal><Link to="/portfolio" className="btn-outline">View full portfolio <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Reveal>
+            <SectionHeading eyebrow="Featured work" title="Embroidery designs from our studio" intro="A selection of designs we have digitized. Tap any image to view it full size." />
+            <Reveal><Link to="/portfolio" className="btn-outline">Explore Our Work <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Reveal>
           </div>
-          <div className="mt-12">
-            <Gallery
-              items={['embroidery/d8', 'vector/p3', 'patches/pa2', 'embroidery/a3', 'vector/p2', 'patches/pa7'].map((id) => PORTFOLIO.find((p) => p.id === id)).filter(Boolean)}
-            />
-          </div>
+          <div className="mt-14"><Gallery items={featured} limit={8} columns="sm:grid-cols-3 lg:grid-cols-4" /></div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="section bg-white">
-        <div className="container-x">
-          <SectionHeading eyebrow="Pricing" title="Clear starting prices" intro="Simple designs start from the prices below. You receive an exact quote before any work begins." />
-          <div className="mt-12"><PriceGrid /></div>
-        </div>
-      </section>
-
-      {/* Process teaser */}
-      <section className="section">
-        <div className="container-x">
-          <SectionHeading center eyebrow="How it works" title="From artwork to finished file in four steps" />
-          <ol className="mt-14 grid gap-6 md:grid-cols-4">
-            {['Send your artwork', 'Approve your quote', 'Pay via PayPal', 'Receive files by email'].map((t, i) => (
-              <Reveal as="li" key={t} delay={i * 90} className="card p-7">
-                <span className="font-display text-4xl text-navy-200">0{i + 1}</span>
-                <p className="mt-4 font-semibold text-navy-950">{t}</p>
-              </Reveal>
-            ))}
-          </ol>
-          <Reveal className="mt-10 text-center">
-            <Link to="/how-it-works" className="inline-flex items-center gap-2 font-semibold text-navy-800 transition-all hover:gap-3">
-              Read the full process <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+      {/* ───────────── TECHNOLOGY ───────────── */}
+      <section className="dark-surface grain relative overflow-hidden bg-ink section">
+        <Backdrop stitch={false} />
+        <div className="container-x relative grid gap-16 lg:grid-cols-2 lg:items-center">
+          <div>
+            <SectionHeading dark accent="teal" eyebrow="Process & technology" title="Artwork in. Production-ready stitches out." intro="Digitizing is not a file conversion. Every object is rebuilt with the right stitch type, angle, density and underlay so it sews cleanly on real fabric." />
+            <ul className="mt-12 grid grid-cols-2 gap-4">
+              {[['satin', 'Satin', 'Smooth, glossy columns for borders and lettering.'], ['fill', 'Tatami fill', 'Even, textured coverage for larger areas.'], ['run', 'Running stitch', 'Fine outlines and small details.'], ['applique', 'Appliqué', 'Fabric pieces finished with a satin edge.']].map(([t, h, d], i) => (
+                <Reveal as="li" key={t} delay={i * 80} className="glass group overflow-hidden p-4 transition-colors hover:border-signal/40">
+                  <div className="fabric h-24 overflow-hidden rounded-2xl p-2 transition-transform duration-700 ease-premium group-hover:scale-[1.04]"><StitchSwatch type={t} /></div>
+                  <h3 className="mt-4 font-sans text-base font-semibold">{h}</h3>
+                  <p className="mt-1 text-sm text-slate-400">{d}</p>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+          <Reveal delay={150}>
+            <BeforeAfter />
           </Reveal>
         </div>
       </section>
 
-      <CtaBand text={`Upload your design for a quote, or message us on WhatsApp at ${CONTACT.phoneDisplay}.`} />
+      {/* ───────────── FORMATS ───────────── */}
+      <section className="section">
+        <div className="container-x">
+          <SectionHeading center eyebrow="Supported file formats" title="The right file for every machine and press" />
+          <div className="mt-16 grid gap-6 md:grid-cols-2">
+            <Reveal className="card relative overflow-hidden p-8 sm:p-10">
+              <Layers className="h-8 w-8 text-navy-800" aria-hidden="true" />
+              <h3 className="mt-6 text-3xl">Embroidery machine files</h3>
+              <p className="mt-3 text-slate-600">Stitch files your embroidery machine can sew.</p>
+              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-slate-500">Standard</p>
+              <div className="mt-3"><FormatChips items={FORMATS.embroidery} /></div>
+              <p className="mt-6 font-mono text-xs uppercase tracking-widest text-slate-500">On request, when supported</p>
+              <div className="mt-3"><FormatChips items={FORMATS.embroideryOnRequest} muted /></div>
+            </Reveal>
+            <Reveal delay={100} className="card relative overflow-hidden p-8 sm:p-10">
+              <svg aria-hidden="true" viewBox="0 0 32 32" className="h-8 w-8 text-orchid-deep" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 26 C 10 6, 22 6, 28 26" /><rect x="2" y="24" width="5" height="5" /><rect x="25" y="24" width="5" height="5" /><circle cx="16" cy="9" r="2.5" /></svg>
+              <h3 className="mt-6 text-3xl">Vector artwork files</h3>
+              <p className="mt-3 text-slate-600">Scalable artwork for print, signage, engraving and cutting. Not embroidery machine files.</p>
+              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-slate-500">Delivered as</p>
+              <div className="mt-3"><FormatChips items={FORMATS.vector} /></div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────────── WHY US ───────────── */}
+      <section className="section bg-white">
+        <div className="container-x">
+          <SectionHeading eyebrow="Why clients choose us" title="Built for businesses that cannot afford a bad sew-out" />
+          <ol className="mt-16 grid gap-x-12 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+            {WHY.map(({ Icon, title, text }, i) => (
+              <Reveal as="li" key={title} delay={(i % 3) * 90} className="group relative border-t border-ink/10 pt-8">
+                <span aria-hidden="true" className="absolute -top-px left-0 h-px w-0 bg-gradient-to-r from-thread to-signal transition-all duration-700 ease-premium group-hover:w-full" />
+                <div className="flex items-center justify-between">
+                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-thread transition-transform duration-500 group-hover:-rotate-6"><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                  <span className="font-display text-5xl text-ink/[0.07]">0{i + 1}</span>
+                </div>
+                <h3 className="mt-6 font-sans text-xl font-semibold">{title}</h3>
+                <p className="mt-2 leading-relaxed text-slate-600">{text}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ───────────── TESTIMONIALS ───────────── */}
+      <section className="section">
+        <div className="container-x">
+          <SectionHeading center eyebrow="Client reviews" title="What our clients say" intro="Real feedback and sew-out photos from our clients." />
+          <div className="mt-14"><Testimonials /></div>
+        </div>
+      </section>
+
+      {/* ───────────── WORKFLOW ───────────── */}
+      <section className="dark-surface grain relative overflow-hidden bg-mesh section">
+        <Backdrop stitch={false} />
+        <div className="container-x relative">
+          <SectionHeading dark center eyebrow="Our workflow" title="Five steps from upload to inbox" />
+          <ol className="relative mt-20 grid gap-10 md:grid-cols-5 md:gap-6">
+            <svg aria-hidden="true" className="absolute left-0 top-7 hidden h-4 w-full text-thread/50 md:block" viewBox="0 0 1000 16" preserveAspectRatio="none" fill="none">
+              <path className="stitch-run" d="M0 8 H1000" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            {WORKFLOW.map(([h, t], i) => (
+              <Reveal as="li" key={h} delay={i * 120} className="relative flex gap-5 md:block md:text-center">
+                <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border border-thread/40 bg-ink font-mono text-sm text-thread shadow-glow md:mx-auto">0{i + 1}</span>
+                <div>
+                  <h3 className="font-sans text-xl font-semibold md:mt-6">{h}</h3>
+                  <p className="mt-2 text-slate-400">{t}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal className="mt-16 text-center">
+            <Link to="/how-it-works" className="btn-glass">See the full process <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────── FAQ ───────────── */}
+      <section className="section">
+        <div className="container-x grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <SectionHeading eyebrow="FAQ" title="Quick answers" />
+            <Reveal className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link to="/faq" className="btn-outline w-fit">All questions <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <a href="mailto:digitizenstitch@gmail.com" className="inline-flex items-center gap-2 text-sm text-slate-500"><Mail className="h-4 w-4" aria-hidden="true" /> digitizenstitch@gmail.com</a>
+            </Reveal>
+          </div>
+          <div className="space-y-3 lg:col-span-8">
+            {faqs.map((f, i) => (
+              <Reveal key={f.q} delay={i * 60}>
+                <details className="card group open:shadow-lift">
+                  <summary className="flex min-h-[64px] cursor-pointer list-none items-center justify-between gap-4 p-6 [&::-webkit-details-marker]:hidden">
+                    <h3 className="font-sans text-lg font-semibold">{f.q}</h3>
+                    <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink text-thread transition-transform duration-500 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="px-6 pb-6 leading-relaxed text-slate-600">{f.a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CtaBand />
     </>
   );
 }

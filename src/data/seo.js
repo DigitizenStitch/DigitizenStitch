@@ -10,14 +10,14 @@ export const PAGES = {
   '/': {
     title: "Digitize'NStitch | Embroidery Digitizing, Vector Art & Patches",
     description:
-      'Production-ready embroidery digitizing from $10, clean vector art from $12 and patch digitizing from $10. Free revisions, 2-hour rush available. Serving clients worldwide.',
+      'Premium embroidery digitizing from $4.99 with 12–24 hour delivery for designs up to 7 inches, free edits, and clean vector art from $12. Serving clients worldwide.',
   },
   '/embroidery-digitizing': {
-    title: "Embroidery Digitizing Services from $10 | Digitize'NStitch",
+    title: "Embroidery Digitizing from $4.99 | Digitize'NStitch",
     description:
-      'Custom embroidery digitizing for logos, caps, jackets and detailed artwork. DST, PES and EMB files, free revisions and 2-hour rush turnaround available.',
+      'Custom embroidery digitizing for left-chest, cap, sleeve, hoodie and jacket-back designs. DST, PES and EMB files, free edits, 12–24 hour delivery up to 7 inches.',
     name: 'Embroidery Digitizing',
-    service: { name: 'Embroidery Digitizing', price: 10 },
+    service: { name: 'Embroidery Digitizing', price: 4.99, max: 14.99 },
   },
   '/vector-art': {
     title: "Vector Art & Logo Vectorization from $12 | Digitize'NStitch",
@@ -27,11 +27,16 @@ export const PAGES = {
     service: { name: 'Vector Art Conversion', price: 12 },
   },
   '/patches': {
-    title: "Patch Design & Digitizing from $10 | Digitize'NStitch",
+    title: "Custom Patches on Quote | Digitize'NStitch",
     description:
-      'Patch digitizing from $10 and custom-quoted physical patches. Send your design and size for a clear quote.',
-    name: 'Patch Design & Digitizing',
-    service: { name: 'Patch Digitizing', price: 10 },
+      'Custom physical patches made to your design, size and quantity. Every patch order is priced individually on quote.',
+    name: 'Custom Patches',
+  },
+  '/pricing': {
+    title: "Embroidery Digitizing Prices: $4.99–$14.99 | Digitize'NStitch",
+    description:
+      'Embroidery digitizing packages by size: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, over 7 inches on quote. Free edits and 12–48 hour turnaround.',
+    name: 'Pricing',
   },
   '/portfolio': {
     title: "Portfolio: Embroidery, Vector & Patch Work | Digitize'NStitch",
@@ -42,7 +47,7 @@ export const PAGES = {
   '/how-it-works': {
     title: "How It Works: From Artwork to Finished File | Digitize'NStitch",
     description:
-      'Send your artwork, approve your quote, pay by PayPal and receive your finished files by email, with free revisions.',
+      'Upload your artwork, approve your price, pay by PayPal and receive your files by email in 12–48 hours, with free edits.',
     name: 'How It Works',
   },
   '/about': {
@@ -54,14 +59,14 @@ export const PAGES = {
   '/faq': {
     title: "FAQ: Prices, Formats, Turnaround & Revisions | Digitize'NStitch",
     description:
-      'Answers about embroidery digitizing and vector art prices, file formats, rush turnaround, revisions, refunds and PayPal payment.',
+      'Answers about embroidery digitizing and vector art prices, file formats, hoop sizes, turnaround, revisions, refunds and PayPal payment.',
     name: 'FAQ',
     faq: true,
   },
   '/quote': {
     title: "Get a Quote | Digitize'NStitch",
     description:
-      'Upload your artwork and get a quote for embroidery digitizing, vector art or patches. Or chat with us on WhatsApp.',
+      'Upload your artwork to order embroidery digitizing or get a quote for vector art and custom patches. Or chat with us on WhatsApp.',
     name: 'Get a Quote',
   },
   '/privacy-policy': {
@@ -138,7 +143,7 @@ export function structuredData(path) {
       offers: {
         '@type': 'Offer',
         priceCurrency: 'USD',
-        priceSpecification: { '@type': 'PriceSpecification', minPrice: page.service.price, priceCurrency: 'USD' },
+        priceSpecification: { '@type': 'PriceSpecification', minPrice: page.service.price, ...(page.service.max && { maxPrice: page.service.max }), priceCurrency: 'USD' },
       },
     });
   }

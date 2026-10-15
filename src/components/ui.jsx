@@ -1,90 +1,111 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight } from 'lucide-react';
-import { CONTACT, PRICE_NOTE, PRICES } from '../data/site';
+import { ArrowRight, Check, ChevronRight } from 'lucide-react';
+import { CONTACT } from '../data/site';
 import { WhatsAppIcon } from './Icons';
 
-export function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+export function Reveal({ as: Tag = 'div', delay = 0, img = false, className = '', children, ...rest }) {
   return (
-    <Tag className={`reveal ${className}`} style={delay ? { '--d': `${delay}ms` } : undefined} {...rest}>
+    <Tag className={`${img ? 'reveal-img' : 'reveal'} ${className}`} style={delay ? { '--d': `${delay}ms` } : undefined} {...rest}>
       {children}
     </Tag>
   );
 }
 
-export function PageHeader({ eyebrow, title, intro, crumb, children }) {
+/** Splits a heading into words that rise in one after another. */
+export function WordReveal({ text, start = 0, step = 70, className = '' }) {
+  return text.split(' ').map((w, i) => (
+    <span key={i} className={`word ${className}`} style={{ '--d': `${start + i * step}ms` }}>
+      {w}
+      {' '}
+    </span>
+  ));
+}
+
+/** Dark, layered backdrop: aurora glows, grid, grain, a running stitch line. */
+export function Backdrop({ stitch = true }) {
   return (
-    <section className="on-dark relative overflow-hidden bg-navy-950 pb-20 pt-32 text-white sm:pb-24 sm:pt-40">
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="aurora absolute -right-[10%] -top-[20%] h-[36rem] w-[36rem] rounded-full bg-navy-700/40 blur-[120px]" />
+      <div className="aurora absolute -bottom-[30%] -left-[10%] h-[30rem] w-[30rem] rounded-full bg-orchid-deep/20 blur-[120px]" style={{ animationDelay: '-6s' }} />
+      <div className="aurora absolute bottom-[10%] right-[25%] h-72 w-72 rounded-full bg-signal/10 blur-[100px]" style={{ animationDelay: '-12s' }} />
+      <div className="bg-grid absolute inset-0" />
+      {stitch && (
+        <svg className="absolute bottom-6 left-0 h-24 w-full text-thread/30" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
+          <path className="stitch-run" d="M0 70 C 240 10, 480 100, 720 50 S 1200 0, 1440 40" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+      )}
+    </div>
+  );
+}
+
+export function PageHeader({ eyebrow, title, intro, crumb, children, aside }) {
+  return (
+    <section className="dark-surface grain relative overflow-hidden bg-mesh pb-20 pt-36 sm:pb-28 sm:pt-44">
       <Backdrop />
-      <div className="container-x relative">
-        {crumb && (
-          <nav aria-label="Breadcrumb" className="mb-8 text-sm text-white/60">
-            <ol className="flex items-center gap-1.5">
-              <li><Link to="/" className="transition hover:text-white">Home</Link></li>
-              <li aria-hidden="true"><ChevronRight className="h-3.5 w-3.5" /></li>
-              <li aria-current="page" className="text-white/90">{crumb}</li>
-            </ol>
-          </nav>
-        )}
-        {eyebrow && <p className="eyebrow eyebrow-light page-enter">{eyebrow}</p>}
-        <h1 className="page-enter mt-4 max-w-4xl text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">{title}</h1>
-        {intro && <p className="page-enter mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{intro}</p>}
-        {children}
+      <div className={`container-x relative ${aside ? 'grid items-center gap-14 lg:grid-cols-12' : ''}`}>
+        <div className={aside ? 'lg:col-span-7' : ''}>
+          {crumb && (
+            <nav aria-label="Breadcrumb" className="page-enter mb-8 font-mono text-xs text-slate-400">
+              <ol className="flex items-center gap-1.5">
+                <li><Link to="/" className="transition hover:text-white">Home</Link></li>
+                <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
+                <li aria-current="page" className="text-thread">{crumb}</li>
+              </ol>
+            </nav>
+          )}
+          {eyebrow && <p className="eyebrow eyebrow-gold page-enter">{eyebrow}</p>}
+          <h1 className="mt-5 max-w-4xl text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-7xl">
+            <WordReveal text={title} start={100} />
+          </h1>
+          {intro && <p className="page-enter mt-7 max-w-2xl text-lg leading-relaxed text-slate-300" style={{ animationDelay: '300ms' }}>{intro}</p>}
+          {children}
+        </div>
+        {aside && <div className="page-enter lg:col-span-5" style={{ animationDelay: '350ms' }}>{aside}</div>}
       </div>
     </section>
   );
 }
 
-// Decorative layered backdrop for dark sections: soft glow + stitched curve.
-export function Backdrop() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-navy-700/30 blur-3xl" />
-      <div className="absolute -bottom-40 left-1/4 h-80 w-80 rounded-full bg-navy-500/10 blur-3xl" />
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,.9) 1px, transparent 1px)', backgroundSize: '22px 22px' }}
-      />
-      <svg className="absolute bottom-0 left-0 h-40 w-full text-white/15" viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none">
-        <path className="stitch-draw" d="M0 120 C 240 40, 480 160, 720 90 S 1200 20, 1440 80" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    </div>
-  );
-}
-
-export function SectionHeading({ eyebrow, title, intro, center = false, light = false }) {
+export function SectionHeading({ eyebrow, title, intro, center = false, dark = false, accent = 'gold' }) {
   return (
     <Reveal className={`max-w-2xl ${center ? 'mx-auto text-center' : ''}`}>
-      {eyebrow && <p className={`eyebrow ${light ? 'eyebrow-light' : ''}`}>{eyebrow}</p>}
-      <h2 className={`mt-4 text-3xl leading-tight sm:text-4xl lg:text-[2.75rem] ${light ? 'text-white' : ''}`}>{title}</h2>
-      {intro && <p className={`mt-5 text-lg leading-relaxed ${light ? 'text-white/70' : 'text-slate-600'}`}>{intro}</p>}
+      {eyebrow && <p className={`eyebrow ${dark ? (accent === 'teal' ? 'eyebrow-teal' : 'eyebrow-gold') : ''}`}>{eyebrow}</p>}
+      <h2 className={`mt-5 text-[2.1rem] leading-[1.08] sm:text-5xl ${dark ? 'text-white' : ''}`}>{title}</h2>
+      {intro && <p className={`mt-5 text-lg leading-relaxed ${dark ? 'text-slate-400' : 'text-slate-600'}`}>{intro}</p>}
     </Reveal>
   );
 }
 
-export function QuoteButtons({ light = false, className = '' }) {
+export function QuoteButtons({ className = '', secondary = 'whatsapp', quoteTo = '/quote' }) {
   return (
     <div className={`flex flex-wrap gap-3 ${className}`}>
-      <Link to="/quote" className={light ? 'btn-light' : 'btn-primary'}>
+      <Link to={quoteTo} className="btn-gold">
         Get a Quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </Link>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
-        <WhatsAppIcon className="h-4 w-4" aria-hidden="true" /> Chat on WhatsApp
-        <span className="sr-only">(opens in a new tab)</span>
-      </a>
+      {secondary === 'work' ? (
+        <Link to="/portfolio" className="btn-glass">Explore Our Work</Link>
+      ) : (
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-glass">
+          <WhatsAppIcon className="h-4 w-4 text-[#4ade80]" aria-hidden="true" /> Chat on WhatsApp
+          <span className="sr-only">(opens in a new tab)</span>
+        </a>
+      )}
     </div>
   );
 }
 
-export function CtaBand({ title = 'Ready to bring your design to life?', text = 'Send your artwork and get a clear quote before any work begins.' }) {
+export function CtaBand({ title = 'Ready to see your design stitched perfectly?', text = 'Send your artwork today. You get a clear price before any work begins.' }) {
   return (
     <section className="section">
       <div className="container-x">
-        <Reveal className="on-dark relative overflow-hidden rounded-[2rem] bg-navy-950 px-6 py-14 text-center text-white sm:px-12 sm:py-20">
+        <Reveal className="dark-surface grain relative overflow-hidden rounded-[2.5rem] bg-mesh px-6 py-16 text-center sm:px-12 sm:py-24">
           <Backdrop />
           <div className="relative">
-            <h2 className="mx-auto max-w-2xl text-3xl text-white sm:text-4xl">{title}</h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-white/70">{text}</p>
-            <QuoteButtons light className="mt-8 justify-center" />
+            <p className="eyebrow eyebrow-gold">Start your order</p>
+            <h2 className="mx-auto mt-5 max-w-3xl text-4xl sm:text-6xl">{title}</h2>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-slate-300">{text}</p>
+            <QuoteButtons className="mt-10 justify-center" />
           </div>
         </Reveal>
       </div>
@@ -92,47 +113,16 @@ export function CtaBand({ title = 'Ready to bring your design to life?', text = 
   );
 }
 
-export function PriceGrid({ highlight }) {
-  return (
-    <div>
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {PRICES.map((p, i) => {
-          const active = highlight?.includes(p.service);
-          return (
-            <Reveal as="li" key={p.service} delay={i * 80} className={`card card-hover relative p-6 ${active ? 'border-navy-900 ring-1 ring-navy-900' : ''}`}>
-              <p className="text-sm font-medium text-slate-500">{p.service}</p>
-              <p className="mt-3 font-display text-3xl text-navy-950">
-                {p.amount ? (
-                  <>
-                    <span className="block font-sans text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Starting at</span>${p.amount}
-                  </>
-                ) : (
-                  <>
-                    <span className="block font-sans text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</span>Custom Quote
-                  </>
-                )}
-              </p>
-              <Link to={p.amount ? p.path : '/quote'} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 transition hover:gap-2.5">
-                {p.amount ? 'Learn more' : 'Request a Quote'} <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only">about {p.service}</span>
-              </Link>
-            </Reveal>
-          );
-        })}
-      </ul>
-      <p className="mt-6 text-sm text-slate-500">{PRICE_NOTE} Payments are accepted via PayPal only.</p>
-    </div>
-  );
-}
-
-export function FormatChips({ items, muted = false }) {
+export function FormatChips({ items, muted = false, dark = false }) {
   return (
     <ul className="flex flex-wrap gap-2">
       {items.map((f) => (
         <li
           key={f}
-          className={`rounded-full border px-3.5 py-1.5 text-sm font-semibold tracking-wide ${
-            muted ? 'border-dashed border-slate-300 text-slate-500' : 'border-navy-900/15 bg-navy-50 text-navy-900'
+          className={`rounded-full border px-3.5 py-1.5 font-mono text-[13px] font-medium tracking-wide ${
+            muted
+              ? dark ? 'border-dashed border-white/20 text-slate-400' : 'border-dashed border-slate-300 text-slate-500'
+              : dark ? 'border-thread/30 bg-thread/10 text-thread' : 'border-navy-900/15 bg-navy-50 text-navy-900'
           }`}
         >
           {f}
@@ -142,17 +132,62 @@ export function FormatChips({ items, muted = false }) {
   );
 }
 
-export function CheckList({ items, light = false }) {
+export function CheckList({ items, dark = false, accent = 'text-navy-800' }) {
   return (
     <ul className="space-y-3">
       {items.map((t) => (
         <li key={t} className="flex gap-3">
-          <span aria-hidden="true" className={`mt-1 grid h-5 w-5 shrink-0 place-items-center rounded-full ${light ? 'bg-white/15 text-white' : 'bg-navy-900 text-white'}`}>
-            <svg viewBox="0 0 12 12" className="h-3 w-3"><path d="M2.5 6.2l2.2 2.2 4.8-4.9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </span>
-          <span className={light ? 'text-white/80' : ''}>{t}</span>
+          <Check className={`mt-0.5 h-5 w-5 shrink-0 ${dark ? 'text-thread' : accent}`} aria-hidden="true" />
+          <span className={dark ? 'text-slate-300' : ''}>{t}</span>
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Number that counts up once when scrolled into view. Renders the final value on the server. */
+export function Counter({ value, decimals = 0, prefix = '', suffix = '' }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(value);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return undefined;
+    setShown(0);
+    let raf = 0;
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / 1600);
+        setShown(value * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
+  }, [value]);
+  return (
+    <span ref={ref}>
+      {prefix}{shown.toFixed(decimals)}{suffix}
+    </span>
+  );
+}
+
+/** Infinite horizontal ticker. */
+export function Marquee({ items, className = '' }) {
+  const row = [...items, ...items];
+  return (
+    <div className={`relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)] ${className}`}>
+      <ul className="marquee flex w-max gap-4">
+        {row.map((t, i) => (
+          <li key={i} aria-hidden={i >= items.length ? 'true' : undefined} className="flex items-center gap-4 whitespace-nowrap font-display text-2xl text-white/80 sm:text-3xl">
+            {t}
+            <span className="h-1.5 w-1.5 rounded-full bg-thread" />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
