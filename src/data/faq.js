@@ -42,8 +42,8 @@ export const FAQ_GROUPS = [
     items: [
       {
         q: 'Which embroidery file formats do you provide?',
-        a: `Our standard embroidery machine formats are ${FORMATS.embroidery.join(', ')}. Other machine formats, such as ${FORMATS.embroideryOnRequest.join(' and ')}, can be requested and are provided when supported. Please mention your machine format when you request a quote.`,
-        keywords: ['format', 'formats', 'dst', 'pes', 'emb', 'exp', 'jef', 'machine', 'brother', 'tajima', 'file', 'embroidery'],
+        a: `We deliver whichever machine format you need, including ${FORMATS.embroidery.join(', ')}. Just tell us your machine or format when you order.`,
+        keywords: ['format', 'formats', 'dst', 'pes', 'emb', 'exp', 'jef', 'vp3', 'xxx', 'hus', 'pec', 'machine', 'brother', 'tajima', 'janome', 'husqvarna', 'file', 'embroidery'],
       },
       {
         q: 'Which vector art formats do you provide?',

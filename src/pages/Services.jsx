@@ -1,7 +1,9 @@
 import ServicePage from './ServicePage';
 import { Backdrop, SectionHeading } from '../components/ui';
 import { PricingTiers } from '../components/sections';
-import { BeforeAfter, Hoop, SoftwareWindow } from '../components/art/Scenes';
+import { BeforeAfter, Hoop } from '../components/art/Scenes';
+import StitchArt from '../components/art/StitchArt';
+import { IMAGES, pic } from '../data/images';
 import { byCategory } from '../data/portfolio';
 import { FORMATS } from '../data/site';
 
@@ -15,7 +17,11 @@ export function EmbroideryDigitizing() {
         intro: 'We rebuild your logo or artwork as a stitch file for your machine, digitized for the size, placement and fabric you need.',
         priceLabel: 'Packages from',
         price: '$4.99',
-        visual: <SoftwareWindow />,
+        visual: (
+          <div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift">
+            <img {...pic(IMAGES.software, '(min-width: 1024px) 40vw, 100vw', true)} className="w-full" />
+          </div>
+        ),
         overview: {
           title: 'Turning artwork into stitches',
           paragraphs: [
@@ -35,14 +41,13 @@ export function EmbroideryDigitizing() {
         ),
         includes: [
           'Digitizing for your size, placement and hoop',
-          'Your choice of standard machine format',
+          'Any machine format you need',
           'Free edits and revisions',
           '12–24 hours turnaround up to 7 inches; 24–48 hours over 7 inches',
           'Final files delivered by email',
         ],
         formats: [
-          { label: 'Standard machine formats', items: FORMATS.embroidery },
-          { label: 'Available on request', items: FORMATS.embroideryOnRequest, muted: true, note: 'Other machine formats can be requested and are provided when supported.' },
+          { label: 'Machine formats', items: FORMATS.embroidery, note: 'Need another format? Tell us your machine and you will get the file it needs.' },
         ],
         uses: {
           title: 'Where our embroidery files are used',
@@ -76,7 +81,15 @@ export function VectorArt() {
         intro: 'We redraw blurry, pixelated or low-resolution images as clean vector artwork that stays sharp at any size.',
         priceLabel: 'Starting at',
         price: '$12',
-        visual: <div className="dark-surface"><BeforeAfter /></div>,
+        visual: (
+          <BeforeAfter
+            beforeLabel="Pixelated"
+            afterLabel="Vector"
+            before={<img {...pic(IMAGES.vectorBefore, '(min-width: 1024px) 40vw, 100vw', true)} style={{ imageRendering: 'pixelated' }} className="h-full w-full object-cover" />}
+            after={<div className="grid h-full w-full place-items-center bg-white p-[4.5%]"><StitchArt flat className="w-full" /></div>}
+            caption="Sample: a low-resolution image redrawn as clean, scalable vector art."
+          />
+        ),
         overview: {
           title: 'Sharp artwork at any size',
           paragraphs: [

@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CreditCard, FileCheck2, Inbox, Mail, RefreshCw, Upload, Wand2 } from 'lucide-react';
 import { Backdrop, CheckList, CtaBand, PageHeader, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
 import { PricingTiers, StatsBand } from '../components/sections';
-import { BeforeAfter, Cap, Hoop, PoloShirt, SoftwareWindow } from '../components/art/Scenes';
+import { BeforeAfter } from '../components/art/Scenes';
+import { IMAGES, pic } from '../data/images';
 import QuoteForm from '../components/QuoteForm';
 import { FAQ_GROUPS } from '../data/faq';
 import { CONTACT, PACKAGES, VECTOR_PRICE } from '../data/site';
@@ -14,9 +15,17 @@ export function Pricing() {
   return (
     <>
       <PageHeader crumb="Pricing" eyebrow="Transparent pricing" title="Simple pricing by design size" intro="Embroidery digitizing packages from $4.99, with free edits and 12–24 hour delivery for designs up to 7 inches." />
-      <section className="dark-surface relative overflow-hidden bg-ink pb-24 sm:pb-32">
-        <div className="container-x relative -mt-6">
+      <section className="dark-surface relative overflow-hidden bg-ink pb-24 pt-20 sm:pb-32 sm:pt-28">
+        <div className="container-x relative">
           <PricingTiers headingLevel="h2" />
+        </div>
+      </section>
+      <section className="section !pb-0">
+        <div className="container-x">
+          <SectionHeading eyebrow="Which package?" title="Match your design to the hoop" intro="Under 5 inches fits 4×4 and 5×5 hoops. 5–7 inches fits a 5×7 hoop. Over 7 inches uses 6×10 or 8×12 hoops." />
+          <Reveal img className="mt-12 overflow-hidden rounded-[2rem]">
+            <img {...pic(IMAGES.hoopSizes, '(min-width: 1280px) 1216px, 100vw')} className="w-full" />
+          </Reveal>
         </div>
       </section>
       <section className="section">
@@ -80,7 +89,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <>
-      <PageHeader crumb="How It Works" eyebrow="Process" title="From your artwork to a perfect sew-out" intro="A clear, six-step process with no surprises." aside={<SoftwareWindow />} />
+      <PageHeader crumb="How It Works" eyebrow="Process" title="From your artwork to a perfect sew-out" intro="A clear, six-step process with no surprises." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.software, '(min-width: 1024px) 40vw, 100vw', true)} className="w-full" /></div>} />
       <section className="section">
         <div className="container-x max-w-5xl">
           <ol className="relative space-y-8 before:absolute before:bottom-10 before:left-8 before:top-10 before:w-px before:bg-gradient-to-b before:from-thread before:via-orchid/40 before:to-signal sm:before:left-10">
@@ -103,7 +112,13 @@ export function HowItWorks() {
         <Backdrop stitch={false} />
         <div className="container-x relative grid items-center gap-16 lg:grid-cols-2">
           <SectionHeading dark eyebrow="See the difference" title="Why digitizing matters" intro="A flat image tells a machine nothing. Digitizing decides how every thread is laid down, which is why a clean file sews clean." />
-          <Reveal><BeforeAfter /></Reveal>
+          <Reveal>
+            <BeforeAfter
+              before={<img {...pic(IMAGES.compareArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              after={<img {...pic(IMAGES.compareDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              caption="Real client project (shared with permission)."
+            />
+          </Reveal>
         </div>
       </section>
       <CtaBand title="Ready to start?" />
@@ -114,7 +129,7 @@ export function HowItWorks() {
 export function About() {
   return (
     <>
-      <PageHeader crumb="About Us" eyebrow="About Us" title="Crafting excellence, one stitch at a time" intro="Digitize'NStitch is an embroidery digitizing and vector art studio serving clients worldwide." aside={<Hoop animate className="mx-auto w-full max-w-sm" />} />
+      <PageHeader crumb="About Us" eyebrow="About Us" title="Crafting excellence, one stitch at a time" intro="Digitize'NStitch is an embroidery digitizing and vector art studio serving clients worldwide." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.serviceHoop, '(min-width: 1024px) 40vw, 100vw', true)} className="aspect-[4/5] w-full object-cover" /></div>} />
       <section className="section">
         <div className="container-x grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -126,11 +141,9 @@ export function About() {
             </Reveal>
           </div>
           <Reveal className="lg:col-span-5">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="dark-surface rounded-3xl bg-ink p-5"><PoloShirt className="w-full" /></div>
-              <div className="dark-surface mt-10 rounded-3xl bg-ink p-5"><Cap className="w-full" /></div>
+            <div className="overflow-hidden rounded-[2rem] shadow-lift">
+              <img {...pic(IMAGES.about, '(min-width: 1024px) 40vw, 100vw')} className="aspect-[4/3] w-full object-cover" />
             </div>
-            <p className="mt-3 text-center text-xs text-slate-500">Illustrations</p>
           </Reveal>
         </div>
       </section>

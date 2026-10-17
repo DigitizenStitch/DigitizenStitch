@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Clock, Quote as QuoteIcon, Sparkles } from 'lucide-react';
 import { Counter, Reveal } from './ui';
-import { PACKAGES, PLACEHOLDER_STATS, PRICE_NOTE, SHOW_PLACEHOLDERS, TESTIMONIALS, VERIFIED_STATS } from '../data/site';
+import { PACKAGES, PRICE_NOTE, SHOW_PLACEHOLDERS, TESTIMONIALS, VERIFIED_STATS } from '../data/site';
 
 const ACCENTS = {
   cyan: { ring: 'from-signal/60 via-signal/10 to-transparent', text: 'text-signal', chip: 'bg-signal/10 text-signal', glow: 'bg-signal/20', hoop: 'w-[38%]' },
@@ -61,25 +61,18 @@ export function PricingTiers({ headingLevel = 'h3' }) {
   );
 }
 
-/** Verified figures only; unverified ones appear as labelled placeholders while SHOW_PLACEHOLDERS is on. */
+/** Verified figures only. */
 export function StatsBand() {
   return (
     <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 lg:grid-cols-4">
       {VERIFIED_STATS.map((s, i) => (
         <Reveal as="li" key={s.label} delay={i * 90} className="bg-ink-900 p-6 sm:p-9">
           <p className="font-display text-4xl text-white sm:text-5xl">
-            <Counter value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+            {s.text ?? <Counter value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />}
           </p>
           <p className="mt-3 text-sm leading-snug text-slate-400">{s.label}</p>
         </Reveal>
       ))}
-      {SHOW_PLACEHOLDERS &&
-        PLACEHOLDER_STATS.map((s) => (
-          <li key={s.label} className="col-span-1 bg-ink-900 p-6 sm:p-9 lg:col-span-2">
-            <p className="font-mono text-lg text-thread/80">{s.value}</p>
-            <p className="mt-3 text-sm text-slate-400">{s.label} <span className="rounded bg-coral/15 px-1.5 py-0.5 font-mono text-[10px] uppercase text-coral">placeholder · not published</span></p>
-          </li>
-        ))}
     </ul>
   );
 }

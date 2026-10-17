@@ -7,7 +7,7 @@ export const BRAND = "Digitize'NStitch";
 
 // While true, unverified sections (client count, testimonials) render as clearly
 // labelled placeholders. Set to false before going live, or fill in real data below.
-export const SHOW_PLACEHOLDERS = true;
+export const SHOW_PLACEHOLDERS = false;
 
 export const CONTACT = {
   email: 'digitizenstitch@gmail.com',
@@ -73,8 +73,8 @@ export const PRICE_NOTE =
 export const VECTOR_PRICE = 'Starting at $12';
 
 export const FORMATS = {
-  embroidery: ['DST', 'PES', 'EMB'],
-  embroideryOnRequest: ['EXP', 'JEF'],
+  // Popular machine formats; any other format a client needs is provided on request.
+  embroidery: ['DST', 'PES', 'EMB', 'EXP', 'JEF', 'VP3', 'XXX', 'HUS', 'PEC'],
   vector: ['AI', 'EPS', 'PDF', 'SVG', 'PNG'],
 };
 
@@ -90,14 +90,19 @@ export const FORMAT_OPTIONS = [
   'DST',
   'PES',
   'EMB',
-  'EXP (on request)',
-  'JEF (on request)',
+  'EXP',
+  'JEF',
+  'VP3',
+  'XXX',
+  'HUS',
+  'PEC',
   'AI',
   'EPS',
   'PDF',
   'SVG',
   'PNG',
-  'Other / not sure',
+  'Other format (tell us below)',
+  'Not sure',
 ];
 
 export const NAV = [
@@ -121,14 +126,8 @@ export const NAV = [
 export const VERIFIED_STATS = [
   { value: 12, suffix: '–24 h', label: 'Turnaround for designs up to 7"' },
   { value: 4.99, prefix: '$', decimals: 2, label: 'Digitizing packages start at' },
-  { value: 3, label: 'Standard machine formats: DST, PES, EMB' },
+  { text: 'Any', label: 'Machine format you need: DST, PES, EMB, EXP, JEF and more' },
   { value: 0, prefix: '$', label: 'Charged for edits and revisions' },
-];
-
-// Placeholder metrics: shown only while SHOW_PLACEHOLDERS is true, always labelled.
-export const PLACEHOLDER_STATS = [
-  { label: 'Clients served', value: '[add verified number]' },
-  { label: 'Designs digitized', value: '[add verified number]' },
 ];
 
 // Add genuine reviews here (with the client's permission). Leave empty to hide names.

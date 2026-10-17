@@ -27,6 +27,8 @@ const CAPTIONS = {
   'embroidery/a4': 'Anime character with red accents embroidery design',
   'embroidery/a5': 'Anime character portrait embroidery design',
   'embroidery/a6': 'Anime character in patterned outfit embroidery design',
+  'embroidery/kfs-apron-sewout': 'Script lettering and mountain logo sewn out on an apron',
+  'embroidery/irenes-social-spread': "Irene's Social Spread multi-colour logo, digitized",
   'vector/p1': 'Skate-themed vector illustration',
   'vector/p2': 'Palm tree and wave vector illustration',
   'vector/p3': 'Shark mascot vector artwork',

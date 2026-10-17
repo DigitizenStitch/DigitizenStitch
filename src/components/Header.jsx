@@ -49,7 +49,7 @@ export default function Header() {
   return (
     <header
       className={`on-dark fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium ${
-        scrolled || open ? 'border-b border-white/10 bg-ink/85 shadow-lift backdrop-blur-xl' : 'bg-transparent'
+        scrolled || open ? 'border-b border-white/10 bg-ink/85 shadow-lift backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <a
@@ -80,7 +80,7 @@ export default function Header() {
                   </button>
                   <ul
                     id="services-menu"
-                    className={`absolute left-1/2 top-full mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-900/95 p-2 shadow-lift backdrop-blur-xl transition-all duration-300 ease-premium ${
+                    className={`absolute left-1/2 top-full mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-900/95 p-2 shadow-lift backdrop-blur-md transition-all duration-300 ease-premium ${
                       servicesOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                     }`}
                   >

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, CreditCard, FileCheck2, Globe2, Layers, Mail, RefreshCw, Ruler, Timer } from 'lucide-react';
-import { Backdrop, CtaBand, FormatChips, Marquee, QuoteButtons, Reveal, SectionHeading, WordReveal } from '../components/ui';
+import { Backdrop, CtaBand, FormatChips, LineReveal, Marquee, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
 import { PricingTiers, StatsBand, Testimonials } from '../components/sections';
-import { BeforeAfter, Cap, Hoop, PoloShirt, SoftwareWindow } from '../components/art/Scenes';
-import { StitchSwatch } from '../components/art/StitchArt';
+import { BeforeAfter } from '../components/art/Scenes';
+import { IMAGES, pic } from '../data/images';
 import Gallery from '../components/Gallery';
 import { byCategory } from '../data/portfolio';
 import { FAQ_GROUPS } from '../data/faq';
@@ -43,7 +43,7 @@ const WHY = [
   { Icon: Ruler, title: 'Digitized for real production', text: 'Stitch direction, density and underlay are planned for your size, hoop and fabric, not just for the screen.' },
   { Icon: Timer, title: '12–24 hour turnaround', text: 'Designs up to 7 inches are delivered within 12–24 hours. Larger designs take 24–48 hours.' },
   { Icon: RefreshCw, title: 'Free edits and revisions', text: 'If a detail needs adjusting after your test sew-out, we revise it at no extra cost.' },
-  { Icon: FileCheck2, title: 'The format your machine needs', text: 'DST, PES and EMB as standard. EXP, JEF and other formats on request when supported.' },
+  { Icon: FileCheck2, title: 'The format your machine needs', text: 'DST, PES, EMB, EXP, JEF and any other machine format you ask for.' },
   { Icon: CreditCard, title: 'Clear price before work', text: 'Transparent package ranges, an exact price confirmed up front, and secure PayPal payment.' },
   { Icon: Globe2, title: 'Serving clients worldwide', text: 'We work online with print shops, embroidery businesses and brands in every time zone.' },
 ];
@@ -71,10 +71,8 @@ export default function Home() {
         <div className="container-x relative grid items-center gap-16 pb-20 lg:grid-cols-12 lg:pb-28">
           <div className="lg:col-span-6">
             <p className="eyebrow eyebrow-gold page-enter">Premium embroidery digitizing studio</p>
-            <h1 className="mt-6 text-[2.75rem] leading-[1.02] sm:text-7xl lg:text-[5.2rem]">
-              <WordReveal text="Every stitch," start={120} />
-              <br />
-              <WordReveal text="engineered." start={300} className="text-gold pb-2" />
+            <h1 className="mt-6 text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+              <LineReveal start={150} step={140} lines={['Digitizing that', 'sews flawlessly,', ['every single time.', 'text-gold']]} />
             </h1>
             <p className="page-enter mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl" style={{ animationDelay: '550ms' }}>
               We turn logos and artwork into clean, machine-ready embroidery files and sharp vector art, delivered in 12–24 hours for designs up to 7 inches, with free edits.
@@ -89,24 +87,27 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Layered composition */}
-          <div className="relative lg:col-span-6" aria-hidden="true">
-            <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/10 spin-slow" />
-            <div style={layer(18)} className="page-enter relative" >
-              <SoftwareWindow className="relative z-10 mx-auto max-w-xl lg:mr-10" />
+          {/* Layered composition: real machine photo, software screenshot, thread and sew-out cards */}
+          <div className="relative lg:col-span-6">
+            <div style={layer(10)} className="page-enter relative" >
+              <div className="overflow-hidden rounded-[2rem] border border-white/10 shadow-lift">
+                <img {...pic(IMAGES.hero, '(min-width: 1024px) 50vw, 100vw', true)} className="aspect-[4/3] w-full object-cover" />
+              </div>
             </div>
-            <div style={layer(-30)} className="absolute -bottom-10 -left-4 z-20 w-32 sm:-left-10 sm:w-44">
-              <div className="float-a"><Hoop className="w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.6)]" /></div>
+            <div style={layer(-18)} className="absolute -bottom-10 -left-3 z-20 w-[46%] sm:-left-8 sm:w-[44%]">
+              <div className="float-a overflow-hidden rounded-2xl border border-white/15 shadow-lift">
+                <img {...pic(IMAGES.software, '260px')} className="w-full" />
+              </div>
             </div>
-            <div style={layer(-22)} className="absolute -right-4 -top-24 z-20 hidden w-36 sm:block">
-              <div className="float-b glass p-3"><PoloShirt className="w-full" /><p className="mt-1 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Left-chest</p></div>
+            <div style={layer(-24)} className="absolute -right-3 -top-8 z-20 hidden w-32 sm:block">
+              <div className="float-b glass overflow-hidden p-2"><img {...pic(IMAGES.threadCones, '128px')} className="aspect-square w-full rounded-2xl object-cover" /></div>
             </div>
-            <div style={layer(-14)} className="absolute -bottom-24 right-0 z-20 hidden w-40 sm:block">
-              <div className="float-a glass p-3"><Cap className="w-full" /><p className="mt-1 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Cap front</p></div>
+            <div style={layer(-14)} className="absolute -bottom-12 right-4 z-20 hidden w-36 sm:block">
+              <div className="float-a glass p-2"><img {...pic(IMAGES.testSewout, '144px')} className="aspect-square w-full rounded-2xl object-cover" /><p className="mt-1.5 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Real sew-out</p></div>
             </div>
           </div>
         </div>
-        <div className="relative border-y border-white/10 bg-ink/60 py-6 backdrop-blur">
+        <div className="relative border-y border-white/10 bg-ink/60 py-6">
           <Marquee items={['Left-chest logos', 'Cap logos', 'Sleeve designs', 'Hoodie chests', 'Tote bags', 'Jacket backs', 'Large appliqué', 'Vector redraws', 'DST · PES · EMB']} />
         </div>
       </section>
@@ -124,7 +125,7 @@ export default function Home() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-32">
               <SectionHeading eyebrow="Services" title="What we create for you" intro="Three focused services, one obsession with stitch quality." />
-              <Reveal className="mt-10 hidden lg:block"><Hoop animate className="w-64" /></Reveal>
+              <Reveal img className="mt-10 hidden overflow-hidden rounded-3xl lg:block"><img {...pic(IMAGES.serviceHoop, '360px')} className="w-80 object-cover" /></Reveal>
             </div>
           </div>
           <ul className="divide-y divide-ink/10 border-y border-ink/10 lg:col-span-8">
@@ -174,17 +175,21 @@ export default function Home() {
           <div>
             <SectionHeading dark accent="teal" eyebrow="Process & technology" title="Artwork in. Production-ready stitches out." intro="Digitizing is not a file conversion. Every object is rebuilt with the right stitch type, angle, density and underlay so it sews cleanly on real fabric." />
             <ul className="mt-12 grid grid-cols-2 gap-4">
-              {[['satin', 'Satin', 'Smooth, glossy columns for borders and lettering.'], ['fill', 'Tatami fill', 'Even, textured coverage for larger areas.'], ['run', 'Running stitch', 'Fine outlines and small details.'], ['applique', 'Appliqué', 'Fabric pieces finished with a satin edge.']].map(([t, h, d], i) => (
-                <Reveal as="li" key={t} delay={i * 80} className="glass group overflow-hidden p-4 transition-colors hover:border-signal/40">
-                  <div className="fabric h-24 overflow-hidden rounded-2xl p-2 transition-transform duration-700 ease-premium group-hover:scale-[1.04]"><StitchSwatch type={t} /></div>
-                  <h3 className="mt-4 font-sans text-base font-semibold">{h}</h3>
-                  <p className="mt-1 text-sm text-slate-400">{d}</p>
+              {[['satin', 'Satin', 'Smooth, glossy columns for borders and lettering.'], ['tatami', 'Tatami fill', 'Even, textured coverage for larger areas.'], ['running', 'Running stitch', 'Fine outlines and small details.'], ['applique', 'Appliqué', 'Fabric pieces finished with a satin edge.']].map(([t, h, d], i) => (
+                <Reveal as="li" key={t} delay={i * 80} className="glass group overflow-hidden p-3 transition-colors hover:border-signal/40">
+                  <div className="overflow-hidden rounded-2xl"><img {...pic(IMAGES[t], '(min-width: 1024px) 260px, 45vw')} className="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-premium group-hover:scale-[1.06]" /></div>
+                  <h3 className="mt-4 px-1 font-sans text-base font-semibold">{h}</h3>
+                  <p className="mt-1 px-1 pb-1 text-sm text-slate-400">{d}</p>
                 </Reveal>
               ))}
             </ul>
           </div>
           <Reveal delay={150}>
-            <BeforeAfter />
+            <BeforeAfter
+              before={<img {...pic(IMAGES.compareArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              after={<img {...pic(IMAGES.compareDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              caption="Real client project (shared with permission): drag to compare the original artwork with our digitized design."
+            />
           </Reveal>
         </div>
       </section>
@@ -198,10 +203,9 @@ export default function Home() {
               <Layers className="h-8 w-8 text-navy-800" aria-hidden="true" />
               <h3 className="mt-6 text-3xl">Embroidery machine files</h3>
               <p className="mt-3 text-slate-600">Stitch files your embroidery machine can sew.</p>
-              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-slate-500">Standard</p>
+              <p className="mt-8 font-mono text-xs uppercase tracking-widest text-slate-500">Popular formats</p>
               <div className="mt-3"><FormatChips items={FORMATS.embroidery} /></div>
-              <p className="mt-6 font-mono text-xs uppercase tracking-widest text-slate-500">On request, when supported</p>
-              <div className="mt-3"><FormatChips items={FORMATS.embroideryOnRequest} muted /></div>
+              <p className="mt-6 text-sm text-slate-600">Need a different format? Tell us your machine and we will deliver the file it needs.</p>
             </Reveal>
             <Reveal delay={100} className="card relative overflow-hidden p-8 sm:p-10">
               <svg aria-hidden="true" viewBox="0 0 32 32" className="h-8 w-8 text-orchid-deep" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 26 C 10 6, 22 6, 28 26" /><rect x="2" y="24" width="5" height="5" /><rect x="25" y="24" width="5" height="5" /><circle cx="16" cy="9" r="2.5" /></svg>

@@ -65,7 +65,7 @@ export function Terms() {
       <h2>Turnaround and delivery</h2>
       <p>Embroidery digitizing turnaround is 12–24 hours for designs under 5 inches and 5–7 inches, and 24–48 hours for designs over 7 inches. Timing for vector art and custom patches is confirmed with your quote. Completed digital files are delivered by email.</p>
       <h2>File formats</h2>
-      <p>Standard embroidery formats are DST, PES and EMB. Other machine formats can be requested and are provided when supported. Vector art is delivered as AI, EPS, PDF, SVG or PNG. Vector files are artwork files, not embroidery machine files.</p>
+      <p>Embroidery files are delivered in the machine format you request, such as DST, PES, EMB, EXP or JEF. Vector art is delivered as AI, EPS, PDF, SVG or PNG. Vector files are artwork files, not embroidery machine files.</p>
       <h2>Revisions and refunds</h2>
       <p>Edits and revisions are free. Refund requests are handled case by case. See our <Link to="/refund-revision-policy">Refund &amp; Revision Policy</Link>.</p>
       <h2>Your artwork</h2>

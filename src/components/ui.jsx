@@ -12,23 +12,29 @@ export function Reveal({ as: Tag = 'div', delay = 0, img = false, className = ''
   );
 }
 
-/** Splits a heading into words that rise in one after another. */
-export function WordReveal({ text, start = 0, step = 70, className = '' }) {
-  return text.split(' ').map((w, i) => (
-    <span key={i} className={`word ${className}`} style={{ '--d': `${start + i * step}ms` }}>
-      {w}
-      {' '}
-    </span>
-  ));
+/** Heading lines that slide up from behind a mask, one after another. */
+export function LineReveal({ lines, start = 0, step = 120 }) {
+  return lines.map((l, i) => {
+    const [text, cls] = Array.isArray(l) ? l : [l, ''];
+    return (
+      <span key={i} className="line-mask">
+        <span className={`line-in ${cls}`} style={{ '--d': `${start + i * step}ms` }}>{text}</span>
+      </span>
+    );
+  });
 }
 
-/** Dark, layered backdrop: aurora glows, grid, grain, a running stitch line. */
+/** Dark, layered backdrop: static glows (no filters, cheap to paint), grid, a running stitch line. */
 export function Backdrop({ stitch = true }) {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="aurora absolute -right-[10%] -top-[20%] h-[36rem] w-[36rem] rounded-full bg-navy-700/40 blur-[120px]" />
-      <div className="aurora absolute -bottom-[30%] -left-[10%] h-[30rem] w-[30rem] rounded-full bg-orchid-deep/20 blur-[120px]" style={{ animationDelay: '-6s' }} />
-      <div className="aurora absolute bottom-[10%] right-[25%] h-72 w-72 rounded-full bg-signal/10 blur-[100px]" style={{ animationDelay: '-12s' }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(40% 45% at 88% 8%, rgba(29,78,216,.32), transparent 70%), radial-gradient(35% 40% at 6% 95%, rgba(124,58,237,.16), transparent 70%), radial-gradient(25% 30% at 70% 80%, rgba(45,212,191,.08), transparent 70%)',
+        }}
+      />
       <div className="bg-grid absolute inset-0" />
       {stitch && (
         <svg className="absolute bottom-6 left-0 h-24 w-full text-thread/30" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
@@ -56,7 +62,7 @@ export function PageHeader({ eyebrow, title, intro, crumb, children, aside }) {
           )}
           {eyebrow && <p className="eyebrow eyebrow-gold page-enter">{eyebrow}</p>}
           <h1 className="mt-5 max-w-4xl text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-7xl">
-            <WordReveal text={title} start={100} />
+            <LineReveal lines={[title]} start={100} />
           </h1>
           {intro && <p className="page-enter mt-7 max-w-2xl text-lg leading-relaxed text-slate-300" style={{ animationDelay: '300ms' }}>{intro}</p>}
           {children}
