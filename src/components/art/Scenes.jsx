@@ -1,34 +1,50 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import StitchArt from './StitchArt';
 
-/** Interactive before/after slider. `before` and `after` are any nodes of the same size. */
+/** Interactive before/after slider. Dragging updates a CSS variable directly
+ * (no React re-render per frame) and never drags the underlying images. */
 export function BeforeAfter({ before, after, beforeLabel = 'Artwork', afterLabel = 'Digitized', caption, className = '' }) {
-  const [pos, setPos] = useState(50);
-  const ref = useRef(null);
-  const move = (clientX) => {
-    const r = ref.current.getBoundingClientRect();
-    setPos(Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100)));
+  const box = useRef(null);
+  const range = useRef(null);
+  const raf = useRef(0);
+
+  const set = (pct) => {
+    const v = Math.max(0, Math.min(100, pct));
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() => {
+      box.current?.style.setProperty('--pos', `${v}%`);
+      if (range.current) range.current.value = String(Math.round(v));
+    });
   };
+  const fromEvent = (e) => {
+    const r = box.current.getBoundingClientRect();
+    set(((e.clientX - r.left) / r.width) * 100);
+  };
+
   return (
     <figure className={className}>
       <div
-        ref={ref}
-        className="relative aspect-square w-full touch-pan-y select-none overflow-hidden rounded-3xl bg-white shadow-lift"
-        onPointerMove={(e) => e.buttons === 1 && move(e.clientX)}
-        onPointerDown={(e) => move(e.clientX)}
+        ref={box}
+        style={{ '--pos': '50%' }}
+        className="group relative aspect-square w-full cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-3xl bg-white shadow-lift"
+        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); fromEvent(e); }}
+        onPointerMove={(e) => e.currentTarget.hasPointerCapture(e.pointerId) && fromEvent(e)}
+        onDragStart={(e) => e.preventDefault()}
       >
-        <div className="absolute inset-0">{before}</div>
-        <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>{after}</div>
-        <div className="pointer-events-none absolute inset-y-0" style={{ left: `${pos}%` }}>
-          <div className="absolute inset-y-0 -ml-px w-0.5 bg-thread" />
-          <div className="absolute top-1/2 -ml-5 -mt-5 grid h-10 w-10 place-items-center rounded-full bg-thread text-ink shadow-glow" aria-hidden="true">⇆</div>
+        <div className="pointer-events-none absolute inset-0">{before}</div>
+        <div className="pointer-events-none absolute inset-0 will-change-[clip-path]" style={{ clipPath: 'inset(0 0 0 var(--pos))' }}>{after}</div>
+        <div className="pointer-events-none absolute inset-y-0 will-change-[left]" style={{ left: 'var(--pos)' }}>
+          <div className="absolute inset-y-0 -ml-px w-0.5 bg-thread shadow-[0_0_20px_rgba(233,184,114,.8)]" />
+          <div className="absolute top-1/2 -ml-6 -mt-6 grid h-12 w-12 place-items-center rounded-full bg-thread text-ink shadow-glow transition-transform duration-300 group-active:scale-110" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" /></svg>
+          </div>
         </div>
-        <span className="absolute left-4 top-4 rounded-full bg-ink/85 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-white">{beforeLabel}</span>
-        <span className="absolute right-4 top-4 rounded-full bg-thread px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink">{afterLabel}</span>
+        <span className="pointer-events-none absolute left-4 top-4 rounded-full bg-ink/85 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-white">{beforeLabel}</span>
+        <span className="pointer-events-none absolute right-4 top-4 rounded-full bg-thread px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-ink">{afterLabel}</span>
       </div>
       <label className="mt-4 block">
         <span className="sr-only">Compare {beforeLabel.toLowerCase()} and {afterLabel.toLowerCase()}</span>
-        <input type="range" min="0" max="100" value={Math.round(pos)} onChange={(e) => setPos(Number(e.target.value))} className="w-full accent-[#e9b872]" />
+        <input ref={range} type="range" min="0" max="100" defaultValue="50" onInput={(e) => set(Number(e.target.value))} className="w-full accent-[#e9b872]" />
       </label>
       {caption && <figcaption className="mt-2 text-sm text-slate-400">{caption}</figcaption>}
     </figure>

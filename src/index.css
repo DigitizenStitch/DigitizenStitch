@@ -103,7 +103,7 @@
 .js-motion .reveal-img.is-visible { clip-path: inset(0 0 0 0 round 24px); opacity: 1; }
 
 /* heading reveal: each line slides up from behind a mask */
-.line-mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.line-mask { display: block; overflow: hidden; padding: .04em 0 .22em; margin-bottom: -.16em; }
 .line-in { display: inline-block; }
 .js-motion .line-in { transform: translate3d(0, 105%, 0); animation: lineUp 1s cubic-bezier(.16,1,.3,1) forwards; animation-delay: var(--d, 0ms); }
 @keyframes lineUp { to { transform: translate3d(0, 0, 0); } }
@@ -136,26 +136,30 @@
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .anim-fade { animation: fadeIn .3s ease both; }
 
-/* ---------- Custom cursor (fine pointers only, never intercepts clicks) ---------- */
-.cursor-ring, .cursor-dot { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 9999px; opacity: 0; will-change: transform;
-  transition: opacity .3s ease, width .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1), margin .35s cubic-bezier(.2,.7,.2,1), background-color .3s, border-color .3s; }
-.cursor-ring { width: 36px; height: 36px; margin: -18px 0 0 -18px; border: 1.5px solid rgba(30,58,138,.55); }
-.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: #1e3a8a; }
-.cursor-on .cursor-ring, .cursor-on .cursor-dot { opacity: 1; }
-.cursor-hover .cursor-ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; background: rgba(233,184,114,.14); border-color: rgba(233,184,114,.6); }
-.cursor-hover .cursor-dot { opacity: 0; }
-.cursor-view .cursor-ring { width: 84px; height: 84px; margin: -42px 0 0 -42px; background: rgba(233,184,114,.95); border-color: transparent; }
-.cursor-ring span { position: absolute; inset: 0; display: grid; place-items: center; font: 600 11px/1 ui-monospace, monospace; letter-spacing: .16em; color: #070b1f; opacity: 0; transition: opacity .2s; }
-.cursor-view .cursor-ring span { opacity: 1; }
-.cursor-dark .cursor-ring { border-color: rgba(233,184,114,.7); }
-.cursor-dark .cursor-dot { background: #e9b872; }
-@media (hover: none), (pointer: coarse) { .cursor-ring, .cursor-dot { display: none; } }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; animation-delay: 0ms !important; }
-  .cursor-ring, .cursor-dot { display: none; }
 }
 
 /* machine-sewing sequence for StitchArt (only when motion is allowed) */
 .js-motion .stitch-seq-g { opacity: 0; animation: stitchIn .01s linear forwards; animation-delay: calc(var(--i, 0) * var(--step, 20ms) + var(--start, 0ms)); }
+
+/* ---------- Hero motion ---------- */
+@keyframes kenburns { from { transform: scale(1.12) translate3d(1.5%, 1%, 0); } to { transform: scale(1) translate3d(0, 0, 0); } }
+.js-motion .kenburns { animation: kenburns 9s cubic-bezier(.16,1,.3,1) both; }
+@keyframes heroPop { from { opacity: 0; transform: translate3d(0, 28px, 0) scale(.96); } to { opacity: 1; transform: none; } }
+.js-motion .hero-pop { opacity: 0; animation: heroPop 1.1s cubic-bezier(.16,1,.3,1) forwards; animation-delay: 250ms; }
+@keyframes fadeUp { from { opacity: 0; transform: translate3d(0, 16px, 0); } to { opacity: 1; transform: none; } }
+.js-motion .fade-up { opacity: 0; animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards; animation-delay: var(--d, 0ms); }
+
+/* scroll progress (thread line) */
+.scroll-progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60; transform-origin: 0 50%; transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, #2dd4bf, #e9b872 60%, #f6dcae); pointer-events: none; }
+
+/* ---------- Brand cursor: native (zero lag), gold needle on interactive elements ---------- */
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 2.5 L3 21 L8.2 16.4 L11.6 24.2 L15 22.7 L11.7 15 L18.8 15 Z' fill='%23070b1f' stroke='%23e9b872' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto; }
+  a, button, [role='button'], summary, label, select, [data-cursor] {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 3 L23.5 23.5' stroke='%23070b1f' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M3 3 L23.5 23.5' stroke='%23e9b872' stroke-width='2.6' stroke-linecap='round'/%3E%3Cellipse cx='22' cy='22' rx='1.1' ry='3' transform='rotate(-45 22 22)' fill='%23070b1f'/%3E%3Cpath d='M24 24 C 30 26, 31 18, 26 17 S 20 24, 27 29' fill='none' stroke='%232dd4bf' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 3 3, pointer; }
+  input[type='text'], input[type='email'], textarea { cursor: text; }
+}

@@ -56,6 +56,15 @@ const WORKFLOW = [
   ['Deliver', 'Files arrive by email; edits are free.'],
 ];
 
+function StepTag({ n, label, className = '' }) {
+  return (
+    <span className={`inline-flex items-center gap-2 rounded-full border border-white/15 bg-ink/80 py-1 pl-1 pr-3 font-mono text-[11px] uppercase tracking-widest text-white ${className}`}>
+      <span className="grid h-5 w-5 place-items-center rounded-full bg-thread text-[10px] font-bold text-ink">{n}</span>
+      {label}
+    </span>
+  );
+}
+
 export default function Home() {
   const hero = useParallax();
   const featured = byCategory('embroidery');
@@ -87,23 +96,44 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Layered composition: real machine photo, software screenshot, thread and sew-out cards */}
-          <div className="relative lg:col-span-6">
-            <div style={layer(10)} className="page-enter relative" >
-              <div className="overflow-hidden rounded-[2rem] border border-white/10 shadow-lift">
-                <img {...pic(IMAGES.hero, '(min-width: 1024px) 50vw, 100vw', true)} className="aspect-[4/3] w-full object-cover" />
+          {/* Hero story: artwork -> digitized -> stitched (one design, three stages) */}
+          <div className="relative lg:col-span-6 lg:pl-10">
+            <div style={layer(8)} className="hero-pop relative">
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-lift">
+                <img {...pic(IMAGES.hero, '(min-width: 1024px) 46vw, 100vw', true)} className="kenburns aspect-[4/3] w-full object-cover" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+                <StepTag n="3" label="Stitched" className="absolute bottom-4 right-4" />
               </div>
             </div>
-            <div style={layer(-18)} className="absolute -bottom-10 -left-3 z-20 w-[46%] sm:-left-8 sm:w-[44%]">
-              <div className="float-a overflow-hidden rounded-2xl border border-white/15 shadow-lift">
-                <img {...pic(IMAGES.software, '260px')} className="w-full" />
+
+            {/* desktop: floating cards */}
+            <div style={layer(-20)} className="absolute -left-2 -top-8 z-20 hidden w-[30%] sm:block">
+              <div className="hero-pop" style={{ animationDelay: '500ms' }}>
+                <div className="float-a rounded-2xl border border-white/15 bg-white p-2 shadow-lift">
+                  <img {...pic(IMAGES.heroArtwork, '180px', true)} className="aspect-square w-full rounded-xl object-contain" />
+                </div>
+                <StepTag n="1" label="Your artwork" className="mt-3" />
               </div>
             </div>
-            <div style={layer(-24)} className="absolute -right-3 -top-8 z-20 hidden w-32 sm:block">
-              <div className="float-b glass overflow-hidden p-2"><img {...pic(IMAGES.threadCones, '128px')} className="aspect-square w-full rounded-2xl object-cover" /></div>
+            <div style={layer(-14)} className="absolute -bottom-14 -left-6 z-20 hidden w-[46%] sm:block">
+              <div className="hero-pop" style={{ animationDelay: '700ms' }}>
+                <div className="float-b overflow-hidden rounded-2xl border border-white/15 shadow-lift">
+                  <img {...pic(IMAGES.heroDigitizing, '280px', true)} className="aspect-[4/3] w-full object-cover" />
+                </div>
+                <StepTag n="2" label="Digitized" className="mt-3" />
+              </div>
             </div>
-            <div style={layer(-14)} className="absolute -bottom-12 right-4 z-20 hidden w-36 sm:block">
-              <div className="float-a glass p-2"><img {...pic(IMAGES.testSewout, '144px')} className="aspect-square w-full rounded-2xl object-cover" /><p className="mt-1.5 text-center font-mono text-[10px] uppercase tracking-widest text-slate-400">Real sew-out</p></div>
+
+            {/* mobile: steps below the main image */}
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:hidden">
+              <div className="hero-pop" style={{ animationDelay: '500ms' }}>
+                <div className="rounded-2xl border border-white/15 bg-white p-2"><img {...pic(IMAGES.heroArtwork, '45vw', true)} className="aspect-[4/3] w-full rounded-xl object-contain" /></div>
+                <StepTag n="1" label="Your artwork" className="mt-2" />
+              </div>
+              <div className="hero-pop" style={{ animationDelay: '700ms' }}>
+                <div className="overflow-hidden rounded-2xl border border-white/15"><img {...pic(IMAGES.heroDigitizing, '45vw', true)} className="aspect-[4/3] w-full object-cover" /></div>
+                <StepTag n="2" label="Digitized" className="mt-2" />
+              </div>
             </div>
           </div>
         </div>
@@ -186,9 +216,9 @@ export default function Home() {
           </div>
           <Reveal delay={150}>
             <BeforeAfter
-              before={<img {...pic(IMAGES.compareArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
-              after={<img {...pic(IMAGES.compareDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
-              caption="Real client project (shared with permission): drag to compare the original artwork with our digitized design."
+              before={<img {...pic(IMAGES.sliderArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              after={<img {...pic(IMAGES.sliderDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              caption="Drag to compare the original artwork with the digitized stitch design."
             />
           </Reveal>
         </div>

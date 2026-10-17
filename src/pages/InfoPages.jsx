@@ -114,9 +114,9 @@ export function HowItWorks() {
           <SectionHeading dark eyebrow="See the difference" title="Why digitizing matters" intro="A flat image tells a machine nothing. Digitizing decides how every thread is laid down, which is why a clean file sews clean." />
           <Reveal>
             <BeforeAfter
-              before={<img {...pic(IMAGES.compareArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
-              after={<img {...pic(IMAGES.compareDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
-              caption="Real client project (shared with permission)."
+              before={<img {...pic(IMAGES.sliderArtwork, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              after={<img {...pic(IMAGES.sliderDigitized, '(min-width: 1024px) 560px, 100vw')} className="h-full w-full object-cover" />}
+              caption="Drag to compare the original artwork with the digitized stitch design."
             />
           </Reveal>
         </div>
