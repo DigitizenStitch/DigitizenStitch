@@ -3,42 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digitizen Stitch - Professional Digitizing & Vector Art</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Digitizen Stitch offers high-quality digitizing and vector art services for embroidery and printing." />
-    <meta name="keywords" content="digitizing, embroidery, vector art, custom patches, Digitizen Stitch" />
-    <meta name="author" content="Digitizen Stitch" />
-
-    <!-- Open Graph / Social Media Meta -->
-    <meta property="og:title" content="Digitizen Stitch - Professional Digitizing & Vector Art" />
-    <meta property="og:description" content="High-quality digitizing and vector art services for embroidery and printing." />
-    <meta property="og:image" content="/assets/logo.png" />
+    <meta name="theme-color" content="#070b1f" />
+    <!--seo-->
+    <title>Digitize'NStitch | Embroidery Digitizing, Vector Art &amp; Patches</title>
+    <meta name="description" content="Premium embroidery digitizing from $4.99 with 12–24 hour delivery for designs up to 7 inches, free edits, and clean vector art from $9.99. Serving clients worldwide." />
+    <!--/seo-->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://digitizenstitch.com" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./src/assets/logo_blue.png" />
-
-    <!-- Styles (Optional: You can add a preloader or global styles here) -->
-    <link rel="stylesheet" href="/styles/global.css" />
+    <meta property="og:site_name" content="Digitize'NStitch" />
+    <meta property="og:image" content="https://digitizenstitch.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Digitize'NStitch: Embroidery Digitizing, Vector Art and Patches" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://digitizenstitch.com/og-image.jpg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script>
+      // Enable scroll-reveal styles only when JS runs and motion is allowed.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-motion');
+    </script>
   </head>
   <body>
+    <div id="root"><!--app--></div>
 
-    <div id="root"></div>
-
-    <form name="contact" method="POST" netlify netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="contact" value="contact" />
-      <input type="text" name="first_name" />
-      <input type="text" name="last_name" />
+    <!-- Static copy of the quote form so Netlify Forms detects all fields at deploy time. -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
       <input type="email" name="email" />
-      <input type="tel" name="phone_number" />
+      <select name="service"><option>Embroidery Digitizing</option></select>
+      <select name="package"><option>Under 5 Inches ($4.99–$9.99)</option></select>
+      <input type="file" name="artwork" />
+      <input type="text" name="design_size" />
+      <input type="url" name="file_link" />
+      <select name="file_format"><option>DST</option></select>
       <textarea name="message"></textarea>
     </form>
 
-    
-
-    <!-- Main React Script -->
-    <script type="module" src="/src/main.jsx" defer></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

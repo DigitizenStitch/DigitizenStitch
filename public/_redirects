@@ -1,1 +1,9 @@
-/* /index.html 200
+# Old single-page URLs -> new pages (permanent)
+/digitizing     /portfolio?category=embroidery   301
+/AnemeDesign    /portfolio?category=embroidery   301
+/vectorArt      /portfolio?category=vector       301
+/contact        /quote                           301
+/home           /                                301
+
+# Every real page is prerendered to its own HTML file and served directly.
+# Unknown URLs get dist/404.html with a real 404 status. netlify.toml pins the build command.
