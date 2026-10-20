@@ -102,20 +102,22 @@ export async function sendSubmission(payload, transport) {
 export const handler = async (event) => {
   const payload = JSON.parse(event.body || '{}').payload;
   if (payload?.form_name && payload.form_name !== 'contact') return { statusCode: 200, body: 'ignored' };
+  console.log('submission-created received', { form: payload?.form_name, id: payload?.id, hasUser: Boolean(process.env.GMAIL_USER), hasPassword: Boolean(process.env.GMAIL_APP_PASSWORD) });
   if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
     console.error('GMAIL_USER / GMAIL_APP_PASSWORD are not set; email not sent.');
     return { statusCode: 500, body: 'Email not configured' };
   }
   const transport = nodemailer.createTransport({
     service: 'gmail',
-    auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASSWORD },
+    // Google shows app passwords as "abcd efgh ijkl mnop"; the spaces are not part of it.
+    auth: { user: process.env.GMAIL_USER.trim(), pass: process.env.GMAIL_APP_PASSWORD.replace(/\s+/g, '') },
   });
   try {
     const info = await sendSubmission(payload, transport);
     console.log('Quote email sent', info.messageId);
     return { statusCode: 200, body: 'sent' };
   } catch (err) {
-    console.error('Quote email failed', err);
+    console.error('Quote email failed:', err.code || '', err.responseCode || '', err.message);
     return { statusCode: 500, body: 'send failed' };
   }
 };
