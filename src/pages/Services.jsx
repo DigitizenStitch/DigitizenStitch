@@ -25,7 +25,7 @@ export function EmbroideryDigitizing() {
         overview: {
           title: 'Turning artwork into stitches',
           paragraphs: [
-            'Embroidery digitizing rebuilds artwork as a sequence of stitches: stitch types, direction, density, underlay and colour order. A machine cannot sew a JPG or PNG; it needs a dedicated stitch file.',
+            'Embroidery digitizing rebuilds artwork as a sequence of stitches: stitch types, direction, density, underlay and color order. A machine cannot sew a JPG or PNG; it needs a dedicated stitch file.',
             'Tell us the design size, the placement (for example left chest, cap front or jacket back) and the fabric if you know it. We digitize for those details and deliver the file in your machine format by email.',
             'Small text, fine lines and very detailed artwork may need simplifying to sew cleanly. If that applies to your design, we will let you know before we start.',
           ],

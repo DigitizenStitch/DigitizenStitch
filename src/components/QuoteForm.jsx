@@ -245,7 +245,7 @@ export default function QuoteForm({ defaultService = '' }) {
 
       <div>
         <label htmlFor="q-message" className="field-label">Additional instructions</label>
-        <textarea rows={4} placeholder="Garment or fabric, colours, placement, quantity, deadline…" {...fieldProps('message')} />
+        <textarea rows={4} placeholder="Garment or fabric, colors, placement, quantity, deadline…" {...fieldProps('message')} />
       </div>
 
       {status === 'error' && (

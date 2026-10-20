@@ -72,7 +72,27 @@ export function Pricing() {
           </div>
         </div>
       </section>
-      <CtaBand title="Not sure which package fits?" text="Send your design and size. We will tell you the right package and exact price." />
+      <section className="section bg-white">
+        <div className="container-x grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <SectionHeading eyebrow="Pricing questions" title="Which package do I need?" />
+          </div>
+          <dl className="space-y-4 lg:col-span-8">
+            {[
+              ['How do I know my design size?', 'Measure the widest side of the design as it will appear on the garment. A left-chest logo or cap logo is usually under 5 inches; a hoodie chest or tote bag design is usually 5–7 inches; full-front and jacket-back designs are over 7 inches.'],
+              ['Why is the price a range?', 'Simple designs with few colors sit at the lower end of the range. Dense, highly detailed or multi-color artwork takes more work and sits higher. Our team confirms the price by email before any work begins.'],
+              ['Why are designs over 7 inches priced on quote?', 'Large designs vary a lot in stitch count and detail, so each one is quoted individually. Turnaround for these designs is 24–48 hours.'],
+              ['Are edits included?', 'Yes. Edits and revisions are free in every package.'],
+            ].map(([q, a]) => (
+              <Reveal key={q} className="card p-6">
+                <dt className="font-sans text-lg font-semibold text-ink">{q}</dt>
+                <dd className="mt-2 leading-relaxed text-slate-600">{a}</dd>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </section>
+      <CtaBand title="Not sure which package fits?" text="Send your design and size, and our team will recommend the right package by email." />
     </>
   );
 }
@@ -136,7 +156,7 @@ export function About() {
             <SectionHeading eyebrow="Who we are" title="A studio focused on files that work" />
             <Reveal className="mt-8 space-y-5 text-lg leading-relaxed text-slate-600">
               <p>At Digitize&rsquo;NStitch, we turn your creative concepts into production-ready files. We specialise in embroidery digitizing and vector art, from simple logos to detailed character artwork, and we also arrange custom patches on quote.</p>
-              <p>We work entirely online. You send your artwork, we confirm the price before starting, and your finished files arrive by email.</p>
+              <p>We work entirely online, and our service is available to embroidery shops, print shops and brands in the USA, UK, Canada, Australia and worldwide. You send your artwork, our team confirms your order by email, and your finished files arrive by email.</p>
               <p>Our aim is simple: clear communication, careful work and files you can use with confidence.</p>
             </Reveal>
           </div>

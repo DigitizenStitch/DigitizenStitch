@@ -5,6 +5,11 @@ import Gallery from '../components/Gallery';
 import { CATEGORIES, PORTFOLIO } from '../data/portfolio';
 
 const TABS = CATEGORIES;
+const INTROS = {
+  embroidery: 'Embroidery digitizing samples: logos, characters and detailed artwork converted into machine-ready stitch files.',
+  vector: 'Vector art samples: images redrawn as clean, scalable artwork for printing, screen printing and signs.',
+  patches: 'Custom patch work: embroidered and specialty patches made from client designs.',
+};
 
 export default function Portfolio() {
   const [params, setParams] = useSearchParams();
@@ -20,7 +25,7 @@ export default function Portfolio() {
       <PageHeader
         crumb="Portfolio"
         eyebrow="Our Work"
-        title="Portfolio"
+        title="Embroidery digitizing & vector art portfolio"
         intro="Real embroidery digitizing, vector art and patch work from our studio. Click any image to view it larger and browse with the arrow keys."
       />
       <section className="section !pt-12">
@@ -46,7 +51,8 @@ export default function Portfolio() {
               );
             })}
           </div>
-          <div id="portfolio-grid" role="tabpanel" className="mt-10">
+          <p className="mt-8 max-w-2xl text-slate-600">{INTROS[active]}</p>
+          <div id="portfolio-grid" role="tabpanel" className="mt-8">
             <Gallery key={active} items={items} columns="sm:grid-cols-3 lg:grid-cols-4" />
           </div>
         </div>

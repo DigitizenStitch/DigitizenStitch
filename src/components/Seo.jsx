@@ -28,6 +28,7 @@ export default function Seo() {
     setMeta('meta[property="og:title"]', 'content', page.title);
     setMeta('meta[property="og:description"]', 'content', page.description);
     setMeta('meta[property="og:url"]', 'content', url);
+    setMeta('meta[property="og:locale"]', 'content', 'en_US');
     setMeta('meta[name="twitter:title"]', 'content', page.title);
     setMeta('meta[name="twitter:description"]', 'content', page.description);
     setMeta('link[rel="canonical"]', 'href', url);

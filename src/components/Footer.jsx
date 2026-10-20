@@ -69,7 +69,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-[15px]">
               {col.links.map((l) => (
                 <li key={l.to + l.label}>
-                  <Link to={l.to} className="link-underline transition hover:text-white">{l.label}</Link>
+                  <Link to={l.to} className="link-underline inline-block py-1 transition hover:text-white">{l.label}</Link>
                 </li>
               ))}
             </ul>

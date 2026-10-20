@@ -15,7 +15,7 @@ export const CATEGORIES = [
 const CAPTIONS = {
   'embroidery/d1': 'Floral portrait embroidery design',
   'embroidery/d2': 'Teddy bear character embroidery design',
-  'embroidery/d3': 'Multi-colour cartoon artwork digitized for embroidery',
+  'embroidery/d3': 'Multi-color cartoon artwork digitized for embroidery',
   'embroidery/d4': 'Wolf and branches embroidery design',
   'embroidery/d5': 'Doberman portrait embroidery design',
   'embroidery/d6': 'Textured lettering embroidery design',

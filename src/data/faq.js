@@ -8,6 +8,36 @@ const PRICING_SUMMARY =
 
 export const FAQ_GROUPS = [
   {
+    title: 'About embroidery digitizing',
+    items: [
+      {
+        q: 'What is embroidery digitizing?',
+        a: 'Embroidery digitizing is the process of converting a logo or artwork into a stitch file that an embroidery machine can sew. A digitizer sets the stitch types, direction, density, underlay and color order, then saves the design in your machine format, such as DST or PES.',
+        keywords: ['what is', 'digitizing', 'meaning', 'define', 'explain'],
+      },
+      {
+        q: 'Can you convert my logo into an embroidery file?',
+        a: 'Yes. Send your logo as a JPG, PNG, PDF, SVG, AI or EPS file, tell us the size and placement, and we digitize it into the machine format you need, such as DST, PES or EMB.',
+        keywords: ['convert', 'logo', 'jpg', 'png', 'image', 'to dst', 'to pes', 'embroidery file'],
+      },
+      {
+        q: 'Do you digitize cap and hat logos?',
+        a: 'Yes. Cap logos are included in the Under 5 Inches package ($4.99–$9.99, 12–24 hours). Mention that the design is for a cap so it is digitized for cap embroidery.',
+        keywords: ['cap', 'hat', 'beanie', 'front', 'snapback'],
+      },
+      {
+        q: 'Do you digitize jacket backs and large designs?',
+        a: 'Yes. Designs over 7 inches, such as full-front and jacket-back designs and large appliqué, are priced on quote and delivered in 24–48 hours.',
+        keywords: ['jacket', 'back', 'large', 'full front', 'big', 'applique'],
+      },
+      {
+        q: 'What is the difference between a vector file and an embroidery file?',
+        a: 'A vector file (AI, EPS, PDF, SVG) is artwork made of shapes, used for printing, signs and cutting. An embroidery file (DST, PES, EMB and others) contains stitch instructions for an embroidery machine. You need an embroidery file to embroider a design.',
+        keywords: ['difference', 'vector', 'embroidery file', 'versus', 'vs'],
+      },
+    ],
+  },
+  {
     title: 'Pricing & payment',
     items: [
       {
