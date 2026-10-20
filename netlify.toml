@@ -10,3 +10,8 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Emails every quote form submission (see netlify/functions/submission-created.mjs)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
