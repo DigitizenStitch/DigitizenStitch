@@ -69,7 +69,7 @@ async function download(file) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
     if (buf.length > MAX_ATTACHMENT) return { error: 'File is too large to attach; use the backup link.' };
-    return { attachment: { filename: file.filename, content: buf, contentType: file.type || res.headers.get('content-type') || undefined } };
+    return { attachment: { filename: file.filename, content: buf, contentType: [file.type, res.headers.get('content-type')].find((t) => t && t.includes('/')) || undefined } };
   } catch (err) {
     return { error: `Could not attach the file (${err.message}); use the backup link.` };
   }
