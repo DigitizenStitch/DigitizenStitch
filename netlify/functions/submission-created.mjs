@@ -22,6 +22,16 @@ const FIELDS = [
 // Netlify adds these to every submission; they are not client answers.
 const SKIP = new Set(['form-name', 'bot-field', 'ip', 'user_agent', 'referrer', 'artwork']);
 const MAX_ATTACHMENT = 20 * 1024 * 1024; // stay under Gmail's 25 MB message limit
+// Netlify Forms stores uploads on its own CDN. Never download from anywhere else.
+const UPLOAD_HOSTS = [/\.cloudfront\.net$/i, /(^|\.)netlify\.(com|app)$/i];
+const isAllowedUpload = (u) => {
+  try {
+    const { protocol, hostname } = new URL(u);
+    return protocol === 'https:' && UPLOAD_HOSTS.some((re) => re.test(hostname));
+  } catch {
+    return false;
+  }
+};
 
 const esc = (v) => String(v ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
@@ -64,8 +74,9 @@ export function buildEmail(data) {
 }
 
 async function download(file) {
+  if (!isAllowedUpload(file.url)) return { error: 'File link is not a Netlify upload, so it was not downloaded; use the link below.' };
   try {
-    const res = await fetch(file.url);
+    const res = await fetch(file.url, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
     if (buf.length > MAX_ATTACHMENT) return { error: 'File is too large to attach; use the backup link.' };
@@ -100,6 +111,7 @@ export async function sendSubmission(payload, transport) {
 }
 
 export const handler = async (event) => {
+  if (event.httpMethod && event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method not allowed' };
   const payload = JSON.parse(event.body || '{}').payload;
   if (payload?.form_name && payload.form_name !== 'contact') return { statusCode: 200, body: 'ignored' };
   console.log('submission-created received', { form: payload?.form_name, id: payload?.id, hasUser: Boolean(process.env.GMAIL_USER), hasPassword: Boolean(process.env.GMAIL_APP_PASSWORD) });

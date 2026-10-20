@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ArrowRight, Check, Clock, Quote as QuoteIcon, Sparkles } from 'lucide-react';
 import { Counter, Reveal } from './ui';
 import { PACKAGES, PRICE_NOTE, SHOW_PLACEHOLDERS, TESTIMONIALS, VERIFIED_STATS } from '../data/site';

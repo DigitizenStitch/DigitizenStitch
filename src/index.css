@@ -105,6 +105,7 @@
 /* heading reveal: each line slides up from behind a mask */
 .line-mask { display: block; overflow: hidden; padding: .04em 0 .22em; margin-bottom: -.16em; }
 .line-in { display: inline-block; }
+.line-in.text-gold { padding-bottom: .2em; margin-bottom: -.2em; }
 .js-motion .line-in { transform: translate3d(0, 105%, 0); animation: lineUp 1s cubic-bezier(.16,1,.3,1) forwards; animation-delay: var(--d, 0ms); }
 @keyframes lineUp { to { transform: translate3d(0, 0, 0); } }
 

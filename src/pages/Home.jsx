@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ArrowRight, ArrowUpRight, CreditCard, FileCheck2, Globe2, Layers, Mail, RefreshCw, Ruler, Timer } from 'lucide-react';
 import { Backdrop, CtaBand, FormatChips, LineReveal, Marquee, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
 import { PricingTiers, StatsBand, Testimonials } from '../components/sections';

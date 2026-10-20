@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { Backdrop, CheckList, CtaBand, FormatChips, PageHeader, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
 import Gallery from '../components/Gallery';

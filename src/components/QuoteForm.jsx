@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import { CheckCircle2, Loader2, Paperclip, X } from 'lucide-react';
 import { CONTACT, FORMAT_OPTIONS, PACKAGES, SERVICE_OPTIONS, packageById, packageLabel } from '../data/site';
 
@@ -30,7 +30,7 @@ function validate(values, file) {
 export function NextSteps({ dark = false }) {
   const steps = [
     ['Submit this form', 'Send your artwork and details. No payment is taken on the website.'],
-    ['We contact you by email', 'Our team replies to confirm your order, the exact price and PayPal payment.'],
+    ['We contact you by email', 'Our team replies to confirm your order and PayPal payment.'],
     ['Files delivered by email', 'Once paid, your completed files are sent to your email address.'],
   ];
   return (

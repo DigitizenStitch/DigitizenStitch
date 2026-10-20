@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { NOT_FOUND, PAGES, canonical, structuredData } from '../data/seo';
 
 // Keeps <head> in sync on client-side navigation.

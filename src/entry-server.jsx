@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
+import { StaticRouter } from 'react-router';
 import App from './App.jsx';
 
 export { PAGES, ROUTES, canonical, structuredData } from './data/seo';

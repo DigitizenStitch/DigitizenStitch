@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import { CtaBand, PageHeader } from '../components/ui';
 import Gallery from '../components/Gallery';
 import { CATEGORIES, PORTFOLIO } from '../data/portfolio';

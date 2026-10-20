@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Mail, Globe2, CreditCard } from 'lucide-react';
 import logo from '../assets/logo-white.webp';
 import { CONTACT } from '../data/site';
