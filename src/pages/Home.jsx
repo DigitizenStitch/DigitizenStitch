@@ -35,7 +35,7 @@ const layer = (depth) => ({ transform: `translate3d(calc(var(--px,0) * ${depth}p
 
 const SERVICES = [
   { to: '/embroidery-digitizing', k: '01', title: 'Embroidery Digitizing', price: '$4.99–$14.99 · large on quote', text: 'Your logo or artwork rebuilt stitch by stitch for your machine, hoop and fabric. Left-chest and cap logos to jacket backs and large appliqué.' },
-  { to: '/vector-art', k: '02', title: 'Vector Art', price: 'From $12', text: 'Blurry, pixelated images redrawn as clean vector artwork, sharp at any size for print and production.' },
+  { to: '/vector-art', k: '02', title: 'Vector Art', price: 'Starting at $9.99', text: 'Blurry, pixelated images redrawn as clean vector artwork, sharp at any size for print and production.' },
   { to: '/patches', k: '03', title: 'Custom Patches', price: 'On quote', text: 'Physical patches made to your design, size and quantity. Send your requirements for a custom quote.' },
 ];
 
@@ -50,8 +50,8 @@ const WHY = [
 
 const WORKFLOW = [
   ['Upload', 'Send your artwork with size, placement and format.'],
-  ['Quote', 'We confirm your package and exact price.'],
-  ['Pay', 'Approve and pay securely through PayPal.'],
+  ['Confirm', 'Our team emails you to confirm the order and price.'],
+  ['Pay', 'You pay through PayPal, confirmed by email.'],
   ['Digitize', 'Your design is digitized for your machine and fabric.'],
   ['Deliver', 'Files arrive by email; edits are free.'],
 ];

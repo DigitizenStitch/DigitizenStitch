@@ -59,7 +59,7 @@ export function Terms() {
       <h2>Services</h2>
       <p>Digitize&rsquo;NStitch provides embroidery digitizing, vector art and custom physical patches. Service details are described on our service pages.</p>
       <h2>Quotes and pricing</h2>
-      <p>Embroidery digitizing is priced by design size: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, and over 7 inches on quote. The final price within each range depends on design complexity and is confirmed before work begins. Vector art starts at $12. Custom patches are priced on quote.</p>
+      <p>Embroidery digitizing is priced by design size: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, and over 7 inches on quote. The final price within each range depends on design complexity and is confirmed before work begins. Vector art starts at $9.99. Custom patches are priced on quote.</p>
       <h2>Payment</h2>
       <p>Payment is accepted through PayPal only.</p>
       <h2>Turnaround and delivery</h2>

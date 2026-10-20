@@ -10,7 +10,7 @@ export const PAGES = {
   '/': {
     title: "Digitize'NStitch | Embroidery Digitizing, Vector Art & Patches",
     description:
-      'Premium embroidery digitizing from $4.99 with 12–24 hour delivery for designs up to 7 inches, free edits, and clean vector art from $12. Serving clients worldwide.',
+      'Premium embroidery digitizing from $4.99 with 12–24 hour delivery for designs up to 7 inches, free edits, and clean vector art from $9.99. Serving clients worldwide.',
   },
   '/embroidery-digitizing': {
     title: "Embroidery Digitizing from $4.99 | Digitize'NStitch",
@@ -20,11 +20,11 @@ export const PAGES = {
     service: { name: 'Embroidery Digitizing', price: 4.99, max: 14.99 },
   },
   '/vector-art': {
-    title: "Vector Art & Logo Vectorization from $12 | Digitize'NStitch",
+    title: "Vector Art & Logo Vectorization from $9.99 | Digitize'NStitch",
     description:
       'Turn low-resolution logos and images into clean, scalable vector art. Delivered as AI, EPS, PDF, SVG or PNG for print and production.',
     name: 'Vector Art',
-    service: { name: 'Vector Art Conversion', price: 12 },
+    service: { name: 'Vector Art Conversion', price: 9.99 },
   },
   '/patches': {
     title: "Custom Patches on Quote | Digitize'NStitch",

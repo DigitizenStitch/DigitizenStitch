@@ -70,7 +70,7 @@ export const packageLabel = (p) => `${p.name} (${p.price})`;
 export const PRICE_NOTE =
   'Prices are shown as ranges: the final price within each range depends on design complexity and detail. For anything outside these packages, request a quote.';
 
-export const VECTOR_PRICE = 'Starting at $12';
+export const VECTOR_PRICE = 'Starting at $9.99';
 
 export const FORMATS = {
   // Popular machine formats; any other format a client needs is provided on request.
@@ -111,7 +111,7 @@ export const NAV = [
     label: 'Services',
     children: [
       { label: 'Embroidery Digitizing', to: '/embroidery-digitizing', note: 'Stitch files from $4.99' },
-      { label: 'Vector Art', to: '/vector-art', note: 'Clean vectors from $12' },
+      { label: 'Vector Art', to: '/vector-art', note: 'Clean vectors from $9.99' },
       { label: 'Custom Patches', to: '/patches', note: 'Physical patches on quote' },
     ],
   },

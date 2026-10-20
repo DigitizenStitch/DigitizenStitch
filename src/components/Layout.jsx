@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Seo from './Seo';
 import ChatWidget from './ChatWidget';
+import Cursor from './Cursor';
 
 // Adds .is-visible to .reveal elements as they scroll into view.
 function useReveal(pathname) {
@@ -68,6 +69,7 @@ export default function Layout({ children }) {
       </main>
       <Footer />
       <ChatWidget />
+      <Cursor />
     </>
   );
 }

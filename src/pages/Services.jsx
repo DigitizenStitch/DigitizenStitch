@@ -80,7 +80,7 @@ export function VectorArt() {
         title: 'Vector art conversion for print and production',
         intro: 'We redraw blurry, pixelated or low-resolution images as clean vector artwork that stays sharp at any size.',
         priceLabel: 'Starting at',
-        price: '$12',
+        price: '$9.99',
         visual: (
           <BeforeAfter
             beforeLabel="Pixelated"

@@ -137,6 +137,7 @@
 .anim-fade { animation: fadeIn .3s ease both; }
 
 @media (prefers-reduced-motion: reduce) {
+  .cursor-ring { display: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; animation-delay: 0ms !important; }
 }
@@ -156,10 +157,11 @@
 .scroll-progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60; transform-origin: 0 50%; transform: scaleX(var(--p, 0));
   background: linear-gradient(90deg, #2dd4bf, #e9b872 60%, #f6dcae); pointer-events: none; }
 
-/* ---------- Brand cursor: native (zero lag), gold needle on interactive elements ---------- */
-@media (hover: hover) and (pointer: fine) {
-  html { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 2.5 L3 21 L8.2 16.4 L11.6 24.2 L15 22.7 L11.7 15 L18.8 15 Z' fill='%23070b1f' stroke='%23e9b872' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto; }
-  a, button, [role='button'], summary, label, select, [data-cursor] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 3 L23.5 23.5' stroke='%23070b1f' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M3 3 L23.5 23.5' stroke='%23e9b872' stroke-width='2.6' stroke-linecap='round'/%3E%3Cellipse cx='22' cy='22' rx='1.1' ry='3' transform='rotate(-45 22 22)' fill='%23070b1f'/%3E%3Cpath d='M24 24 C 30 26, 31 18, 26 17 S 20 24, 27 29' fill='none' stroke='%232dd4bf' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 3 3, pointer; }
-  input[type='text'], input[type='email'], textarea { cursor: text; }
-}
+/* ---------- Cursor: soft gold ring that follows the normal pointer ---------- */
+.cursor-ring { position: fixed; top: 0; left: 0; z-index: 9999; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 9999px;
+  border: 1.5px solid rgba(233,184,114,.75); pointer-events: none; opacity: 0; will-change: transform;
+  transition: opacity .25s ease, width .3s cubic-bezier(.2,.7,.2,1), height .3s cubic-bezier(.2,.7,.2,1), margin .3s cubic-bezier(.2,.7,.2,1), background-color .3s, border-color .3s; }
+.cursor-on .cursor-ring { opacity: 1; }
+.cursor-hover .cursor-ring { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: rgba(233,184,114,.16); border-color: rgba(233,184,114,.95); }
+.cursor-down .cursor-ring { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+@media (hover: none), (pointer: coarse) { .cursor-ring { display: none; } }

@@ -4,7 +4,7 @@
 import { CONTACT, FORMATS, PRICE_NOTE } from './site';
 
 const PRICING_SUMMARY =
-  'Embroidery digitizing: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, over 7 inches on quote. Vector art starts at $12. Custom patches are priced on quote.';
+  'Embroidery digitizing: under 5 inches $4.99–$9.99, 5–7 inches $9.99–$14.99, over 7 inches on quote. Vector art starts at $9.99. Custom patches are priced on quote.';
 
 export const FAQ_GROUPS = [
   {
@@ -22,7 +22,7 @@ export const FAQ_GROUPS = [
       },
       {
         q: 'How much does vector art cost?',
-        a: 'Vector art starts at $12. The final price depends on the complexity of your artwork and is confirmed in your quote.',
+        a: 'Vector art starts at $9.99. The final price depends on the complexity of your artwork and is confirmed by email before work begins.',
         keywords: ['vector', 'vectorize', 'vectorizing', 'vectorization', 'redraw', 'price', 'cost', 'how much'],
       },
       {
@@ -52,7 +52,7 @@ export const FAQ_GROUPS = [
       },
       {
         q: 'What artwork can I send you?',
-        a: 'You can upload JPG, PNG, PDF, SVG, AI or EPS files of up to 8 MB through the quote form. A clear, high-resolution image gives the best result. If your file is larger, mention it in the form and we will arrange another way to receive it.',
+        a: 'You can upload JPG, PNG, PDF, SVG, AI or EPS files of up to 8 MB through the quote form. For larger files, paste a Google Drive, Dropbox or WeTransfer link in the form. A clear, high-resolution image gives the best result.',
         keywords: ['upload', 'artwork', 'image', 'jpg', 'photo', 'attach', 'accept'],
       },
       {
@@ -102,7 +102,7 @@ export const FAQ_GROUPS = [
       },
       {
         q: 'How do I place an order?',
-        a: 'Choose a package and click Order Now, or send your artwork through the Get a Quote form, WhatsApp or email. We confirm the price, you pay through PayPal, and your files arrive by email.',
+        a: 'Choose a package and click Order Now, or send your artwork through the Get a Quote form. Our team then contacts you by email to confirm your order, the exact price and PayPal payment. Your completed files are delivered by email.',
         keywords: ['order', 'start', 'begin', 'place', 'quote', 'process', 'buy'],
       },
       {

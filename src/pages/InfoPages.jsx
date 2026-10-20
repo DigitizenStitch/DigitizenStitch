@@ -79,8 +79,8 @@ export function Pricing() {
 
 const STEPS = [
   { Icon: Upload, title: 'Send your artwork', text: 'Upload your design through the quote form, or send it on WhatsApp or by email. Include the size, placement and file format you need.' },
-  { Icon: FileCheck2, title: 'Receive your price', text: 'We confirm your package and the exact price. Designs over 7 inches are quoted individually.' },
-  { Icon: CreditCard, title: 'Approve and pay', text: 'Once you approve, payment is made through PayPal. PayPal is our only payment method.' },
+  { Icon: FileCheck2, title: 'We contact you by email', text: 'Our team emails you to confirm your order, package and exact price. Designs over 7 inches are quoted individually.' },
+  { Icon: CreditCard, title: 'Confirm and pay', text: 'We confirm the PayPal payment with you by email. No payment is taken on the website, and PayPal is our only payment method.' },
   { Icon: Wand2, title: 'We digitize your design', text: 'Stitch types, angles, density and underlay are set for your size and fabric. Up to 7 inches: 12–24 hours. Over 7 inches: 24–48 hours.' },
   { Icon: Inbox, title: 'Get your files by email', text: 'Your finished files arrive in the format you requested.' },
   { Icon: RefreshCw, title: 'Free edits and revisions', text: 'Need a change after your test sew-out? Reply to the delivery email. Edits are free.' },
@@ -202,7 +202,7 @@ export function Faq() {
 export function Quote() {
   return (
     <>
-      <PageHeader crumb="Get a Quote" eyebrow="Get a Quote / Order" title="Start your order" intro="Upload your design and tell us what you need. We confirm the exact price by email before any work begins." />
+      <PageHeader crumb="Get a Quote" eyebrow="Get a Quote / Order" title="Start your order" intro="Submit the form below. Our team will contact you by email to confirm your order and payment, and your completed files will be delivered by email." />
       <section className="section !pt-16">
         <div className="container-x grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -237,7 +237,7 @@ export function Quote() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 text-sm text-slate-500">Vector art from $12 · Custom patches on quote · Free edits. <Link to="/pricing" className="font-semibold text-navy-800 underline underline-offset-2">Full pricing</Link></p>
+              <p className="mt-5 text-sm text-slate-500">Vector art from $9.99 · Custom patches on quote · Free edits. <Link to="/pricing" className="font-semibold text-navy-800 underline underline-offset-2">Full pricing</Link></p>
             </div>
           </aside>
         </div>

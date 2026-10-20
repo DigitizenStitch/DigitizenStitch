@@ -19,6 +19,7 @@ export function LineReveal({ lines, start = 0, step = 120 }) {
     return (
       <span key={i} className="line-mask">
         <span className={`line-in ${cls}`} style={{ '--d': `${start + i * step}ms` }}>{text}</span>
+        {i < lines.length - 1 && ' '}
       </span>
     );
   });

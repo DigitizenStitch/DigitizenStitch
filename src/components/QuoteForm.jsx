@@ -7,23 +7,45 @@ import { CONTACT, FORMAT_OPTIONS, PACKAGES, SERVICE_OPTIONS, packageById, packag
 // submission notifications keep working. A matching static copy of this form
 // lives in index.html so Netlify detects every field at deploy time.
 export const FORM_NAME = 'contact';
-const MAX_MB = 8; // Netlify Forms limit per submission
+const MAX_MB = 8; // Netlify Forms hard limit per submission; larger files go via the link field
 const ACCEPT = '.jpg,.jpeg,.png,.webp,.gif,.pdf,.svg,.ai,.eps';
 const ALLOWED_EXT = ACCEPT.split(',').map((e) => e.slice(1));
 
-const EMPTY = { name: '', email: '', service: '', package: '', design_size: '', file_format: '', message: '' };
+const EMPTY = { name: '', email: '', service: '', package: '', design_size: '', file_format: '', file_link: '', message: '' };
 
 function validate(values, file) {
   const e = {};
   if (!values.name.trim()) e.name = 'Please enter your name.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim())) e.email = 'Please enter a valid email address.';
   if (!values.service) e.service = 'Please choose a service.';
+  if (values.file_link.trim() && !/^https?:\/\/\S+\.\S+/i.test(values.file_link.trim())) e.file_link = 'Please paste a full link starting with https://';
   if (file) {
     const ext = file.name.split('.').pop().toLowerCase();
     if (!ALLOWED_EXT.includes(ext)) e.artwork = 'Please upload a JPG, PNG, WEBP, GIF, PDF, SVG, AI or EPS file.';
-    else if (file.size > MAX_MB * 1024 * 1024) e.artwork = `File is larger than ${MAX_MB} MB. Please send a smaller file or email it to ${CONTACT.email}.`;
+    else if (file.size > MAX_MB * 1024 * 1024) e.artwork = `This file is larger than ${MAX_MB} MB. Remove it and paste a Google Drive, Dropbox or WeTransfer link in the field below instead.`;
   }
   return e;
+}
+
+export function NextSteps({ dark = false }) {
+  const steps = [
+    ['Submit this form', 'Send your artwork and details. No payment is taken on the website.'],
+    ['We contact you by email', 'Our team replies to confirm your order, the exact price and PayPal payment.'],
+    ['Files delivered by email', 'Once paid, your completed files are sent to your email address.'],
+  ];
+  return (
+    <div className={`rounded-2xl p-5 ${dark ? 'bg-white/5' : 'bg-paper'}`}>
+      <p className={`font-mono text-[11px] uppercase tracking-[0.2em] ${dark ? 'text-thread' : 'text-slate-500'}`}>What happens next</p>
+      <ol className="mt-4 space-y-3">
+        {steps.map(([h, t], i) => (
+          <li key={h} className="flex gap-3">
+            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-thread text-xs font-bold text-ink">{i + 1}</span>
+            <span className={`text-sm ${dark ? 'text-slate-300' : 'text-slate-600'}`}><b className={dark ? 'text-white' : 'text-ink'}>{h}.</b> {t}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
 }
 
 export default function QuoteForm({ defaultService = '' }) {
@@ -91,7 +113,7 @@ export default function QuoteForm({ defaultService = '' }) {
         <CheckCircle2 className="h-14 w-14 text-navy-800" aria-hidden="true" />
         <h3 className="mt-5 text-2xl">Thank you, your request has been sent.</h3>
         <p className="mt-3 max-w-md text-slate-600">
-          We will review your design and reply by email with your quote. For anything urgent, message us on{' '}
+          Our team will review your design and contact you by email at the address you gave to confirm your order, price and PayPal payment. Your completed files will also be delivered by email. For anything urgent, message us on{' '}
           <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-navy-800 underline underline-offset-4">WhatsApp</a>.
         </p>
         <button type="button" className="btn-outline mt-8" onClick={() => setStatus('idle')}>Send another request</button>
@@ -189,7 +211,7 @@ export default function QuoteForm({ defaultService = '' }) {
         >
           <Paperclip className="h-6 w-6 text-navy-800" aria-hidden="true" />
           <span className="text-sm font-semibold text-navy-950">{file ? 'Replace file' : 'Choose your artwork file'}</span>
-          <span className="text-xs text-slate-500">JPG, PNG, PDF, SVG, AI or EPS · max {MAX_MB} MB</span>
+          <span className="text-xs text-slate-500">JPG, PNG, PDF, SVG, AI or EPS · up to {MAX_MB} MB</span>
         </label>
         <input
           ref={fileRef}
@@ -215,6 +237,13 @@ export default function QuoteForm({ defaultService = '' }) {
       </div>
 
       <div>
+        <label htmlFor="q-file_link" className="field-label">Larger file? Paste a link <span className="font-normal text-slate-500">(optional)</span></label>
+        <input type="url" inputMode="url" placeholder="Google Drive, Dropbox or WeTransfer link" {...fieldProps('file_link')} />
+        <Err name="file_link" />
+        <p className="mt-1.5 text-xs text-slate-500">For files over {MAX_MB} MB, upload them to any file-sharing service and paste the link here. Please make sure the link is set to &ldquo;anyone with the link can view&rdquo;.</p>
+      </div>
+
+      <div>
         <label htmlFor="q-message" className="field-label">Additional instructions</label>
         <textarea rows={4} placeholder="Garment or fabric, colours, placement, quantity, deadline…" {...fieldProps('message')} />
       </div>
@@ -225,6 +254,8 @@ export default function QuoteForm({ defaultService = '' }) {
           <a href={`mailto:${CONTACT.email}`} className="font-semibold underline">{CONTACT.email}</a>.
         </p>
       )}
+
+      <NextSteps />
 
       <button type="submit" disabled={status === 'sending'} className="btn-gold w-full !py-4 text-base">
         {status === 'sending' ? (<><Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Sending…</>) : values.package.startsWith('Over') || !values.package ? 'Request my quote' : 'Send my order request'}
