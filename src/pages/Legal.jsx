@@ -42,11 +42,13 @@ export function Privacy() {
       <h2>Third-party services</h2>
       <ul>
         <li>Form submissions are processed by our website host, Netlify.</li>
+        <li>If you accept cookies, Google Analytics collects anonymous usage data (pages visited, device, country) to help us improve the site.</li>
         <li>Payments are handled by PayPal. We do not receive or store your card details.</li>
         <li>Email and WhatsApp conversations are subject to the privacy policies of those services.</li>
       </ul>
       <h2>Cookies</h2>
-      <p>This website does not use advertising or analytics cookies.</p>
+      <p>We do not use advertising cookies. With your consent, we use Google Analytics cookies to understand how visitors use the site. If you decline, no analytics cookies are set. You can change your choice any time with the button below.</p>
+      <p><button type="button" className="font-semibold underline" onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}>Cookie settings</button></p>
       <h2>Your choices</h2>
       <p>You can ask us to access, correct or delete the information you have sent us by contacting us at the details below.</p>
     </LegalLayout>
