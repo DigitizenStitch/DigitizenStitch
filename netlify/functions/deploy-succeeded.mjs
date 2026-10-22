@@ -4,8 +4,10 @@ const KEY = '4235f68c8eda48162f2b20a3a22dac22';
 const HOST = 'digitizenstitch.com';
 
 export const handler = async (event) => {
-  const deploy = JSON.parse(event.body || '{}').payload || {};
-  if (deploy.context && deploy.context !== 'production') return { statusCode: 200, body: 'skipped' };
+  let deploy = {};
+  try { deploy = JSON.parse(event.body || '{}').payload || {}; } catch { /* malformed body */ }
+  // Only production deploys; previews and branch deploys are ignored.
+  if (deploy.context !== 'production') return { statusCode: 200, body: 'skipped' };
   try {
     const xml = await (await fetch(`https://${HOST}/sitemap.xml`)).text();
     const urlList = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
