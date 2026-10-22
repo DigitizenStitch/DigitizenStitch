@@ -154,7 +154,7 @@ export default function Header() {
                 <NavLink
                   to={item.to}
                   end
-                  className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 transition hover:bg-white/5 ${isActive ? 'bg-white/10 font-semibold text-thread' : 'text-slate-200'}`}
+                  className={({ isActive }) => `flex items-center justify-between rounded-xl px-3 py-3 border-l-2 transition [@media(hover:hover)]:hover:bg-white/5 ${isActive ? 'border-thread bg-white/10 font-semibold text-thread' : 'border-transparent text-slate-200'}`}
                 >
                   {item.label}
                 </NavLink>
