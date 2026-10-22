@@ -14,7 +14,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)
 export function Pricing() {
   return (
     <>
-      <PageHeader crumb="Pricing" eyebrow="Transparent pricing" title="Simple pricing by design size" intro="Embroidery digitizing packages from $4.99, with free edits and 12–24 hour delivery for designs up to 7 inches." />
+      <PageHeader crumb="Pricing" eyebrow="Transparent pricing" title="Embroidery digitizing prices by design size" intro="Embroidery digitizing packages from $4.99, with free edits and 12–24 hour delivery for designs up to 7 inches." />
       <section className="dark-surface relative overflow-hidden bg-ink pb-24 pt-20 sm:pb-32 sm:pt-28">
         <div className="container-x relative">
           <PricingTiers headingLevel="h2" />
@@ -109,7 +109,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <>
-      <PageHeader crumb="How It Works" eyebrow="Process" title="From your artwork to a perfect sew-out" intro="A clear, six-step process with no surprises." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.software, '(min-width: 1024px) 40vw, 100vw', true)} className="w-full" /></div>} />
+      <PageHeader crumb="How It Works" eyebrow="Process" title="How embroidery digitizing works, from artwork to sew-out" intro="A clear, six-step process with no surprises." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.software, '(min-width: 1024px) 40vw, 100vw', true)} className="w-full" /></div>} />
       <section className="section">
         <div className="container-x max-w-5xl">
           <ol className="relative space-y-8 before:absolute before:bottom-10 before:left-8 before:top-10 before:w-px before:bg-gradient-to-b before:from-thread before:via-orchid/40 before:to-signal sm:before:left-10">
@@ -182,7 +182,7 @@ export function About() {
 export function Faq() {
   return (
     <>
-      <PageHeader crumb="FAQ" eyebrow="FAQ" title="Frequently asked questions" intro="Clear answers about prices, formats, turnaround, revisions and payment." />
+      <PageHeader crumb="FAQ" eyebrow="FAQ" title="Embroidery digitizing FAQ" intro="Clear answers about prices, formats, turnaround, revisions and payment." />
       <section className="section">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <nav aria-label="FAQ topics" className="lg:col-span-3">

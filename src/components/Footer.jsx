@@ -22,6 +22,7 @@ const COLUMNS = [
       { label: 'How It Works', to: '/how-it-works' },
       { label: 'About Us', to: '/about' },
       { label: 'FAQ', to: '/faq' },
+      { label: 'File Formats Guide', to: '/embroidery-file-formats' },
     ],
   },
   {
