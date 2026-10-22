@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router';
 import FileFormats from './pages/FileFormats';
+import { BlogIndex, BlogPost } from './pages/Blog';
+import { POSTS } from './data/posts';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import { EmbroideryDigitizing, Patches, VectorArt } from './pages/Services';
@@ -21,6 +23,8 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/embroidery-file-formats" element={<FileFormats />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        {POSTS.map((p) => <Route key={p.slug} path={`/blog/${p.slug}`} element={<BlogPost post={p} />} />)}
         <Route path="/quote" element={<Quote />} />
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-of-service" element={<Terms />} />

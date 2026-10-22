@@ -64,6 +64,7 @@ export function EmbroideryDigitizing() {
         faqs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?'],
         related: [
           { to: '/embroidery-file-formats', label: 'Embroidery File Formats Guide' },
+          { to: '/blog/cap-hat-logo-digitizing-guide', label: 'Cap & Hat Logo Digitizing Guide' },
           { to: '/vector-art', label: 'Vector Art' },
           { to: '/pricing', label: 'Pricing' },
         ],
