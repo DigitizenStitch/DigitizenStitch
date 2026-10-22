@@ -149,7 +149,7 @@ export function HowItWorks() {
 export function About() {
   return (
     <>
-      <PageHeader crumb="About Us" eyebrow="About Us" title="Crafting excellence, one stitch at a time" intro="Digitize'NStitch is an embroidery digitizing and vector art studio serving clients worldwide." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.serviceHoop, '(min-width: 1024px) 40vw, 100vw', true)} className="aspect-[4/5] w-full object-cover" /></div>} />
+      <PageHeader crumb="About Us" eyebrow="About Us" title="Crafting excellence, one stitch at a time" intro="Digitize'NStitch is an embroidery digitizing and vector art studio serving clients worldwide." aside={<div className="overflow-hidden rounded-3xl border border-white/10 shadow-lift"><img {...pic(IMAGES.serviceHoop, '(min-width: 1024px) 40vw, 100vw', true)} className="aspect-[16/10] w-full object-cover lg:aspect-[4/3]" /></div>} />
       <section className="section">
         <div className="container-x grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
