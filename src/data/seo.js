@@ -3,6 +3,7 @@
 
 import { ALL_FAQS } from './faq';
 import { BRAND, CONTACT, FORMATS, PACKAGES, SITE_URL } from './site';
+import { POSTS } from './posts';
 
 const ORG_ID = `${SITE_URL}/#organization`;
 // Online service available worldwide; main markets listed for clarity.
@@ -75,6 +76,12 @@ export const PAGES = {
       "What is a DST file, and which embroidery file type does your machine need? A guide to DST, PES, JEF, EXP, VP3, XXX and EMB formats.",
     name: 'Embroidery File Formats',
   },
+  '/blog': {
+    title: "Embroidery Digitizing Blog & Guides | Digitize'NStitch",
+    description: 'Practical guides on embroidery digitizing: cap and hat logos, 3D puff embroidery, file formats and getting clean sew-outs.',
+    name: 'Blog',
+  },
+  ...Object.fromEntries(POSTS.map((p) => [`/blog/${p.slug}`, { title: p.title, description: p.description, name: p.title, article: p }])),
   '/quote': {
     title: "Get an Embroidery Digitizing Quote | Digitize'NStitch",
     description:
@@ -140,7 +147,8 @@ export function structuredData(path) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-        { '@type': 'ListItem', position: 2, name: page.name, item: url },
+        ...(page.article ? [{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` }] : []),
+        { '@type': 'ListItem', position: page.article ? 3 : 2, name: page.name, item: url },
       ],
     });
   }
@@ -157,6 +165,21 @@ export function structuredData(path) {
       mainEntity: ALL_FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     }),
   });
+
+  if (page.article) {
+    graph.push({
+      '@type': 'BlogPosting',
+      headline: page.article.title,
+      description: page.description,
+      url,
+      mainEntityOfPage: { '@id': `${url}#webpage` },
+      datePublished: page.article.date,
+      dateModified: page.article.date,
+      image: `${SITE_URL}/og-image.jpg`,
+      author: { '@id': ORG_ID },
+      publisher: { '@id': ORG_ID },
+    });
+  }
 
   if (page.service) {
     graph.push({

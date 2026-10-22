@@ -23,6 +23,7 @@ const COLUMNS = [
       { label: 'About Us', to: '/about' },
       { label: 'FAQ', to: '/faq' },
       { label: 'File Formats Guide', to: '/embroidery-file-formats' },
+      { label: 'Blog', to: '/blog' },
     ],
   },
   {
