@@ -15,23 +15,23 @@ export const PAGES = {
       "Custom embroidery digitizing from $4.99: logo to DST, PES or EMB in 12–24 hours, free edits. Vector art from $9.99. Clients in the USA, UK and worldwide.",
   },
   '/embroidery-digitizing': {
-    title: "Custom Embroidery Digitizing Service | Logo to DST & PES",
+    title: "Logo & Custom Embroidery Digitizing Service | DST, PES",
     description:
       "Logo digitizing for embroidery: left chest, cap, sleeve, hoodie and jacket back. DST, PES, EMB and more, 12–24 hour delivery, free edits. From $4.99.",
     name: 'Embroidery Digitizing',
     service: { name: 'Embroidery Digitizing', price: 4.99, max: 14.99 },
   },
   '/vector-art': {
-    title: "Vector Art Services: Convert Logo to Vector | From $9.99",
+    title: "Vector Art Conversion Service: Logo to Vector from $9.99",
     description:
       "Raster to vector conversion: blurry JPG or PNG logos redrawn as clean AI, EPS, PDF, SVG or PNG files for print, screen printing and signs. From $9.99.",
     name: 'Vector Art',
     service: { name: 'Vector Art Conversion', price: 9.99 },
   },
   '/patches': {
-    title: "Custom Embroidered Patches on Quote | Digitize'NStitch",
+    title: "Custom Embroidered Patches from Your Logo | Digitize'NStitch",
     description:
-      "Custom patches made from your logo or design. Share your size, quantity and patch type and get an individual quote by email.",
+      "Custom embroidered patches made from your logo or design: Share the size, quantity, patch type and backing you want and get an individual quote by email.",
     name: 'Custom Patches',
     service: { name: 'Custom Embroidered Patches', quoteOnly: true },
   },
@@ -68,6 +68,12 @@ export const PAGES = {
       "Answers about embroidery digitizing prices, DST and PES files, hoop sizes, turnaround times, vector art formats, revisions and PayPal payment.",
     name: 'FAQ',
     faq: true,
+  },
+  '/embroidery-file-formats': {
+    title: "Embroidery File Formats: DST vs PES, EMB, JEF & More",
+    description:
+      "What is a DST file, and which embroidery file type does your machine need? A guide to DST, PES, JEF, EXP, VP3, XXX and EMB formats.",
+    name: 'Embroidery File Formats',
   },
   '/quote': {
     title: "Get an Embroidery Digitizing Quote | Digitize'NStitch",

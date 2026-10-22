@@ -23,4 +23,5 @@ Submit the [quote form](https://digitizenstitch.com/quote). Our team confirms th
 ## More
 - [Pricing](https://digitizenstitch.com/pricing)
 - [FAQ](https://digitizenstitch.com/faq)
+- [Embroidery File Formats Guide](https://digitizenstitch.com/embroidery-file-formats): DST, PES, JEF, EXP, VP3, XXX and EMB explained, and which machines use each
 - [How it works](https://digitizenstitch.com/how-it-works)

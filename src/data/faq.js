@@ -131,6 +131,16 @@ export const FAQ_GROUPS = [
         keywords: ['patch digitizing', 'physical', 'patch', 'patches', 'manufacture', 'pvc', 'woven', 'leather', 'iron'],
       },
       {
+        q: 'How much do custom embroidered patches cost?',
+        a: 'Custom patches are priced individually on quote. The price depends on the patch type, size, quantity and level of detail, so send your design with those details and we will reply with pricing by email.',
+        keywords: ['patch price', 'patch cost', 'patches cost', 'patch quote'],
+      },
+      {
+        q: 'What do I need to send for a custom patch quote?',
+        a: 'Send your logo or design, the patch size, the quantity, and any preferences such as patch type, border style or backing. You can use the Get a Quote form, email or WhatsApp.',
+        keywords: ['patch quote', 'patch order', 'patch details', 'backing', 'border'],
+      },
+      {
         q: 'How do I place an order?',
         a: 'Choose a package and click Order Now, or send your artwork through the Get a Quote form. Our team then contacts you by email to confirm your order, the exact price and PayPal payment. Your completed files are delivered by email.',
         keywords: ['order', 'start', 'begin', 'place', 'quote', 'process', 'buy'],

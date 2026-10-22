@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router';
+import FileFormats from './pages/FileFormats';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import { EmbroideryDigitizing, Patches, VectorArt } from './pages/Services';
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/embroidery-file-formats" element={<FileFormats />} />
         <Route path="/quote" element={<Quote />} />
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-of-service" element={<Terms />} />

@@ -79,10 +79,10 @@ export default function Home() {
         <Backdrop />
         <div className="container-x relative grid items-center gap-16 pb-20 lg:grid-cols-12 lg:pb-28">
           <div className="lg:col-span-6">
-            <p className="eyebrow eyebrow-gold page-enter">Premium embroidery digitizing studio</p>
-            <h1 className="mt-6 text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="eyebrow eyebrow-gold page-enter">Embroidery digitizing services</h1>
+            <p className="mt-6 font-display text-[2.6rem] leading-[1.04] text-white sm:text-6xl lg:text-[4.6rem]">
               <LineReveal start={150} step={140} lines={['Digitizing that', 'sews flawlessly,', ['every single time.', 'text-gold']]} />
-            </h1>
+            </p>
             <p className="page-enter mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl" style={{ animationDelay: '550ms' }}>
               We turn logos and artwork into clean, machine-ready embroidery files and sharp vector art, delivered in 12–24 hours for designs up to 7 inches, with free edits.
             </p>

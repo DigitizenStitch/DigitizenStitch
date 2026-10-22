@@ -13,7 +13,7 @@ export function EmbroideryDigitizing() {
       content={{
         crumb: 'Embroidery Digitizing',
         eyebrow: 'Embroidery Digitizing',
-        title: 'Custom embroidery digitizing that sews clean',
+        title: 'Custom embroidery & logo digitizing that sews clean',
         intro: 'We rebuild your logo or artwork as a stitch file for your machine, digitized for the size, placement and fabric you need.',
         priceLabel: 'Packages from',
         price: '$4.99',
@@ -63,6 +63,7 @@ export function EmbroideryDigitizing() {
         gallery: { title: 'Embroidery digitizing samples', category: 'embroidery', items: byCategory('embroidery') },
         faqs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?'],
         related: [
+          { to: '/embroidery-file-formats', label: 'Embroidery File Formats Guide' },
           { to: '/vector-art', label: 'Vector Art' },
           { to: '/pricing', label: 'Pricing' },
         ],
@@ -77,7 +78,7 @@ export function VectorArt() {
       content={{
         crumb: 'Vector Art',
         eyebrow: 'Vector Art',
-        title: 'Vector art conversion for print and production',
+        title: 'Vector art conversion service for print and production',
         intro: 'We redraw blurry, pixelated or low-resolution images as clean vector artwork that stays sharp at any size.',
         priceLabel: 'Starting at',
         price: '$9.99',
@@ -128,8 +129,8 @@ export function Patches() {
       content={{
         crumb: 'Custom Patches',
         eyebrow: 'Custom Patches',
-        title: 'Custom patches made to your design',
-        intro: 'Physical patches produced to your artwork, size and quantity. Every patch order is priced individually on quote.',
+        title: 'Custom embroidered patches made to your design',
+        intro: 'Custom embroidered patches produced from your logo or artwork, in your size and quantity. Every patch order is priced individually on quote.',
         priceLabel: 'Pricing',
         price: 'On Quote',
         visual: <Hoop animate className="mx-auto w-full max-w-sm" />,
@@ -152,7 +153,7 @@ export function Patches() {
           ],
         },
         gallery: { title: 'Patch work samples', category: 'patches', items: byCategory('patches') },
-        faqs: ['Do you make physical patches?', 'How do I place an order?', 'Which payment methods do you accept?'],
+        faqs: ['Do you make physical patches?', 'How much do custom embroidered patches cost?', 'What do I need to send for a custom patch quote?', 'Which payment methods do you accept?'],
         related: [
           { to: '/embroidery-digitizing', label: 'Embroidery Digitizing' },
           { to: '/vector-art', label: 'Vector Art' },
