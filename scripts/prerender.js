@@ -38,7 +38,9 @@ function write(route, page, html) {
   const out = template
     .replace(/<!--seo-->[\s\S]*?<!--\/seo-->/, head(route, page, html))
     .replace('<!--app-->', html);
-  const file = route === '/' ? path.join(dist, 'index.html') : path.join(dist, route.slice(1), 'index.html');
+  // `/pricing` -> pricing.html, not pricing/index.html: Netlify 301-redirects a folder
+  // URL to its trailing-slash form, which would contradict the canonical and sitemap.
+  const file = route === '/' ? path.join(dist, 'index.html') : path.join(dist, `${route.slice(1)}.html`);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, out);
   console.log('prerendered', route);
@@ -48,8 +50,6 @@ for (const route of ROUTES) write(route, PAGES[route], render(route));
 
 // Netlify serves 404.html with a real 404 status for unknown URLs.
 write('/404', { title: "Page Not Found | Digitize'NStitch", description: 'The page you are looking for does not exist.', noindex: true }, render('/__not-found'));
-fs.renameSync(path.join(dist, '404', 'index.html'), path.join(dist, '404.html'));
-fs.rmSync(path.join(dist, '404'), { recursive: true });
 fs.rmSync(path.join(root, 'dist-ssr'), { recursive: true, force: true });
 
 // sitemap.xml is generated from the page list so new pages are never missed.
