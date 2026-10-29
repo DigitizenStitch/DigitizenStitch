@@ -24,6 +24,7 @@ Submit the [quote form](https://digitizenstitch.com/quote). Our team confirms th
 - [Pricing](https://digitizenstitch.com/pricing)
 - [FAQ](https://digitizenstitch.com/faq)
 - [Embroidery File Formats Guide](https://digitizenstitch.com/embroidery-file-formats): DST, PES, JEF, EXP, VP3, XXX and EMB explained, and which machines use each
+- [What Is a PES File? Brother Embroidery Format Explained](https://digitizenstitch.com/blog/what-is-a-pes-file): what PES files contain, which machines read them and how PES differs from DST
 - [Cap & Hat Logo Digitizing Guide](https://digitizenstitch.com/blog/cap-hat-logo-digitizing-guide)
 - [3D Puff Embroidery Digitizing](https://digitizenstitch.com/blog/3d-puff-embroidery-digitizing)
 - [How it works](https://digitizenstitch.com/how-it-works)

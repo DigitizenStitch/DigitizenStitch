@@ -5,6 +5,9 @@ export const SITE_URL = 'https://digitizenstitch.com';
 
 export const BRAND = "Digitize'NStitch";
 
+// Byline shown on blog posts and used as the author in structured data.
+export const AUTHOR = 'Abdul Rafay';
+
 // While true, unverified sections (client count, testimonials) render as clearly
 // labelled placeholders. Set to false before going live, or fill in real data below.
 export const SHOW_PLACEHOLDERS = false;

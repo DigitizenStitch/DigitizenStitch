@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { CtaBand, PageHeader, Reveal } from '../components/ui';
 import { PAGES } from '../data/seo';
+import { AUTHOR } from '../data/site';
 import { POSTS } from '../data/posts';
 
 const fmt = (d) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
@@ -15,7 +16,7 @@ export function BlogIndex() {
           {POSTS.map((p) => (
             <li key={p.slug}>
               <Reveal className="card h-full p-8 sm:p-10">
-                {p.image && <img src={p.image.src} alt="" width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
+                {p.image && <img src={p.image.src} alt={p.image.alt} width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
                 <p className="font-mono text-xs uppercase tracking-widest text-slate-500"><time dateTime={p.date}>{fmt(p.date)}</time> · {p.readMinutes} min read</p>
                 <h2 className="mt-4 text-3xl"><Link to={`/blog/${p.slug}`} className="hover:underline">{p.title}</Link></h2>
                 <p className="mt-4 text-slate-600">{p.excerpt}</p>
@@ -44,7 +45,7 @@ export function BlogPost({ post }) {
       <PageHeader crumb="Blog" eyebrow={`Guide · ${post.readMinutes} min read`} title={post.title} intro={post.description} />
       <article className="section">
         <div className="container-x max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">By Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time>{post.updated && <> · Updated <time dateTime={post.updated}>{fmt(post.updated)}</time></>}</p>
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time>{post.updated && <> · Updated <time dateTime={post.updated}>{fmt(post.updated)}</time></>}</p>
           {post.body.map(([type, value], i) => <Block key={i} type={type} value={value} />)}
           <h2 className="mt-14 text-3xl">Frequently asked questions</h2>
           {post.faqs.map(([q, a]) => (
