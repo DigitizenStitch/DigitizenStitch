@@ -1,6 +1,7 @@
 // Blog posts. Technical guidance is general industry practice (fact-checked against
 // Wilcom, Melco, BERNINA and Impressions Magazine guidance), not claims about our business.
-// Block types: p (paragraph), h2, ul (list), tip (highlighted note).
+// Block types: p (paragraph), h2, ul (list), tip (highlighted note), img ({ src, alt, w, h }).
+// Images live in public/images/blog/ (webp, 1600 wide). Alt text describes the image; no captions.
 
 export const POSTS = [
   {
@@ -9,30 +10,59 @@ export const POSTS = [
     description:
       'How hat embroidery digitizing differs from flat garments: center-out sequencing, cap underlay, the center seam, small lettering and what to send your digitizer.',
     date: '2026-10-22',
+    updated: '2026-10-29',
     readMinutes: 6,
     excerpt: 'Why a left-chest logo file often sews badly on a cap, and what a cap-ready embroidery file does differently.',
-    related: ['/embroidery-digitizing', '/embroidery-file-formats', '/blog/3d-puff-embroidery-digitizing'],
+    image: {
+      src: '/images/blog/cap-front.webp',
+      alt: 'Navy baseball cap with a gold embroidered emblem on the front panel and the center seam visible',
+      w: 1600,
+      h: 899,
+    },
+    related: ['/embroidery-digitizing', '/embroidery-file-formats', '/blog/3d-puff-embroidery-digitizing', '/quote'],
     body: [
-      ['p', 'Hat embroidery is one of the most popular jobs in any embroidery shop, but caps are also where a design file is most likely to fail. A logo that sews perfectly on a polo shirt can pucker, shift out of register or lose its small text on a cap. The difference is almost always in the digitizing.'],
-      ['h2', 'Why caps need their own embroidery file'],
-      ['p', 'On a flat garment the fabric is hooped tight and stays still. A cap is curved, stiff at the front and sewn on a cap frame that holds it differently. As the needle works, the fabric is pushed in the direction stitches are laid, and on a curved panel that movement builds up quickly. A cap-ready file is planned around this movement instead of fighting it.'],
+      ['p', 'Caps are where a lot of embroidery files fall apart. A logo that sews cleanly on a polo can pucker, drift out of register or lose its small text on a hat, and the cause is almost always the digitizing, not the machine.'],
+      ['tip', 'The short version: sew from the center out and from the bottom up, use enough underlay to lock the front panel, keep small text bigger and simpler than you would on a shirt, and tell your digitizer the cap type and your frame before you order.'],
+      ['img', {
+        src: '/images/blog/cap-front.webp',
+        alt: 'Navy baseball cap with a gold embroidered emblem on the front panel and the center seam visible',
+        w: 1600,
+        h: 899,
+      }],
+      ['h2', 'Why a cap needs its own embroidery file'],
+      ['p', 'On a flat garment the fabric is hooped tight and stays put. A cap is curved, stiff at the front and held in a cap frame, so it behaves differently. Every stitch pushes the fabric a little in the direction it is laid, and on a curved panel that push adds up fast.'],
+      ['p', 'A cap-ready file plans for that movement instead of fighting it. That is why a file made for a flat shirt so often needs rework before it sews well on a hat.'],
       ['h2', 'Sew from the center out, and from the bottom up'],
-      ['p', 'The most important rule in cap digitizing is the sewing sequence. Elements should start near the middle of the design and work outward to each side, and generally from the bottom of the cap toward the top. This pushes any extra fabric toward the sides and up, where it has room to go, instead of trapping it in the middle where it causes bunching and gaps.'],
+      ['p', 'The most important rule in cap digitizing is the sewing sequence. Start near the middle of the design, work outward to each side, and generally go from the bottom of the cap toward the top. That pushes extra fabric to the sides and upward, where it has room to go, instead of trapping it in the middle where it causes bunching and gaps.'],
       ['ul', [
         'Lettering usually starts from the center of the word and sews outward to each side.',
         'Each letter or element is finished (fill, then its outline) before moving on, so outlines line up with their fills.',
         'Large elements are split so the center is stitched first and the sides follow.',
       ]],
       ['h2', 'Underlay that locks the cap down'],
-      ['p', 'Underlay is the foundation layer of stitches that sews before the visible design. On caps it does extra work: it fixes the cap fabric to the backing so nothing moves when the top stitches go down. A good cap file uses enough underlay to stabilize the front panel without making the design stiff or bulletproof.'],
+      ['p', 'Underlay is the foundation layer that sews before the visible design. On caps it does extra work: it fixes the front panel to the backing so nothing shifts when the top stitches go down. A good cap file uses enough underlay to stabilize the panel without making the design stiff.'],
       ['h2', 'Working around the center seam'],
-      ['p', 'Most six-panel caps have a seam running down the middle of the front. Thin stitches can sink into that seam and disappear, and starting a design exactly on it can cause distortion. Experienced digitizers reinforce the underlay across the seam or arrange the design so important detail does not fall directly on it.'],
+      ['p', 'Most six-panel caps have a seam running down the middle of the front. Thin stitches can sink into it and disappear, and a design that starts exactly on the seam can distort. Experienced digitizers reinforce the underlay across the seam, or arrange the design so important detail does not land right on it.'],
       ['h2', 'Structured vs. unstructured caps'],
-      ['p', 'Structured caps have a stiff buckram lining behind the front panels, which gives a firm surface that is usually easier to embroider. Unstructured caps (often called dad hats) are soft and move more, so they need careful stabilizing. Tell your digitizer which type you are using, because density and underlay are adjusted for it.'],
+      ['p', 'Structured caps have a stiff buckram lining behind the front panels. That gives a firm surface, which is usually easier to embroider. Unstructured caps (often called dad hats) are soft and move more, so they need more careful stabilizing. Tell your digitizer which type you are using, because density and underlay are adjusted for it.'],
+      ['img', {
+        src: '/images/blog/cap-structured-vs-unstructured.webp',
+        alt: 'A structured navy baseball cap next to a soft unstructured navy dad hat',
+        w: 1600,
+        h: 899,
+      }],
       ['h2', 'Size and small text'],
-      ['p', 'The usable height of a cap design depends on the cap profile (low, mid or high) and your cap frame, so there is no single maximum that suits every cap. Measure the front panel of the actual blank and confirm your frame limits before ordering the file.'],
-      ['p', 'Small lettering needs extra care. Curved, stiff surfaces close up fine detail, so text that reads well on a shirt can fill in on a cap. Keep letters a little larger and simpler than you would on flat fabric.'],
-      ['tip', 'Machine operators also matter: many shops use sharp 75/11 needles on caps to reduce deflection on buckram and seams.'],
+      ['p', 'The usable height of a cap design depends on the cap profile (low, mid or high) and on your cap frame, so there is no single maximum that suits every hat. Measure the front panel of the actual blank and check your frame limits before you order the file.'],
+      ['p', 'Small lettering needs extra care. A curved, stiff surface closes up fine detail, so text that reads well on a shirt can fill in on a cap. Keep letters a little larger and simpler than you would on flat fabric.'],
+      ['tip', 'Many shops use sharp 75/11 needles on caps to reduce deflection on buckram and seams.'],
+      ['h2', 'Common cap embroidery mistakes'],
+      ['ul', [
+        'Sewing a flat-garment file on a cap without changing anything.',
+        'Starting the design right on the center seam, or letting thin lines fall on it.',
+        'Making small lettering too small or too detailed.',
+        'Not telling the digitizer the cap type or the frame you will use.',
+        'Skipping a test sew-out on the actual cap before a full run.',
+      ]],
       ['h2', 'What to send for a cap logo digitizing order'],
       ['ul', [
         'Your logo in the clearest version you have (vector, PDF or a high-resolution image).',
@@ -41,12 +71,14 @@ export const POSTS = [
         'Your machine file format, such as DST or PES (see our embroidery file formats guide).',
         'Thread colors, if they need to match a brand.',
       ]],
-      ['p', 'With those details, a digitizer can plan the sequence, underlay and density for the cap you are actually sewing, rather than converting a flat-garment file and hoping it works.'],
+      ['p', 'With those details a digitizer can plan the sequence, underlay and density for the cap you are really sewing, instead of converting a flat-garment file and hoping for the best.'],
     ],
     faqs: [
       ['Can I use the same embroidery file for a shirt and a cap?', 'Sometimes, but it is not recommended. Cap files are sequenced center-out and bottom-up and use underlay that stabilizes a curved panel. A file planned for a flat shirt often puckers or shifts on a cap.'],
       ['What is the best sewing sequence for cap embroidery?', 'Start near the center of the design and sew outward to the sides, generally from the bottom up. This pushes extra fabric toward the sides instead of trapping it in the middle.'],
       ['How big can a cap embroidery design be?', 'It depends on the cap profile and your cap frame, so check the front panel of your blank and your frame limits. Keep small lettering larger and simpler than on flat garments.'],
+      ['Do structured and unstructured caps need different embroidery files?', 'They are usually digitized a little differently. Structured caps have a firm lining that gives a stable surface. Unstructured caps are soft and move more, so density, underlay and stabilizing matter more. Tell your digitizer which type you are using.'],
+      ['Which file format do I need for cap embroidery?', 'It depends on your machine. DST is widely used on commercial machines and PES on Brother machines, but check your machine manual. Our embroidery file formats guide explains the common types.'],
     ],
   },
   {
@@ -55,15 +87,29 @@ export const POSTS = [
     description:
       'What 3D puff embroidery is, how puff digitizing differs from flat embroidery, plus foam thickness, satin column width, end caps and tips for hats.',
     date: '2026-10-22',
+    updated: '2026-10-29',
     readMinutes: 6,
     excerpt: 'Puff embroidery is not just a regular file sewn over foam. Here is what a puff-ready design needs.',
-    related: ['/embroidery-digitizing', '/blog/cap-hat-logo-digitizing-guide', '/embroidery-file-formats'],
+    image: {
+      src: '/images/blog/puff-hero.webp',
+      alt: 'Navy cap with raised gold 3D puff embroidery on the front panel',
+      w: 1600,
+      h: 899,
+    },
+    related: ['/embroidery-digitizing', '/blog/cap-hat-logo-digitizing-guide', '/embroidery-file-formats', '/quote'],
     body: [
-      ['p', '3D puff embroidery gives a design a raised, bold look by stitching over a layer of foam. It is especially popular on hats and caps, but also used on hoodies and jackets. Getting a clean result depends far more on the digitizing than on the foam itself.'],
+      ['p', '3D puff embroidery gives a design a raised, bold look by stitching over a layer of foam. It is popular on hats and caps, and also used on hoodies and jackets. A clean result depends far more on the digitizing than on the foam.'],
+      ['tip', 'The short version: puff needs its own file. Use satin stitches only, higher density than flat satin, end caps on the columns and bold, simple shapes. Fine detail and small text are better sewn flat.'],
+      ['img', {
+        src: '/images/blog/puff-hero.webp',
+        alt: 'Navy cap with raised gold 3D puff embroidery on the front panel',
+        w: 1600,
+        h: 899,
+      }],
       ['h2', 'What is 3D puff embroidery?'],
       ['p', 'A sheet of embroidery foam is placed on the garment, and satin stitches are sewn over it. The needle perforates the foam along the edges of each shape, the extra foam is torn away, and the stitched areas keep the foam underneath, so the design stands up from the fabric.'],
       ['h2', 'Puff vs. regular (flat) embroidery'],
-      ['p', 'A regular embroidery file cannot simply be sewn over foam. Flat designs use fills and thin details that crush the foam or fail to cover it, leaving foam peeking through. A puff design is digitized specifically for puff, usually as its own file, and is often combined with flat elements that sew before or after the puff parts.'],
+      ['p', 'A regular embroidery file cannot simply be sewn over foam. Flat designs use fills and thin details that crush the foam or fail to cover it, so foam ends up peeking through. A puff design is digitized specifically for puff, usually as its own file, and is often combined with flat elements that sew before or after the puff parts.'],
       ['h2', 'Foam thickness'],
       ['p', 'Puff foam commonly comes in about 2 mm to 3 mm, and 3 mm is widely treated as the standard. Thinner foam gives little lift, while very thick foam can deflect needles. Stacking layers is usually avoided because the second layer can shift while sewing.'],
       ['h2', 'How puff designs are digitized'],
@@ -74,9 +120,24 @@ export const POSTS = [
         'End caps: the open ends of columns are closed with small capping stitches so the foam is cut and hidden at the ends, not just the sides.',
         'Simple shapes: bold letters and clean shapes work best; fine detail and small text are better sewn flat.',
       ]],
+      ['img', {
+        src: '/images/blog/puff-macro.webp',
+        alt: 'Close-up of raised gold puff embroidery with smooth rounded edges on navy cap fabric',
+        w: 1600,
+        h: 899,
+      }],
       ['tip', 'Exact values differ between machines, software and foam brands, so a test sew-out on the real garment is the best final check.'],
+      ['h2', 'Common puff embroidery mistakes'],
+      ['ul', [
+        'Sewing a regular flat file over foam.',
+        'Using fill stitches for the raised areas.',
+        'Satin columns that are too narrow or too wide for the foam.',
+        'Leaving the ends of columns open, so foam shows or does not cut cleanly.',
+        'Putting small text or fine detail in puff instead of sewing it flat.',
+        'Stacking foam layers, which can shift while sewing.',
+      ]],
       ['h2', '3D puff on hats'],
-      ['p', 'Hats are the most common place for puff. All the cap rules still apply: sew from the center out, stabilize the front panel well, and keep in mind the center seam. Bold lettering across the front panel is a classic puff job.'],
+      ['p', 'Hats are the most common place for puff. All the cap rules still apply: sew from the center out, stabilize the front panel well and keep the center seam in mind. Bold lettering across the front panel is a classic puff job.'],
       ['h2', 'What to send for a 3D puff digitizing order'],
       ['ul', [
         'Your logo or design, plus the width and height you want.',
@@ -89,6 +150,8 @@ export const POSTS = [
       ['What is 3D puff embroidery?', 'It is embroidery sewn over a layer of foam, so the design stands up from the fabric. Satin stitches cut the foam at the edges, the excess is torn away, and the stitched areas stay raised.'],
       ['Can any embroidery design be made 3D puff?', 'Not directly. Puff works best with bold shapes and lettering built from satin columns. Fine detail, small text and fill areas are usually sewn flat, and the design needs a file digitized specifically for puff.'],
       ['What foam thickness is used for puff embroidery?', 'Foam of roughly 2 mm to 3 mm is common, and 3 mm is widely treated as the standard. Very thick foam can cause needle deflection.'],
+      ['Can small text be puff?', 'Usually not. Fine detail and small text do not cover the foam cleanly, so they are normally sewn flat next to the puff elements.'],
+      ['Why does foam show through some puff designs?', 'Most often a flat file was sewn over foam, or the satin density or column width was not right for puff. A file digitized for puff, with higher density and end caps, covers the foam fully.'],
     ],
   },
 ];
