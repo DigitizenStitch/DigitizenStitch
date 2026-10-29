@@ -2,10 +2,12 @@
 // Used in the browser (components/Seo.jsx) and at build time (scripts/prerender.js).
 
 import { ALL_FAQS } from './faq';
-import { BRAND, CONTACT, FORMATS, PACKAGES, SITE_URL } from './site';
+import { AUTHOR, BRAND, CONTACT, FORMATS, PACKAGES, SITE_URL } from './site';
 import { POSTS } from './posts';
+import { FORMAT_QA } from './formatQa';
 
 const ORG_ID = `${SITE_URL}/#organization`;
+const AUTHOR_ID = `${SITE_URL}/#author`;
 // Online service available worldwide; main markets listed for clarity.
 const AREAS = ['United States', 'United Kingdom', 'Canada', 'Australia', 'Worldwide'].map((name) => ({ '@type': 'Place', name }));
 
@@ -21,6 +23,7 @@ export const PAGES = {
       "Logo digitizing for embroidery: left chest, cap, sleeve, hoodie and jacket back. DST, PES, EMB and more, 12–24 hour delivery, free edits. From $4.99.",
     name: 'Embroidery Digitizing',
     service: { name: 'Embroidery Digitizing', price: 4.99, max: 14.99 },
+    faqQs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?'],
   },
   '/vector-art': {
     title: "Vector Art Conversion Service: Logo to Vector from $9.99",
@@ -28,6 +31,7 @@ export const PAGES = {
       "Raster to vector conversion: blurry JPG or PNG logos redrawn as clean AI, EPS, PDF, SVG or PNG files for print, screen printing and signs. From $9.99.",
     name: 'Vector Art',
     service: { name: 'Vector Art Conversion', price: 9.99 },
+    faqQs: ['How much does vector art cost?', 'Which vector art formats do you provide?', 'What artwork can I send you?', 'Do you offer revisions?'],
   },
   '/patches': {
     title: "Custom Embroidered Patches from Your Logo | Digitize'NStitch",
@@ -35,6 +39,7 @@ export const PAGES = {
       "Custom embroidered patches made from your logo or design: Share the size, quantity, patch type and backing you want and get an individual quote by email.",
     name: 'Custom Patches',
     service: { name: 'Custom Embroidered Patches', quoteOnly: true },
+    faqQs: ['Do you make physical patches?', 'How much do custom embroidered patches cost?', 'What do I need to send for a custom patch quote?', 'Which payment methods do you accept?'],
   },
   '/pricing': {
     title: "Embroidery Digitizing Prices: $4.99–$14.99 | Digitize'NStitch",
@@ -46,7 +51,7 @@ export const PAGES = {
   '/portfolio': {
     title: "Embroidery & Vector Art Portfolio | Digitize'NStitch",
     description:
-      "See embroidery digitizing samples, vector art conversions and custom patch work by Digitize'NStitch.",
+      "See embroidery digitizing samples, vector art conversions and custom patch work by Digitize'NStitch, from detailed characters to clean logo artwork.",
     name: 'Portfolio',
   },
   '/how-it-works': {
@@ -75,6 +80,8 @@ export const PAGES = {
     description:
       "What is a DST file, and which embroidery file type does your machine need? A guide to DST, PES, JEF, EXP, VP3, XXX and EMB formats.",
     name: 'Embroidery File Formats',
+    faqPairs: FORMAT_QA,
+    updated: '2026-10-29',
   },
   '/blog': {
     title: "Embroidery Digitizing Blog & Guides | Digitize'NStitch",
@@ -91,17 +98,17 @@ export const PAGES = {
   },
   '/privacy-policy': {
     title: "Privacy Policy | Digitize'NStitch",
-    description: "How Digitize'NStitch collects, uses and protects the information you share with us.",
+    description: "How Digitize'NStitch collects, uses and protects the information you share when you request a quote or order embroidery digitizing, vector art or patches.",
     name: 'Privacy Policy',
   },
   '/terms-of-service': {
     title: "Terms of Service | Digitize'NStitch",
-    description: "The terms that apply when you order embroidery digitizing, vector art or patch services from Digitize'NStitch.",
+    description: "The terms that apply when you order embroidery digitizing, vector art or patch services from Digitize'NStitch, including payment, delivery, revisions and refunds.",
     name: 'Terms of Service',
   },
   '/refund-revision-policy': {
     title: "Refund & Revision Policy | Digitize'NStitch",
-    description: "Free revisions and case-by-case refund review. Read the Digitize'NStitch refund and revision policy.",
+    description: "Free revisions and case-by-case refund review. Read how Digitize'NStitch handles revisions and refund requests for embroidery digitizing and vector art.",
     name: 'Refund & Revision Policy',
   },
 };
@@ -161,6 +168,7 @@ export function structuredData(path) {
     description: page.description,
     isPartOf: { '@id': `${SITE_URL}/#website` },
     about: { '@id': ORG_ID },
+    ...(page.updated && { dateModified: page.updated }),
     ...(page.faq && {
       mainEntity: ALL_FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     }),
@@ -176,9 +184,10 @@ export function structuredData(path) {
       datePublished: page.article.date,
       dateModified: page.article.updated ?? page.article.date,
       image: `${SITE_URL}/og-image.jpg`,
-      author: { '@id': ORG_ID },
+      author: { '@id': AUTHOR_ID },
       publisher: { '@id': ORG_ID },
     });
+    graph.push({ '@type': 'Person', '@id': AUTHOR_ID, name: AUTHOR, url: `${SITE_URL}/about`, worksFor: { '@id': ORG_ID } });
     if (page.article.faqs?.length) {
       graph.push({
         '@type': 'FAQPage',
@@ -186,6 +195,15 @@ export function structuredData(path) {
         mainEntity: page.article.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
       });
     }
+  }
+
+  const pageFaqs = page.faqQs ? page.faqQs.map((qn) => ALL_FAQS.find((f) => f.q === qn)).filter(Boolean).map((f) => [f.q, f.a]) : page.faqPairs;
+  if (pageFaqs?.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: pageFaqs.map(([qn, an]) => ({ '@type': 'Question', name: qn, acceptedAnswer: { '@type': 'Answer', text: an } })),
+    });
   }
 
   if (page.service) {
