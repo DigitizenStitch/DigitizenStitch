@@ -16,7 +16,7 @@ export function BlogIndex() {
           {POSTS.map((p) => (
             <li key={p.slug}>
               <Reveal className="card h-full p-8 sm:p-10">
-                {p.image && <img src={p.image.src} alt="" width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
+                {p.image && <img src={p.image.src} alt={p.image.alt} width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
                 <p className="font-mono text-xs uppercase tracking-widest text-slate-500"><time dateTime={p.date}>{fmt(p.date)}</time> · {p.readMinutes} min read</p>
                 <h2 className="mt-4 text-3xl"><Link to={`/blog/${p.slug}`} className="hover:underline">{p.title}</Link></h2>
                 <p className="mt-4 text-slate-600">{p.excerpt}</p>
