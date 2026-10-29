@@ -174,11 +174,18 @@ export function structuredData(path) {
       url,
       mainEntityOfPage: { '@id': `${url}#webpage` },
       datePublished: page.article.date,
-      dateModified: page.article.date,
+      dateModified: page.article.updated ?? page.article.date,
       image: `${SITE_URL}/og-image.jpg`,
       author: { '@id': ORG_ID },
       publisher: { '@id': ORG_ID },
     });
+    if (page.article.faqs?.length) {
+      graph.push({
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        mainEntity: page.article.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+      });
+    }
   }
 
   if (page.service) {

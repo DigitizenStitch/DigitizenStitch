@@ -15,6 +15,7 @@ export function BlogIndex() {
           {POSTS.map((p) => (
             <li key={p.slug}>
               <Reveal className="card h-full p-8 sm:p-10">
+                {p.image && <img src={p.image.src} alt="" width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
                 <p className="font-mono text-xs uppercase tracking-widest text-slate-500"><time dateTime={p.date}>{fmt(p.date)}</time> · {p.readMinutes} min read</p>
                 <h2 className="mt-4 text-3xl"><Link to={`/blog/${p.slug}`} className="hover:underline">{p.title}</Link></h2>
                 <p className="mt-4 text-slate-600">{p.excerpt}</p>
@@ -32,6 +33,7 @@ export function BlogIndex() {
 function Block({ type, value }) {
   if (type === 'h2') return <h2 className="mt-12 text-3xl">{value}</h2>;
   if (type === 'ul') return <ul className="mt-5 list-disc space-y-2 pl-6 text-lg leading-relaxed text-slate-700">{value.map((li) => <li key={li}>{li}</li>)}</ul>;
+  if (type === 'img') return <figure className="mt-8"><img src={value.src} alt={value.alt} width={value.w} height={value.h} loading="lazy" decoding="async" className="w-full rounded-2xl border border-ink/10 bg-paper" /></figure>;
   if (type === 'tip') return <p className="mt-6 rounded-2xl border-l-4 border-thread bg-paper p-5 text-slate-700">{value}</p>;
   return <p className="mt-5 text-lg leading-relaxed text-slate-700">{value}</p>;
 }
@@ -42,7 +44,7 @@ export function BlogPost({ post }) {
       <PageHeader crumb="Blog" eyebrow={`Guide · ${post.readMinutes} min read`} title={post.title} intro={post.description} />
       <article className="section">
         <div className="container-x max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">By Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
+          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">By Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time>{post.updated && <> · Updated <time dateTime={post.updated}>{fmt(post.updated)}</time></>}</p>
           {post.body.map(([type, value], i) => <Block key={i} type={type} value={value} />)}
           <h2 className="mt-14 text-3xl">Frequently asked questions</h2>
           {post.faqs.map(([q, a]) => (
