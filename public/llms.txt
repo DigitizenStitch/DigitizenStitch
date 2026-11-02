@@ -24,6 +24,7 @@ Submit the [quote form](https://digitizenstitch.com/quote). Our team confirms th
 - [Pricing](https://digitizenstitch.com/pricing)
 - [FAQ](https://digitizenstitch.com/faq)
 - [Embroidery File Formats Guide](https://digitizenstitch.com/embroidery-file-formats): DST, PES, JEF, EXP, VP3, XXX and EMB explained, and which machines use each
+- [Left Chest Logo Size and Placement: A Practical Guide](https://digitizenstitch.com/blog/left-chest-logo-size-and-placement): usual left chest logo width, how far below the shoulder seam, placement on polos, tees and hoodies, and common mistakes
 - [What Is a DST File? Tajima Embroidery Format Explained](https://digitizenstitch.com/blog/what-is-a-dst-file): what a DST file contains, why it has no thread colors, which machines read it and how it differs from PES
 - [What Is a PES File? Brother Embroidery Format Explained](https://digitizenstitch.com/blog/what-is-a-pes-file): what PES files contain, which machines read them and how PES differs from DST
 - [Cap & Hat Logo Digitizing Guide](https://digitizenstitch.com/blog/cap-hat-logo-digitizing-guide)
