@@ -281,10 +281,11 @@ export default function Home() {
         <Backdrop stitch={false} />
         <div className="container-x relative">
           <SectionHeading dark center eyebrow="Our workflow" title="Five steps from upload to inbox" />
-          <ol className="relative mt-20 grid gap-10 md:grid-cols-5 md:gap-6">
-            <svg aria-hidden="true" className="absolute left-0 top-7 hidden h-4 w-full text-thread/50 md:block" viewBox="0 0 1000 16" preserveAspectRatio="none" fill="none">
-              <path className="stitch-run" d="M0 8 H1000" stroke="currentColor" strokeWidth="2" />
-            </svg>
+          <div className="relative mt-20">
+          <svg aria-hidden="true" className="absolute left-0 top-7 hidden h-4 w-full text-thread/50 md:block" viewBox="0 0 1000 16" preserveAspectRatio="none" fill="none">
+            <path className="stitch-run" d="M0 8 H1000" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          <ol className="relative grid gap-10 md:grid-cols-5 md:gap-6">
             {WORKFLOW.map(([h, t], i) => (
               <Reveal as="li" key={h} delay={i * 120} className="relative flex gap-5 md:block md:text-center">
                 <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border border-thread/40 bg-ink font-mono text-sm text-thread shadow-glow md:mx-auto">0{i + 1}</span>
@@ -295,6 +296,7 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
+          </div>
           <Reveal className="mt-16 text-center">
             <Link to="/how-it-works" className="btn-glass">See the full process <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </Reveal>
