@@ -54,6 +54,12 @@ export const POSTS = [
       ['p', 'Auto-digitizing tools, including the auto-trace buttons inside paid software, work best on bold, simple shapes with few colors. They struggle with small text, fine lines, gradients and photos. Treat their output as a rough draft that still needs checking.'],
       ['h2', 'Why do JPG to DST converters fail?'],
       ['p', 'A JPG is a grid of colored pixels. A DST file is a path for a needle. Turning one into the other means deciding stitch types, directions, density and order, and an automatic converter makes those choices without understanding how fabric behaves.'],
+      ['img', {
+        src: '/images/blog/how-to-make-a-dst-file-4.webp',
+        alt: 'Macro close-up of machine embroidery on a grey knit shirt showing a red fill area with neat parallel stitch rows, a white satin border and a navy corner',
+        w: 1600,
+        h: 893,
+      }],
       ['p', 'The usual results are too many tiny stitches, jagged edges, thin text that fills in, and a design that jumps around the hoop. That is not always the converter being broken. It is just guessing.'],
       ['h2', 'Common mistakes when making a DST file'],
       ['ul', [
@@ -68,12 +74,6 @@ export const POSTS = [
         alt: 'Spools and metal bobbins of red, blue, pink and lilac sewing thread on a wooden table',
         w: 1600,
         h: 900,
-      }],
-      ['img', {
-        src: '/images/blog/how-to-make-a-dst-file-4.webp',
-        alt: 'Macro close-up of machine embroidery on a grey knit shirt showing a red fill area with neat parallel stitch rows, a white satin border and a navy corner',
-        w: 1600,
-        h: 893,
       }],
       ['h2', 'When is it better to have a DST file digitized for you?'],
       ['p', 'If you only need one or two logos and have no embroidery software, paying for digitizing is usually quicker than learning the craft. It also helps when the design is for caps, puff, small left chest sizes or fabrics that stretch, since those jobs reward experience.'],
