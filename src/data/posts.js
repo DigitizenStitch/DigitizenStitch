@@ -14,9 +14,9 @@ export const POSTS = [
     excerpt: 'You cannot save a JPG as a DST file. A DST file has to be digitized, which means turning artwork into stitches. Here is how it works.',
     image: {
       src: '/images/blog/how-to-make-a-dst-file-1.webp',
-      alt: 'Close-up of an embroidery hoop on linen with a detailed paisley design in red, teal and black thread and a loose bundle of green thread beside it',
+      alt: 'Black hoodie laid flat on a light table with a gold, white and red embroidered shield and lightning bolt logo in the center of the chest',
       w: 1600,
-      h: 900,
+      h: 893,
     },
     related: ['/embroidery-digitizing', '/embroidery-file-formats', '/blog/what-is-a-dst-file', '/pricing', '/quote'],
     body: [
@@ -25,9 +25,9 @@ export const POSTS = [
       ['tip', 'The short version: artwork goes into digitizing software, stitches are built by hand or by auto-trace, the design is resized and checked, and then you export as DST. Simple shapes can be auto-traced. Logos with text, small details or caps usually need a person.'],
       ['img', {
         src: '/images/blog/how-to-make-a-dst-file-1.webp',
-        alt: 'Close-up of an embroidery hoop on linen with a detailed paisley design in red, teal and black thread and a loose bundle of green thread beside it',
+        alt: 'Black hoodie laid flat on a light table with a gold, white and red embroidered shield and lightning bolt logo in the center of the chest',
         w: 1600,
-        h: 900,
+        h: 893,
       }],
       ['h2', 'What is a DST file, in one minute?'],
       ['p', 'A DST file is a stitch file in the Tajima format. It lists where the needle should go, when to trim, and when to stop for a color change. It does not contain a picture of the logo or a list of thread brands. Our guide to what a DST file is covers the format in more detail.'],
@@ -45,9 +45,9 @@ export const POSTS = [
       ]],
       ['img', {
         src: '/images/blog/how-to-make-a-dst-file-2.webp',
-        alt: 'Person seen from behind looking at a geometric pattern design open in software on a desktop monitor',
+        alt: 'Back of a green work jacket on a wooden hanger with a large round orange, white and black embroidered mountain and sun badge across the upper back',
         w: 1600,
-        h: 900,
+        h: 893,
       }],
       ['h2', 'Can you make a DST file for free?'],
       ['p', 'Partly. Free and low-cost programs exist, and some can export DST. The catch is time. Learning how density, underlay and stitch direction behave takes practice, and a first attempt often sews badly even when the file opens without errors.'],
@@ -71,9 +71,9 @@ export const POSTS = [
       }],
       ['img', {
         src: '/images/blog/how-to-make-a-dst-file-4.webp',
-        alt: 'White shirt with a green and black hummingbird embroidered on the chest, photographed in warm sunlight',
+        alt: 'Macro close-up of machine embroidery on a grey knit shirt showing a red fill area with neat parallel stitch rows, a white satin border and a navy corner',
         w: 1600,
-        h: 900,
+        h: 893,
       }],
       ['h2', 'When is it better to have a DST file digitized for you?'],
       ['p', 'If you only need one or two logos and have no embroidery software, paying for digitizing is usually quicker than learning the craft. It also helps when the design is for caps, puff, small left chest sizes or fabrics that stretch, since those jobs reward experience.'],
