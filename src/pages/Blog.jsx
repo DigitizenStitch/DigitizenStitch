@@ -45,7 +45,6 @@ export function BlogPost({ post }) {
       <PageHeader crumb="Blog" eyebrow={`Guide · ${post.readMinutes} min read`} title={post.title} intro={post.description} />
       <article className="section">
         <div className="container-x max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-widest text-slate-500">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time>{post.updated && <> · Updated <time dateTime={post.updated}>{fmt(post.updated)}</time></>}</p>
           {post.body.map(([type, value], i) => <Block key={i} type={type} value={value} />)}
           <h2 className="mt-14 text-3xl">Frequently asked questions</h2>
           {post.faqs.map(([q, a]) => (
@@ -62,6 +61,7 @@ export function BlogPost({ post }) {
               ))}
             </ul>
           </nav>
+          <p className="mt-10 font-mono text-xs uppercase tracking-widest text-slate-500">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
         </div>
       </article>
       <CtaBand title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />
