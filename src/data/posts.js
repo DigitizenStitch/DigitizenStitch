@@ -14,7 +14,7 @@ export const POSTS = [
     excerpt: 'Use cut-away stabilizer for stretchy fabrics and dense designs, tear-away for stable woven fabrics, and wash-away as a topping or for lace. Here is how to choose.',
     image: {
       src: '/images/blog/embroidery-stabilizer-guide-1.webp',
-      alt: 'Brown fabric held tight in a wooden hoop under a sewing machine needle while a person guides it, with a pale floral design partly stitched',
+      alt: 'Grey hoodie laid flat with a red, white and green mountain and pine tree logo embroidered on the chest, beside a white roll of embroidery backing and a pair of scissors',
       w: 1600,
       h: 899,
     },
@@ -25,7 +25,7 @@ export const POSTS = [
       ['tip', 'The short version: stretchy fabric or a dense design means cut-away. Stable woven fabric and a light design means tear-away. Fluffy fabric needs a wash-away topping on top. When in doubt, go heavier, not lighter.'],
       ['img', {
         src: '/images/blog/embroidery-stabilizer-guide-1.webp',
-        alt: 'Brown fabric held tight in a wooden hoop under a sewing machine needle while a person guides it, with a pale floral design partly stitched',
+        alt: 'Grey hoodie laid flat with a red, white and green mountain and pine tree logo embroidered on the chest, beside a white roll of embroidery backing and a pair of scissors',
         w: 1600,
         h: 899,
       }],
