@@ -24,11 +24,11 @@
 ## Where things live
 - Pages: `src/pages/` (Home, Services, InfoPages, Legal, Portfolio, FileFormats, Blog).
 - SEO titles, descriptions and JSON-LD: `src/data/seo.js`. New routes are added to `PAGES` there and to `src/App.jsx`; prerender and sitemap pick them up automatically.
-- Blog posts: `src/data/posts.js` (block types: p, h2, ul, tip). Each post has keyword-based title and description, date, FAQs and related links.
+- Blog posts: `src/data/posts.js` (block types: p, h2, ul, tip, img, table). Text in p, tip and ul supports internal links written as `[text](/path)` (rendered by `src/components/RichText.jsx`). Each post has keyword-based title and description, date, FAQs and related links.
 - Quote form: `src/components/QuoteForm.jsx` (Netlify form named `contact`).
 - `netlify/functions/submission-created.mjs` emails each form submission through Gmail SMTP, using the `GMAIL_USER` and `GMAIL_APP_PASSWORD` env vars. Do not break it.
 - `netlify/functions/deploy-succeeded.mjs` pings IndexNow (Bing and partners) with the sitemap URLs after production deploys. The key file is in `public/` and is public by design.
-- Analytics: GA4 `G-DRS7VRVML3` in `src/components/Analytics.jsx`. It loads only after the cookie banner's Accept. The CSP in `netlify.toml` allows only the Google Analytics hosts.
+- Analytics: GA4 `G-DRS7VRVML3` in `src/components/Analytics.jsx`. It loads only after the cookie banner's Accept. Lead events (only with consent): `generate_lead` (quote form sent; QuoteForm dispatches a `dns-quote-sent` window event after a successful submit), `whatsapp_click`, `email_click`, `quote_button_click`. Mark `generate_lead` as a key event in GA4 Admin. The CSP in `netlify.toml` allows only the Google Analytics hosts.
 - `public/llms.txt` lists key pages for AI crawlers. `robots.txt` allows all crawlers.
 - `public/.well-known/security.txt` gives the public contact email for security reports. Update its Expires date before it passes (currently 2027-11-09).
 
@@ -56,7 +56,6 @@
 - No mass auto-generated blog posts. The owner asked for 3 quality, fact-checked posts per week on a schedule (Oct 2026); quality comes first, and never invent facts, prices, clients or reviews.
 
 ## Open tasks
-- Optional GA4 lead events (form submit, WhatsApp click). Owner has not approved this yet.
 - Add real work photos to the blog posts (waiting on photos from the owner).
 - Client acquisition, the top priority:
   - follow up the 5 old leads in Netlify Forms
@@ -66,6 +65,14 @@
   - Instagram posts of real work
 - Ubersuggest: the owner planned to cancel it to save money, so the useful keyword data and a 36-topic blog calendar were saved locally (seo/keyword-plan-2026-10.md, not in this repo).
 - Real photos and sew-outs: the owner will supply them; use them in blogs, the portfolio and About instead of generated images where possible.
+
+## Portfolio and testimonials (Nov 2026)
+- Portfolio images are auto-loaded from `src/assets/portfolio/<category>/` by `src/data/portfolio.js`. 15 designs are hidden with negative glob patterns there (anime characters, other brands' trademarks, a celebrity likeness, police/sheriff insignia). Do not show anime/fan art, famous brands or official insignia again. The owner will send new designs to replace them.
+- The home page "What our clients say" section is waiting for real client reviews that the owner is collecting. Add them only when the owner provides them; never write reviews.
+- Do not ask the owner about a quote reply time; he asked to drop that question.
+
+## SEO focus (from Nov 2026)
+- Goal: organic clicks and paying clients from the USA, UK, Canada and Australia. Plan and Search Console baseline: `seo/reports/seo-growth-plan-2026-11-09.md` and `gsc-baseline-2026-11-09.md` (local, not in this repo). No country landing pages; one strong `/embroidery-digitizing` page serves all markets.
 
 ## Blog images and publishing
 - Blog images live in public/images/blog/ (webp, 1600 px wide). Posts use an img block in src/data/posts.js with alt text and no captions. Photo style only, no diagrams. AI-generated images are generic scenes; never present them as the owner's client work.
