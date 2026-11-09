@@ -67,7 +67,7 @@
 - Real photos and sew-outs: the owner will supply them; use them in blogs, the portfolio and About instead of generated images where possible.
 
 ## Portfolio and testimonials (Nov 2026)
-- Portfolio images are auto-loaded from `src/assets/portfolio/<category>/` by `src/data/portfolio.js`. 15 designs are hidden with negative glob patterns there (anime characters, other brands' trademarks, a celebrity likeness, police/sheriff insignia). Do not show anime/fan art, famous brands or official insignia again. The owner will send new designs to replace them.
+- Portfolio images are auto-loaded from `src/assets/portfolio/<category>/` by `src/data/portfolio.js`. The owner wants ALL current images to stay visible until he sends new designs. When the new designs arrive, add them and remove these 15 risky ones (they can be hidden with negative patterns in the `import.meta.glob` calls, e.g. `'!**/embroidery/a1.webp'`): embroidery a1-a6 (anime), d1 (Frida Kahlo likeness), d3 ("Chase Money" TM), d6 (Dodgers-style "LA"), d7 (Mitsubishi emblem); vector p6 (adidas), p7 (Zabuza/Naruto); patches pa1 (University of Georgia helmet), pa3 (police), pa7 (county sheriff). Do not add new anime/fan art, famous brands or official insignia.
 - The home page "What our clients say" section is waiting for real client reviews that the owner is collecting. Add them only when the owner provides them; never write reviews.
 - Do not ask the owner about a quote reply time; he asked to drop that question.
 
