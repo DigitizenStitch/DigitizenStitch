@@ -64,10 +64,10 @@ export function EmbroideryDigitizing() {
         },
         ordering: {
           eyebrow: 'Worldwide',
-          title: 'Ordering from the USA, UK, Canada or Australia',
+          title: 'Ordering from anywhere in the world',
           paragraphs: [
-            'We work online, so it makes no difference where your shop is. Upload your artwork through the [quote form](/quote), we confirm the price by email, and the finished file and PDF arrive in your inbox in your machine format, such as [DST or PES](/embroidery-file-formats).',
-            'Prices are in US dollars and payment is through PayPal, which handles the currency conversion if you pay from a pound, Canadian dollar or Australian dollar account.',
+            'We work online and take orders from anywhere, whether your shop is in the USA, the UK, Canada, Australia or somewhere else. Upload your artwork through the [quote form](/quote), we confirm the price by email, and the finished file and PDF arrive in your inbox in your machine format, such as [DST or PES](/embroidery-file-formats).',
+            'Prices are in US dollars and payment is through PayPal, which handles the currency conversion if your account is in another currency.',
             'Turnaround is 12–24 hours for designs up to 7 inches (about 178 mm) and 24–48 hours for larger designs. You can give sizes in inches or millimetres; our under 5 inch package covers designs up to about 127 mm, such as most [left chest logos](/blog/left-chest-logo-size-and-placement) and cap fronts.',
             'In the UK and Australia it is often spelled embroidery digitising. It is the same service, and the files work on the same machines.',
           ],

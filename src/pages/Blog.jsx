@@ -62,7 +62,7 @@ export function BlogPost({ post }) {
   return (
     <>
       <PageHeader crumb="Blog" eyebrow={`Guide · ${post.readMinutes} min read`} title={post.title} intro={post.description} />
-      <article className="section">
+      <article className="section pb-0 sm:pb-0">
         <div className="container-x max-w-3xl">
           {post.body.map(([type, value], i) => <Block key={i} type={type} value={value} />)}
           <h2 className="mt-14 text-3xl">Frequently asked questions</h2>
@@ -83,7 +83,7 @@ export function BlogPost({ post }) {
           <p className="mt-10 font-mono text-xs uppercase tracking-widest text-slate-600">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
         </div>
       </article>
-      <CtaBand title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />
+      <CtaBand className="pt-12 pb-24 sm:pt-16 sm:pb-32" title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />
     </>
   );
 }
