@@ -3,10 +3,11 @@ import { ArrowRight } from 'lucide-react';
 import { Backdrop, CheckList, CtaBand, FormatChips, PageHeader, QuoteButtons, Reveal, SectionHeading } from '../components/ui';
 import Gallery from '../components/Gallery';
 import { ALL_FAQS } from '../data/faq';
+import RichText from '../components/RichText';
 
 // Shared layout for the service pages. Each page supplies its own content.
 export default function ServicePage({ content }) {
-  const { crumb, eyebrow, title, intro, priceLabel, price, visual, overview, uses, includes, formats, gallery, faqs, related, pricing } = content;
+  const { crumb, eyebrow, title, intro, priceLabel, price, visual, overview, uses, includes, formats, gallery, faqs, related, pricing, ordering } = content;
   const faqItems = faqs.map((q) => ALL_FAQS.find((f) => f.q === q)).filter(Boolean);
 
   return (
@@ -26,7 +27,7 @@ export default function ServicePage({ content }) {
           <div className="lg:col-span-7">
             <SectionHeading eyebrow="Overview" title={overview.title} />
             <Reveal className="mt-8 space-y-5 text-lg leading-relaxed text-slate-600">
-              {overview.paragraphs.map((p) => <p key={p}>{p}</p>)}
+              {overview.paragraphs.map((p) => <p key={p}><RichText text={p} /></p>)}
             </Reveal>
           </div>
           <Reveal className="lg:col-span-5">
@@ -58,12 +59,25 @@ export default function ServicePage({ content }) {
               <Reveal as="li" key={h} delay={(i % 3) * 80} className="group bg-white p-8 transition-colors duration-500 hover:bg-paper">
                 <span className="font-mono text-xs text-slate-400">0{i + 1}</span>
                 <h3 className="mt-4 font-sans text-xl font-semibold transition-colors group-hover:text-navy-800">{h}</h3>
-                <p className="mt-2 text-slate-600">{t}</p>
+                <p className="mt-2 text-slate-600"><RichText text={t} /></p>
               </Reveal>
             ))}
           </ul>
         </div>
       </section>
+
+      {ordering && (
+        <section className="section">
+          <div className="container-x grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <SectionHeading eyebrow={ordering.eyebrow} title={ordering.title} />
+            </div>
+            <Reveal className="space-y-5 text-lg leading-relaxed text-slate-600 lg:col-span-7">
+              {ordering.paragraphs.map((p) => <p key={p}><RichText text={p} /></p>)}
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {gallery && (
         <section className="section">

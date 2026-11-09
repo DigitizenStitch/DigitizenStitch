@@ -4,6 +4,7 @@ import { CtaBand, PageHeader, Reveal } from '../components/ui';
 import { PAGES } from '../data/seo';
 import { AUTHOR } from '../data/site';
 import { POSTS } from '../data/posts';
+import RichText from '../components/RichText';
 
 const fmt = (d) => new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
@@ -33,17 +34,35 @@ export function BlogIndex() {
 
 function Block({ type, value }) {
   if (type === 'h2') return <h2 className="mt-12 text-3xl">{value}</h2>;
-  if (type === 'ul') return <ul className="mt-5 list-disc space-y-2 pl-6 text-lg leading-relaxed text-slate-700">{value.map((li) => <li key={li}>{li}</li>)}</ul>;
+  if (type === 'ul') return <ul className="mt-5 list-disc space-y-2 pl-6 text-lg leading-relaxed text-slate-700">{value.map((li) => <li key={li}><RichText text={li} /></li>)}</ul>;
+  if (type === 'table') return (
+    <div className="mt-8 overflow-x-auto rounded-2xl border border-ink/10 bg-white">
+      <table className="w-full min-w-[36rem] border-collapse text-left text-base">
+        <thead className="bg-paper">
+          <tr>{value.head.map((h) => <th key={h} scope="col" className="px-4 py-3 font-semibold text-ink">{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {value.rows.map((row) => (
+            <tr key={row[0]} className="border-t border-ink/10 align-top">
+              {row.map((cell, j) => (j === 0
+                ? <th key={j} scope="row" className="px-4 py-3 font-semibold text-ink">{cell}</th>
+                : <td key={j} className="px-4 py-3 text-slate-700">{cell}</td>))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
   if (type === 'img') return <figure className="mt-8"><img src={value.src} alt={value.alt} width={value.w} height={value.h} loading="lazy" decoding="async" className="w-full rounded-2xl border border-ink/10 bg-paper" /></figure>;
-  if (type === 'tip') return <p className="mt-6 rounded-2xl border-l-4 border-thread bg-paper p-5 text-slate-700">{value}</p>;
-  return <p className="mt-5 text-lg leading-relaxed text-slate-700">{value}</p>;
+  if (type === 'tip') return <p className="mt-6 rounded-2xl border-l-4 border-thread bg-paper p-5 text-slate-700"><RichText text={value} /></p>;
+  return <p className="mt-5 text-lg leading-relaxed text-slate-700"><RichText text={value} /></p>;
 }
 
 export function BlogPost({ post }) {
   return (
     <>
       <PageHeader crumb="Blog" eyebrow={`Guide · ${post.readMinutes} min read`} title={post.title} intro={post.description} />
-      <article className="section">
+      <article className="section pb-0 sm:pb-0">
         <div className="container-x max-w-3xl">
           {post.body.map(([type, value], i) => <Block key={i} type={type} value={value} />)}
           <h2 className="mt-14 text-3xl">Frequently asked questions</h2>
@@ -64,7 +83,7 @@ export function BlogPost({ post }) {
           <p className="mt-10 font-mono text-xs uppercase tracking-widest text-slate-600">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
         </div>
       </article>
-      <CtaBand title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />
+      <CtaBand className="pt-12 pb-24 sm:pt-16 sm:pb-32" title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />
     </>
   );
 }

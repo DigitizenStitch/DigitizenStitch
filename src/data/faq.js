@@ -16,6 +16,11 @@ export const FAQ_GROUPS = [
         keywords: ['what is', 'digitizing', 'meaning', 'define', 'explain'],
       },
       {
+        q: 'Is embroidery digitising the same as embroidery digitizing?',
+        a: 'Yes. Digitising is the UK and Australian spelling and digitizing is the US spelling. It is the same service: turning your artwork into a stitch file for your embroidery machine.',
+        keywords: ['digitising', 'digitise', 'spelling', 'uk', 'australia', 'same'],
+      },
+      {
         q: 'Can you convert my logo into an embroidery file?',
         a: 'Yes. Send your logo as a JPG, PNG, PDF, SVG, AI or EPS file, tell us the size and placement, and we digitize it into the machine format you need, such as DST, PES or EMB.',
         keywords: ['convert', 'logo', 'jpg', 'png', 'image', 'to dst', 'to pes', 'embroidery file'],
@@ -84,6 +89,11 @@ export const FAQ_GROUPS = [
         q: 'What artwork can I send you?',
         a: 'You can upload JPG, PNG, PDF, SVG, AI or EPS files of up to 8 MB through the quote form. For larger files, paste a Google Drive, Dropbox or WeTransfer link in the form. A clear, high-resolution image gives the best result.',
         keywords: ['upload', 'artwork', 'image', 'jpg', 'photo', 'attach', 'accept'],
+      },
+      {
+        q: 'What do I receive with my embroidery file?',
+        a: 'You receive the stitch file in the machine format you need, plus a PDF with the stitch details, thread colors and other information about the design. Everything is delivered by email.',
+        keywords: ['receive', 'pdf', 'worksheet', 'color sheet', 'thread colors', 'stitch count', 'included', 'what do i get'],
       },
       {
         q: 'Which hoop sizes do you digitize for?',

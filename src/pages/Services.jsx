@@ -13,7 +13,7 @@ export function EmbroideryDigitizing() {
       content={{
         crumb: 'Embroidery Digitizing',
         eyebrow: 'Embroidery Digitizing',
-        title: 'Custom embroidery & logo digitizing that sews clean',
+        title: 'Embroidery digitizing service for logos that sew clean',
         intro: 'We rebuild your logo or artwork as a stitch file for your machine, digitized for the size, placement and fabric you need.',
         priceLabel: 'Packages from',
         price: '$4.99',
@@ -28,6 +28,7 @@ export function EmbroideryDigitizing() {
             'Embroidery digitizing rebuilds artwork as a sequence of stitches: stitch types, direction, density, underlay and color order. A machine cannot sew a JPG or PNG; it needs a dedicated stitch file.',
             'Tell us the design size, the placement (for example left chest, cap front or jacket back) and the fabric if you know it. We digitize for those details and deliver the file in your machine format by email.',
             'Small text, fine lines and very detailed artwork may need simplifying to sew cleanly. If that applies to your design, we will let you know before we start.',
+            'Our files are made for embroidery shops, print shops and brands that sew on their own machines or send the file to their embroiderer. Every order comes with a PDF showing the stitch details and thread colors, so whoever runs the machine can check the design before sewing.',
           ],
         },
         pricing: (
@@ -42,6 +43,7 @@ export function EmbroideryDigitizing() {
         includes: [
           'Digitizing for your size, placement and hoop',
           'Any machine format you need',
+          'A PDF with stitch details and thread colors',
           'Free edits and revisions',
           '12–24 hours turnaround up to 7 inches; 24–48 hours over 7 inches',
           'Final files delivered by email',
@@ -52,16 +54,26 @@ export function EmbroideryDigitizing() {
         uses: {
           title: 'Where our embroidery files are used',
           items: [
-            ['Left-chest logos', 'Company logos for polos, shirts and uniforms.'],
-            ['Cap logos', 'Front, side and back cap designs.'],
+            ['Left-chest logos', 'Company logos for polos, shirts and uniforms. See our [left chest logo size chart](/blog/left-chest-logo-size-and-placement).'],
+            ['Cap logos and 3D puff', 'Front, side and back cap designs, flat or raised with foam. Read our [cap digitizing guide](/blog/cap-hat-logo-digitizing-guide) and [3D puff digitizing guide](/blog/3d-puff-embroidery-digitizing).'],
             ['Sleeve designs', 'Small, precise designs for sleeves and cuffs.'],
             ['Hoodies and sweatshirts', 'Mid-chest and chest designs on heavier fabrics.'],
             ['Jacket backs and full-fronts', 'Large, detailed designs and appliqué.'],
             ['Tote bags', 'Branded bags and promotional items.'],
           ],
         },
+        ordering: {
+          eyebrow: 'Worldwide',
+          title: 'Ordering from anywhere in the world',
+          paragraphs: [
+            'We work online and take orders from anywhere, whether your shop is in the USA, the UK, Canada, Australia or somewhere else. Upload your artwork through the [quote form](/quote), we confirm the price by email, and the finished file and PDF arrive in your inbox in your machine format, such as [DST or PES](/embroidery-file-formats).',
+            'Prices are in US dollars and payment is through PayPal, which handles the currency conversion if your account is in another currency.',
+            'Turnaround is 12–24 hours for designs up to 7 inches (about 178 mm) and 24–48 hours for larger designs. You can give sizes in inches or millimetres; our under 5 inch package covers designs up to about 127 mm, such as most [left chest logos](/blog/left-chest-logo-size-and-placement) and cap fronts.',
+            'In the UK and Australia it is often spelled embroidery digitising. It is the same service, and the files work on the same machines.',
+          ],
+        },
         gallery: { title: 'Embroidery digitizing samples', category: 'embroidery', items: byCategory('embroidery') },
-        faqs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?'],
+        faqs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'What do I receive with my embroidery file?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?', 'Is embroidery digitising the same as embroidery digitizing?'],
         related: [
           { to: '/embroidery-file-formats', label: 'Embroidery File Formats Guide' },
           { to: '/blog/cap-hat-logo-digitizing-guide', label: 'Cap & Hat Logo Digitizing Guide' },
