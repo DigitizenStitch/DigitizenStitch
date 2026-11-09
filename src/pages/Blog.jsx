@@ -17,7 +17,7 @@ export function BlogIndex() {
             <li key={p.slug}>
               <Reveal className="card h-full p-8 sm:p-10">
                 {p.image && <img src={p.image.src} alt={p.image.alt} width={p.image.w} height={p.image.h} loading="lazy" decoding="async" className="mb-6 aspect-[16/9] w-full rounded-2xl border border-ink/10 bg-paper object-cover" />}
-                <p className="font-mono text-xs uppercase tracking-widest text-slate-500"><time dateTime={p.date}>{fmt(p.date)}</time> · {p.readMinutes} min read</p>
+                <p className="font-mono text-xs uppercase tracking-widest text-slate-600"><time dateTime={p.date}>{fmt(p.date)}</time> · {p.readMinutes} min read</p>
                 <h2 className="mt-4 text-3xl"><Link to={`/blog/${p.slug}`} className="hover:underline">{p.title}</Link></h2>
                 <p className="mt-4 text-slate-600">{p.excerpt}</p>
                 <Link to={`/blog/${p.slug}`} className="mt-6 inline-flex items-center gap-2 font-semibold text-navy-800">Read the guide<span className="sr-only">: {p.title}</span> <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
@@ -54,14 +54,14 @@ export function BlogPost({ post }) {
             </div>
           ))}
           <nav aria-label="Related" className="mt-14 border-t border-ink/10 pt-8">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500">Related</h2>
+            <h2 className="font-mono text-xs uppercase tracking-widest text-slate-600">Related</h2>
             <ul className="mt-4 space-y-3">
               {post.related.map((to) => (
                 <li key={to}><Link to={to} className="font-semibold text-navy-800 underline underline-offset-4">{PAGES[to]?.name ?? PAGES[to]?.title}</Link></li>
               ))}
             </ul>
           </nav>
-          <p className="mt-10 font-mono text-xs uppercase tracking-widest text-slate-500">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
+          <p className="mt-10 font-mono text-xs uppercase tracking-widest text-slate-600">By {AUTHOR} · Digitize&rsquo;NStitch · <time dateTime={post.date}>{fmt(post.date)}</time></p>
         </div>
       </article>
       <CtaBand title="Want this done for your logo?" text="Send your artwork, size and machine format, and our team will reply with a quote by email." />

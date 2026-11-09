@@ -70,7 +70,7 @@ export default function ServicePage({ content }) {
           <div className="container-x">
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
               <SectionHeading eyebrow="Samples" title={gallery.title} intro={gallery.intro} />
-              <Reveal><Link to={`/portfolio?category=${gallery.category}`} className="btn-outline">See more <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Reveal>
+              <Reveal><Link to={`/portfolio?category=${gallery.category}`} className="btn-outline">See all {gallery.title.toLowerCase()} <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></Reveal>
             </div>
             <div className="mt-14"><Gallery items={gallery.items} limit={8} columns="sm:grid-cols-3 lg:grid-cols-4" /></div>
           </div>
@@ -105,7 +105,7 @@ export default function ServicePage({ content }) {
             {related.map((r) => (
               <li key={r.to}>
                 <Link to={r.to} className="group flex items-center justify-between rounded-3xl border border-ink/10 p-7 transition hover:border-ink hover:bg-ink hover:text-white">
-                  <span><span className="block font-mono text-[11px] uppercase tracking-widest text-slate-400">Also see</span><span className="font-display text-2xl">{r.label}</span></span>
+                  <span><span className="block font-mono text-[11px] uppercase tracking-widest text-slate-600 group-hover:text-slate-300">Also see</span><span className="font-display text-2xl">{r.label}</span></span>
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
               </li>
