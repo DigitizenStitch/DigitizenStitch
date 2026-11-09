@@ -38,6 +38,27 @@ export default function Analytics() {
     window.gtag('event', 'page_view', { page_location: window.location.href, page_title: document.title });
   }, [consent, pathname, search]);
 
+  // Lead events: quote sent, WhatsApp / email clicks and clicks on quote buttons.
+  useEffect(() => {
+    if (consent !== 'granted') return undefined;
+    const send = (name, params) => { if (window.gtag) window.gtag('event', name, { page_path: window.location.pathname, ...params }); };
+    const onQuote = (e) => send('generate_lead', { form_name: 'quote', service: e.detail?.service || '', package: e.detail?.package || '' });
+    const onClick = (e) => {
+      const a = e.target.closest?.('a[href]');
+      if (!a) return;
+      const href = a.getAttribute('href') || '';
+      if (/wa\.me|whatsapp/i.test(href)) send('whatsapp_click', { link_url: href });
+      else if (href.startsWith('mailto:')) send('email_click', {});
+      else if (/^\/quote(\?|$)/.test(href)) send('quote_button_click', { link_url: href });
+    };
+    window.addEventListener('dns-quote-sent', onQuote);
+    document.addEventListener('click', onClick, true);
+    return () => {
+      window.removeEventListener('dns-quote-sent', onQuote);
+      document.removeEventListener('click', onClick, true);
+    };
+  }, [consent]);
+
   const choose = (value) => {
     try { localStorage.setItem(KEY, value); } catch { /* storage blocked */ }
     if (value === 'denied' && window.gtag) window.location.reload();
