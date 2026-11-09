@@ -30,6 +30,7 @@
 - `netlify/functions/deploy-succeeded.mjs` pings IndexNow (Bing and partners) with the sitemap URLs after production deploys. The key file is in `public/` and is public by design.
 - Analytics: GA4 `G-DRS7VRVML3` in `src/components/Analytics.jsx`. It loads only after the cookie banner's Accept. The CSP in `netlify.toml` allows only the Google Analytics hosts.
 - `public/llms.txt` lists key pages for AI crawlers. `robots.txt` allows all crawlers.
+- `public/.well-known/security.txt` gives the public contact email for security reports. Update its Expires date before it passes (currently 2027-11-09).
 
 ## Done so far (Oct 2026)
 - Oct 28-29: fixed the trailing-slash redirect problem (pages are now prerendered as name.html, PR #9), so /pricing no longer redirects to /pricing/ and Google sees one URL per page.
