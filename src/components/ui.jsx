@@ -102,9 +102,9 @@ export function QuoteButtons({ className = '', secondary = 'whatsapp', quoteTo =
   );
 }
 
-export function CtaBand({ title = 'Ready to see your design stitched perfectly?', text = 'Send your artwork today. You get a clear price before any work begins.' }) {
+export function CtaBand({ title = 'Ready to see your design stitched perfectly?', text = 'Send your artwork today. You get a clear price before any work begins.', className = 'section' }) {
   return (
-    <section className="section">
+    <section className={className}>
       <div className="container-x">
         <Reveal className="dark-surface grain relative overflow-hidden rounded-[2.5rem] bg-mesh px-6 py-16 text-center sm:px-12 sm:py-24">
           <Backdrop />
