@@ -2,46 +2,8 @@
 // To add work: run scripts/optimize_images.py (see README) — the new files
 // appear in the gallery without code changes. Add a caption below if you like.
 
-// Hidden designs (Nov 2026): anime/fan-art characters, other companies' trademarks
-// (adidas, Mitsubishi, Dodgers-style LA, "Chase Money", a university team helmet),
-// a celebrity likeness, and police/sheriff insignia. The files stay in the repo but are
-// not built or shown. Remove a line below to show that design again.
-const large = import.meta.glob([
-  '../assets/portfolio/*/*.webp',
-  '!**/embroidery/a1.webp',
-  '!**/embroidery/a2.webp',
-  '!**/embroidery/a3.webp',
-  '!**/embroidery/a4.webp',
-  '!**/embroidery/a5.webp',
-  '!**/embroidery/a6.webp',
-  '!**/embroidery/d1.webp',
-  '!**/embroidery/d3.webp',
-  '!**/embroidery/d6.webp',
-  '!**/embroidery/d7.webp',
-  '!**/vector/p6.webp',
-  '!**/vector/p7.webp',
-  '!**/patches/pa1.webp',
-  '!**/patches/pa3.webp',
-  '!**/patches/pa7.webp',
-], { eager: true, import: 'default' });
-const thumbs = import.meta.glob([
-  '../assets/portfolio-thumbs/*/*.webp',
-  '!**/embroidery/a1.webp',
-  '!**/embroidery/a2.webp',
-  '!**/embroidery/a3.webp',
-  '!**/embroidery/a4.webp',
-  '!**/embroidery/a5.webp',
-  '!**/embroidery/a6.webp',
-  '!**/embroidery/d1.webp',
-  '!**/embroidery/d3.webp',
-  '!**/embroidery/d6.webp',
-  '!**/embroidery/d7.webp',
-  '!**/vector/p6.webp',
-  '!**/vector/p7.webp',
-  '!**/patches/pa1.webp',
-  '!**/patches/pa3.webp',
-  '!**/patches/pa7.webp',
-], { eager: true, import: 'default' });
+const large = import.meta.glob('../assets/portfolio/*/*.webp', { eager: true, import: 'default' });
+const thumbs = import.meta.glob('../assets/portfolio-thumbs/*/*.webp', { eager: true, import: 'default' });
 
 export const CATEGORIES = [
   { id: 'embroidery', label: 'Embroidery Digitizing' },
