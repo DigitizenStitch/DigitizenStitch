@@ -114,7 +114,7 @@ export const POSTS = [
         h: 893,
       }],
       ['h2', 'What is a DST file, in one minute?'],
-      ['p', 'A DST file is a stitch file in the Tajima format. It lists where the needle should go, when to trim, and when to stop for a color change. It does not contain a picture of the logo or a list of thread brands. Our guide to what a DST file is covers the format in more detail.'],
+      ['p', 'A DST file is a stitch file in the Tajima format. It lists where the needle should go, when to trim, and when to stop for a color change. It does not contain a picture of the logo or a list of thread brands. Our guide to [what a DST file is](/blog/what-is-a-dst-file) covers the format in more detail.'],
       ['p', 'Because it is only a list of needle moves, a DST file is made, not converted. Someone, or some software, has to decide how every area of the design will be stitched.'],
       ['h2', 'How do you make a DST file, step by step?'],
       ['ul', [
@@ -161,7 +161,7 @@ export const POSTS = [
       }],
       ['h2', 'When is it better to have a DST file digitized for you?'],
       ['p', 'If you only need one or two logos and have no embroidery software, paying for digitizing is usually quicker than learning the craft. It also helps when the design is for caps, puff, small left chest sizes or fabrics that stretch, since those jobs reward experience.'],
-      ['p', 'We digitize logos and artwork into DST and other formats. Embroidery digitizing under 5 inches is $4.99 to $9.99, 5 to 7 inches is $9.99 to $14.99, and anything bigger is on quote. Turnaround is 12 to 24 hours up to 7 inches, free edits included. Send your artwork through the quote form and tell us the garment and size.'],
+      ['p', 'We digitize logos and artwork into DST and other formats. Embroidery digitizing under 5 inches is $4.99 to $9.99, 5 to 7 inches is $9.99 to $14.99, and anything bigger is on quote. Turnaround is 12 to 24 hours up to 7 inches, free edits included. Send your artwork through the [quote form](/quote) and tell us the garment and size.'],
     ],
     faqs: [
       ['Can I convert a JPG or PNG to a DST file?', 'Not in a way that sews well. A DST file is a set of stitch instructions, so the artwork has to be digitized rather than just converted.'],
@@ -173,11 +173,11 @@ export const POSTS = [
   },
   {
     slug: 'left-chest-logo-size-and-placement',
-    title: 'Left Chest Logo Size and Placement: A Practical Guide',
-    description: 'Left chest logo size and placement made simple: usual width, how far below the shoulder seam, where to sit it on polos, tees and hoodies, and common mistakes.',
+    title: 'Left Chest Logo Size Chart: Adult, Youth, Hoodie & Cap',
+    description: 'Left chest logo size chart in inches for adult and youth shirts, hoodies and caps, plus how far below the collar to place it. Check yours before you sew.',
     date: '2026-11-02',
-    updated: '2026-11-02',
-    readMinutes: 5,
+    updated: '2026-11-09',
+    readMinutes: 6,
     excerpt: 'Most left chest logos are about 3 to 4 inches wide and sit a hand span below the collar. Here is how to size and place yours.',
     image: {
       src: '/images/blog/left-chest-logo-size-and-placement-1.webp',
@@ -185,7 +185,7 @@ export const POSTS = [
       w: 1600,
       h: 899,
     },
-    related: ['/embroidery-digitizing', '/pricing', '/embroidery-file-formats', '/quote'],
+    related: ['/embroidery-digitizing', '/blog/cap-hat-logo-digitizing-guide', '/pricing', '/quote'],
     body: [
       ['p', 'A left chest logo is usually about 3 to 4 inches wide, with its center roughly 7 to 9 inches below the shoulder seam and about 3 to 4 inches from the center of the shirt. Those numbers are a starting point rather than a law, and they shift a little with garment size and style.'],
       ['p', 'If you are ordering embroidered shirts for a team, a shop or a brand, getting left chest logo size and placement right matters more than most people expect. A logo that is too big looks like a billboard, and one that is too low looks like a mistake. This guide covers the usual ranges and how to check them on your own garments.'],
@@ -198,13 +198,23 @@ export const POSTS = [
       }],
       ['h2', 'What is the standard left chest logo size?'],
       ['p', 'There is no single official standard, but most embroiderers and decorators land in the same range. For adult garments, 3 to 4 inches wide is the common answer. Height depends on the shape of the logo, and 2 to 3 inches is typical for a horizontal mark.'],
+      ['h2', 'Left chest logo size chart'],
+      ['p', 'These are the typical ranges most decorators work with. Use them as a starting point and check them on the actual garment.'],
+      ['table', {
+        head: ['Garment', 'Typical logo width', 'Typical height', 'Placement'],
+        rows: [
+          ['Adult polo or T-shirt', '3–4 in (76–102 mm)', '2–3 in (51–76 mm)', 'Center about 7–9 in below the shoulder seam and 3–4 in from the center line'],
+          ['Youth shirt', '2.5–3.5 in (64–89 mm)', 'In proportion to the width', 'Scaled to the smaller chest; check it on the garment'],
+          ['Hoodie or zip jacket', '3–4 in (76–102 mm)', '2–3 in (51–76 mm)', 'A little lower than on a tee, clear of the zip, hood and pocket'],
+          ['Structured cap (front panel)', 'Up to about 4–5 in (102–127 mm)', 'About 2–2.25 in (51–57 mm)', 'Front center; depends on the cap profile and your cap frame'],
+        ],
+      }],
+      ['p', 'Sources do not agree on exact figures, especially for youth sizes and caps, so treat these as ranges. If your garment supplier or customer has a spec sheet, that wins. For caps, our [cap and hat logo digitizing guide](/blog/cap-hat-logo-digitizing-guide) explains why the usable height changes from hat to hat.'],
+      ['tip', 'Small logos and small text: keep lettering at least about 0.25 in (6 mm) tall and avoid hairline details. Below that, letters tend to fill in and become hard to read.'],
       ['ul', [
-        'Adult polos and tees: about 3 to 4 inches wide.',
-        'Youth sizes: often scaled down to roughly 2.5 to 3.5 inches wide.',
-        'Hoodies and zip jackets: about 3 to 4 inches wide, kept clear of zips and seams.',
         'Very large or very small garments: many decorators adjust by about half an inch per size step.',
+        'Fitted ladies tops: the chest is narrower, so many decorators stay at the smaller end of the adult range.',
       ]],
-      ['p', 'Sources do not agree on exact figures, especially for youth sizes, so treat these as ranges. If your garment supplier or customer has a spec sheet, that wins.'],
       ['h2', 'Where should a left chest logo be placed?'],
       ['p', 'Think of two measurements: how far down from the shoulder seam, and how far across from the center of the garment. For a typical adult polo or tee, the center of the logo often sits about 7 to 9 inches below the shoulder seam, where the shoulder meets the collar, and about 3 to 4 inches from the center line or placket.'],
       ['p', 'Some guides place the logo higher or closer to the center, so always check against the garment. The logo should sit on the flat part of the chest, below the collar and clear of the armhole seam. On a polo, lining it up beside the placket usually looks natural.'],
@@ -239,23 +249,24 @@ export const POSTS = [
         'Sewing without a test. Fabric stretch and hooping can shift the position by a few millimeters.',
       ]],
       ['h2', 'How does size affect the digitizing?'],
-      ['p', 'Size and stitching go together. A logo shrunk to fit the left chest usually needs its details simplified, thin lines widened and tiny shapes removed, so it still sews cleanly. That is a digitizing job, not just a resize. Take the logo you want on the chest, tell us the garment and the width you need, and we digitize it for that size.'],
-      ['p', 'Left chest logos fall under our under 5 inch digitizing tier, which runs from $4.99 to $9.99 with delivery in 12 to 24 hours and free edits. Send your artwork through the quote form and we will confirm the details by email.'],
+      ['p', 'Size and stitching go together. A logo shrunk to fit the left chest usually needs its details simplified, thin lines widened and tiny shapes removed, so it still sews cleanly. That is a digitizing job, not just a resize. Take the logo you want on the chest, tell us the garment and the width you need, and we [digitize it for that size](/embroidery-digitizing).'],
+      ['p', 'Left chest logos fall under our [under 5 inch digitizing tier](/pricing), which runs from $4.99 to $9.99 with delivery in 12 to 24 hours and free edits. Send your artwork through the [quote form](/quote) and we will confirm the details by email.'],
     ],
     faqs: [
       ['What is the standard left chest logo size?', 'Most adult left chest logos are about 3 to 4 inches wide. There is no official rule, so check any spec sheet from your garment supplier or customer.'],
       ['How far below the collar should a left chest logo sit?', 'On a polo or tee, the center of the logo often sits about 7 to 9 inches below the shoulder seam. Check it on the actual garment, because styles and sizes vary.'],
       ['Is a left chest logo on the left or right?', 'It goes on the wearer left side, which is the right side as you look at someone facing you.'],
       ['Should youth shirts get a smaller logo?', 'Usually yes. Many decorators scale youth logos down to roughly 2.5 to 3.5 inches wide, so the design does not overpower the garment.'],
+      ['How big should a logo be on a cap?', 'On a structured cap the front design is often kept to about 2 to 2.25 inches tall and up to about 4 to 5 inches wide. The real limit depends on the cap profile and your cap frame, so measure the blank first.'],
       ['Do I need a different file for a smaller logo?', 'Often yes. A design shrunk to left chest size usually needs simpler detail and wider lines so it sews cleanly, which means digitizing it for that size.'],
     ],
   },
   {
     slug: 'what-is-a-dst-file',
-    title: 'What Is a DST File? Tajima Embroidery Format Explained',
-    description: 'A DST file is the Tajima stitch format read by most commercial embroidery machines. See what it contains, how to open it and when to choose DST over PES.',
+    title: 'What Is a DST File? DST Embroidery Format Explained',
+    description: 'A DST file is the Tajima embroidery format most commercial machines read. See what is inside a .dst file, how to open it and when to choose DST over PES.',
     date: '2026-10-31',
-    updated: '2026-10-31',
+    updated: '2026-11-09',
     readMinutes: 5,
     excerpt: 'A DST file is not a picture. Here is what is inside it, why it has no thread colors and which machines read it.',
     image: {
@@ -273,7 +284,7 @@ export const POSTS = [
     body: [
       [
         'p',
-        'A DST file is an embroidery stitch file in the Tajima format, and it is the most widely accepted format on commercial embroidery machines. It stores the position of every stitch and the points where the machine stops for a color change.',
+        'DST is an embroidery file format: a .dst file is a stitch file in the Tajima format, and it is the most widely accepted format on commercial embroidery machines. It stores the position of every stitch and the points where the machine stops for a color change.',
       ],
       [
         'p',
@@ -340,7 +351,7 @@ export const POSTS = [
       ],
       [
         'p',
-        'If you are not sure, ask the person who runs the machine which format it takes. Our embroidery file formats guide lists the common formats and the machines that use them.',
+        'If you are not sure, ask the person who runs the machine which format it takes. Our [embroidery file formats guide](/embroidery-file-formats) lists the common formats and the machines that use them.',
       ],
       ['h2', 'How do you open a DST file?'],
       [
@@ -354,7 +365,7 @@ export const POSTS = [
       ['h2', 'Can you turn a JPG or PNG into a DST file?'],
       [
         'p',
-        'Not properly. A JPG or PNG is only a picture. To sew well, the artwork has to be digitized: someone chooses the stitch types, direction, density and underlay for your size and fabric, then saves the result as a DST file. Automatic converters usually struggle with small text and fine detail.',
+        'Not properly. A JPG or PNG is only a picture. To sew well, the artwork has to be digitized: someone chooses the stitch types, direction, density and underlay for your size and fabric, then saves the result as a DST file. Automatic converters usually struggle with small text and fine detail. Our step-by-step guide on [how to make a DST file](/blog/how-to-make-a-dst-file) shows what that involves.',
       ],
       [
         'img',
@@ -387,7 +398,7 @@ export const POSTS = [
       ],
       [
         'p',
-        'Tell us you need DST and we deliver it by email, with free edits and revisions if anything needs adjusting. Send your artwork through the quote form and we will confirm the price for your size.',
+        'Tell us you need DST and we deliver it by email, with free edits and revisions if anything needs adjusting. You can [order a DST file](/embroidery-digitizing) for your logo: send your artwork through the [quote form](/quote) and we will confirm the price for your size.',
       ],
       [
         'img',
@@ -486,7 +497,7 @@ export const POSTS = [
       ['h2', 'Which machines use PES files?'],
       [
         'p',
-        'PES is the standard home and semi-commercial format for Brother and Baby Lock machines. Other brands use their own formats: JEF for Janome, VP3 for Husqvarna Viking and Pfaff, EXP for Melco and many Bernina models, and DST on Tajima and most commercial multi-needle machines. If you are not sure, check your machine manual. Our embroidery file formats guide has the full list.',
+        'PES is the standard home and semi-commercial format for Brother and Baby Lock machines. Other brands use their own formats: JEF for Janome, VP3 for Husqvarna Viking and Pfaff, EXP for Melco and many Bernina models, and DST on Tajima and most commercial multi-needle machines. If you are not sure, check your machine manual. Our [embroidery file formats guide](/embroidery-file-formats) has the full list, and our guide on [what a DST file is](/blog/what-is-a-dst-file) covers the commercial format.',
       ],
       [
         'img',
@@ -528,7 +539,7 @@ export const POSTS = [
       ['h2', 'Can you turn a JPG or PNG into a PES file?'],
       [
         'p',
-        'Not properly. A JPG or PNG is only a picture. To sew well, the design has to be digitized: someone sets the stitch types, direction, density and underlay for your size and fabric, then saves the result as a PES file. Automatic converters usually sew poorly, especially on small text and fine detail.',
+        'Not properly. A JPG or PNG is only a picture. To sew well, the design has to be digitized: someone sets the stitch types, direction, density and underlay for your size and fabric, then saves the result as a PES file. Automatic converters usually sew poorly, especially on small text and fine detail. That is what our [embroidery digitizing service](/embroidery-digitizing) does.',
       ],
       ['h2', 'Common problems with PES files'],
       [
@@ -652,7 +663,7 @@ export const POSTS = [
         h: 900,
       }],
       ['h2', 'Flat embroidery or 3D puff on a cap?'],
-      ['p', 'Most cap logos are sewn flat. Bold lettering and simple shapes can also be raised with foam, which is called 3D puff and needs its own file. Our 3D puff embroidery digitizing guide explains when puff makes sense and how it is set up.'],
+      ['p', 'Most cap logos are sewn flat. Bold lettering and simple shapes can also be raised with foam, which is called 3D puff and needs its own file. Our [3D puff embroidery digitizing guide](/blog/3d-puff-embroidery-digitizing) explains when puff makes sense and how it is set up.'],
       ['h2', 'Size and small text'],
       ['p', 'The usable height of a cap design depends on the cap profile (low, mid or high) and on your cap frame, so there is no single maximum that suits every hat. Measure the front panel of the actual blank and check your frame limits before you order the file.'],
       ['p', 'Small lettering needs extra care. A curved, stiff surface closes up fine detail, so text that reads well on a shirt can fill in on a cap. Keep letters a little larger and simpler than you would on flat fabric.'],
@@ -686,11 +697,11 @@ export const POSTS = [
   },
   {
     slug: '3d-puff-embroidery-digitizing',
-    title: '3D Puff Embroidery Digitizing: What Makes a File Puff-Ready',
+    title: '3D Puff Embroidery Digitizing: How Puff Files Are Made',
     description:
-      '3D puff digitizing explained: how a puff file differs from flat embroidery, foam thickness, satin width, end caps, settings and common mistakes on hats.',
+      '3D puff embroidery digitizing explained: foam, satin width, density and end caps, plus what to send when you need a puff-ready file for caps or jackets.',
     date: '2026-10-22',
-    updated: '2026-10-31',
+    updated: '2026-11-09',
     readMinutes: 8,
     excerpt: 'Puff embroidery is not just a regular file sewn over foam. Here is what a puff-ready design needs, step by step.',
     image: {
@@ -766,7 +777,7 @@ export const POSTS = [
         w: 1600,
         h: 900,
       }],
-      ['p', 'Structured caps hold their shape and give puff a firm base. Unstructured caps are softer and need good stabilizing, so the foam does not pull the panel out of shape. Our cap and hat digitizing guide covers both in more detail.'],
+      ['p', 'Structured caps hold their shape and give puff a firm base. Unstructured caps are softer and need good stabilizing, so the foam does not pull the panel out of shape. Our [cap and hat digitizing guide](/blog/cap-hat-logo-digitizing-guide) covers both in more detail.'],
       ['h2', 'What to send for a 3D puff digitizing order'],
       ['ul', [
         'Your logo or design, plus the width and height you want.',
@@ -774,7 +785,7 @@ export const POSTS = [
         'The garment (structured cap, unstructured cap, hoodie and so on).',
         'Your foam thickness if you already have it, and your machine file format.',
       ]],
-      ['p', 'Send your artwork through the quote form and we will confirm the price for your size. Free edits and revisions are included if the test sew shows anything that needs adjusting.'],
+      ['p', 'Need a puff-ready file? Our [embroidery digitizing service](/embroidery-digitizing) covers 3D puff for caps and jackets. Send your artwork through the [quote form](/quote), mention that it is for puff, and we will confirm the price for your size. Free edits and revisions are included if the test sew shows anything that needs adjusting.'],
     ],
     faqs: [
       ['What is 3D puff embroidery?', 'It is embroidery sewn over a layer of foam, so the design stands up from the fabric. Satin stitches cut the foam at the edges, the excess is torn away, and the stitched areas stay raised.'],

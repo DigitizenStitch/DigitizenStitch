@@ -18,12 +18,12 @@ export const PAGES = {
       "Custom embroidery digitizing from $4.99: logo to DST, PES or EMB in 12–24 hours, free edits. Vector art from $9.99. Clients in the USA, UK and worldwide.",
   },
   '/embroidery-digitizing': {
-    title: "Logo & Custom Embroidery Digitizing Service | DST, PES",
+    title: "Embroidery Digitizing Service for Logos | From $4.99",
     description:
-      "Logo digitizing for embroidery: left chest, cap, sleeve, hoodie and jacket back. DST, PES, EMB and more, 12–24 hour delivery, free edits. From $4.99.",
+      "Logo digitizing for left chest, caps and 3D puff in DST, PES and more. 12–24 hour delivery up to 7 inches, free edits. Upload your logo for a quote.",
     name: 'Embroidery Digitizing',
     service: { name: 'Embroidery Digitizing', price: 4.99, max: 14.99 },
-    faqQs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?'],
+    faqQs: ['How much does embroidery digitizing cost?', 'How long does embroidery digitizing take?', 'Which embroidery file formats do you provide?', 'What do I receive with my embroidery file?', 'Which hoop sizes do you digitize for?', 'Do you offer revisions?', 'Is embroidery digitising the same as embroidery digitizing?'],
   },
   '/vector-art': {
     title: "Vector Art Conversion Service: Logo to Vector from $9.99",
