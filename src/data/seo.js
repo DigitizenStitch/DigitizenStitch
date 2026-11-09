@@ -42,7 +42,7 @@ export const PAGES = {
     faqQs: ['Do you make physical patches?', 'How much do custom embroidered patches cost?', 'What do I need to send for a custom patch quote?', 'Which payment methods do you accept?'],
   },
   '/pricing': {
-    title: "Embroidery Digitizing Prices: $4.99–$14.99 | Digitize'NStitch",
+    title: "Embroidery Digitizing Prices from $4.99 | Digitize'NStitch",
     description:
       "How much does embroidery digitizing cost? Under 5\" $4.99–$9.99, 5–7\" $9.99–$14.99, over 7\" on quote. Free edits, 12–48 hour delivery.",
     name: 'Pricing',
@@ -85,7 +85,7 @@ export const PAGES = {
   },
   '/blog': {
     title: "Embroidery Digitizing Blog & Guides | Digitize'NStitch",
-    description: 'Practical guides on embroidery digitizing: cap and hat logos, 3D puff embroidery, file formats and getting clean sew-outs.',
+    description: 'Practical embroidery digitizing guides: DST and PES files, stabilizers, left chest logo placement, cap and hat logos, 3D puff and clean sew-outs.',
     name: 'Blog',
   },
   ...Object.fromEntries(POSTS.map((p) => [`/blog/${p.slug}`, { title: p.title, description: p.description, name: p.title, article: p }])),
@@ -103,7 +103,7 @@ export const PAGES = {
   },
   '/terms-of-service': {
     title: "Terms of Service | Digitize'NStitch",
-    description: "The terms that apply when you order embroidery digitizing, vector art or patch services from Digitize'NStitch, including payment, delivery, revisions and refunds.",
+    description: "The terms that apply when you order embroidery digitizing, vector art or patches from Digitize'NStitch, covering payment, delivery, revisions and refunds.",
     name: 'Terms of Service',
   },
   '/refund-revision-policy': {
