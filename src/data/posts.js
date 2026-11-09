@@ -427,7 +427,7 @@ export const POSTS = [
     title: 'What Is a PES File? Brother Embroidery Format Explained',
     description: 'A PES file is the embroidery stitch format used by Brother and Baby Lock machines. Learn what it contains, how to open it and when to choose PES over DST.',
     date: '2026-10-29',
-    updated: '2026-10-29',
+    updated: '2026-11-09',
     readMinutes: 5,
     excerpt: 'A PES file is not a picture. Here is what is inside it, which machines read it and how it differs from DST.',
     image: {
@@ -513,6 +513,15 @@ export const POSTS = [
         'A normal picture viewer will not show it. You need embroidery software or a viewer. PE-Design from Brother can open and edit PES files, and free tools such as Wilcom TrueSizer and Ink/Stitch can open or preview them. Most Brother machines can also read a PES file from a USB stick and show a preview on the screen before you sew.',
       ],
       [
+        'img',
+        {
+          src: '/images/blog/what-is-a-pes-file-3.webp',
+          alt: 'Hand plugging a white USB flash drive into a silver laptop on a white desk',
+          w: 1600,
+          h: 899,
+        },
+      ],
+      [
         'tip',
         'Do not rename a DST file to .pes. The extension does not change what is inside, and the machine will not read it.',
       ],
@@ -530,6 +539,15 @@ export const POSTS = [
           'The size was changed too much. Stitch files do not scale like pictures, so large size changes are best made from the original working file.',
           'The colors on screen look different from your thread. The colors in the file are a guide, so match them to the thread you actually have.',
         ],
+      ],
+      [
+        'img',
+        {
+          src: '/images/blog/what-is-a-pes-file-4.webp',
+          alt: 'Metal machine bobbins wound with red, blue, pink and lilac thread next to spools of red, blue and pink thread on a wooden table',
+          w: 1600,
+          h: 899,
+        },
       ],
       ['h2', 'What to send when you order a PES file'],
       [
