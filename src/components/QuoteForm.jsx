@@ -98,6 +98,8 @@ export default function QuoteForm({ defaultService = '' }) {
       const res = await fetch('/', { method: 'POST', body: data });
       if (!res.ok) throw new Error(`Status ${res.status}`);
       setStatus('success');
+      // Tells Analytics.jsx that a quote was sent (only recorded if the visitor accepted cookies).
+      window.dispatchEvent(new CustomEvent('dns-quote-sent', { detail: { service: values.service, package: values.package } }));
       setValues({ ...EMPTY, service: defaultService });
       clearFile();
       formRef.current?.scrollIntoView({ block: 'center' });
