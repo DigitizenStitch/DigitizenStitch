@@ -599,7 +599,7 @@ export const POSTS = [
   },
   {
     slug: 'cap-hat-logo-digitizing-guide',
-    title: 'Cap & Hat Logo Digitizing: A Practical Guide',
+    title: 'Hat & Cap Digitizing for Embroidery: A Practical Guide',
     description:
       'Hat digitizing explained: how cap logo files differ from flat garments, with center-out sequencing, cap underlay, the center seam, cap types and what to send.',
     date: '2026-10-22',
