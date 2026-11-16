@@ -201,6 +201,7 @@ export const POSTS = [
       ['h2', 'Left chest logo size chart'],
       ['p', 'These are the typical ranges most decorators work with. Use them as a starting point and check them on the actual garment.'],
       ['table', {
+        caption: 'Left chest logo size chart by garment (inches and mm)',
         head: ['Garment', 'Typical logo width', 'Typical height', 'Placement'],
         rows: [
           ['Adult polo or T-shirt', '3–4 in (76–102 mm)', '2–3 in (51–76 mm)', 'Center about 7–9 in below the shoulder seam and 3–4 in from the center line'],
@@ -599,7 +600,7 @@ export const POSTS = [
   },
   {
     slug: 'cap-hat-logo-digitizing-guide',
-    title: 'Cap & Hat Logo Digitizing: A Practical Guide',
+    title: 'Hat & Cap Digitizing for Embroidery: A Practical Guide',
     description:
       'Hat digitizing explained: how cap logo files differ from flat garments, with center-out sequencing, cap underlay, the center seam, cap types and what to send.',
     date: '2026-10-22',
@@ -666,6 +667,7 @@ export const POSTS = [
       ['p', 'The usable height of a cap design depends on the cap profile (low, mid or high) and on your cap frame, so there is no single maximum that suits every hat. Measure the front panel of the actual blank and check your frame limits before you order the file.'],
       ['p', 'As a starting point, these are the sizes many decorators and cap suppliers work with. They are typical ranges, not limits for every hat.'],
       ['table', {
+        caption: 'Cap and hat embroidery size limits by cap position',
         head: ['Cap position', 'Typical max width', 'Typical max height', 'Notes'],
         rows: [
           ['Structured cap, front', 'About 4–5 in (102–127 mm)', 'About 2–2.25 in (51–57 mm)', 'Firm front panel; the most common cap logo area'],
