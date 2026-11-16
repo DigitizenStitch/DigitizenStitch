@@ -38,6 +38,7 @@ function Block({ type, value }) {
   if (type === 'table') return (
     <div className="mt-8 overflow-x-auto rounded-2xl border border-ink/10 bg-white">
       <table className="w-full min-w-[36rem] border-collapse text-left text-base">
+        {value.caption && <caption className="sr-only">{value.caption}</caption>}
         <thead className="bg-paper">
           <tr>{value.head.map((h) => <th key={h} scope="col" className="px-4 py-3 font-semibold text-ink">{h}</th>)}</tr>
         </thead>
