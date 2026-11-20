@@ -84,7 +84,7 @@ export function Testimonials() {
       <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {TESTIMONIALS.map((t, i) => (
           <Reveal as="li" key={i} delay={i * 90} className="card flex flex-col overflow-hidden">
-            {t.image && <img src={t.image} alt={`Sewout for ${t.project}`} loading="lazy" className="aspect-[4/3] w-full object-cover" />}
+            {t.image && <img src={t.image} alt={`Sewout for ${t.project}`} loading="lazy" className="aspect-[4/5] w-full object-cover object-center" />}
             <figure className="flex flex-1 flex-col p-7">
               <blockquote className="flex-1 text-lg leading-relaxed text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption className="mt-6 text-sm"><b className="text-ink">{t.name}</b>{t.business && `, ${t.business}`}<span className="block text-slate-500">{t.project}</span></figcaption>
