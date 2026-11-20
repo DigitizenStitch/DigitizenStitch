@@ -5,6 +5,8 @@ import eyeOfTiger from '../assets/testimonials/eye-of-the-tiger.webp';
 import heroineKarl from '../assets/testimonials/heroine-karl.webp';
 import anchoredHomestead from '../assets/testimonials/anchored-homestead.webp';
 import smallSpaces from '../assets/testimonials/small-spaces.webp';
+import disneyworld from '../assets/testimonials/disneyworld.webp';
+import starWars from '../assets/testimonials/star-wars.webp';
 
 // Single source of truth for verified business details.
 // Update contact info, prices or policies here and they change site-wide.
@@ -145,45 +147,57 @@ export const VERIFIED_STATS = [
 // { quote: '', name: '', business: '', project: '', image: importedImage }
 export const TESTIMONIALS = [
   {
-    quote: 'The 3D puff on "Double RR" came out thick and clean, and the side logos ran smooth too. Quick replies on tweaks and solid puff files 👌',
+    quote: 'Absolutely loved the 3D puff embroidery results! The lettering has a bold, raised look with a clean and professional finish. The stitching looks sharp, well-defined, and perfectly suited for custom trucker caps. Excellent digitizing quality and attention to detail!',
     name: 'Double RR Trucking',
     project: '3D puff cap logo',
     image: doubleRR,
   },
   {
-    quote: 'I worried the skull and rose lines would get heavy on a sweatshirt, yet the stitch density stayed light and clean. Adjusted a small detail quickly when I asked. Great digitizing work from start to finish 🙌',
+    quote: 'The fine details in this design were important to get right, and the result looks amazing. The rose, skull, and lettering all came together beautifully. A great finish on the sweatshirt!',
     name: 'Run Little Mouse',
-    project: 'Sweatshirt back & sleeve embroidery',
+    project: 'Sweatshirt embroidery',
     image: runLittleMouse,
   },
   {
-    quote: 'Really clean stitching on the anchor, leaves, and "Anchored Homestead" text. Quick response to my questions and on-time delivery 👍',
-    name: 'Embroidery client',
-    project: 'Anchored Homestead',
+    quote: 'Very happy with how this design turned out! The fine floral details, lettering, and overall stitch quality look fantastic. Everything is clean, well-defined, and beautifully stitched. Excellent work and great attention to detail!',
+    name: 'Anchored Homestead',
+    project: 'Apron embroidery',
     image: anchoredHomestead,
   },
   {
-    quote: 'We needed crisp puff lettering and a clean Pegasus without edges fraying or bunching up. Came back right on schedule and answered my sizing questions fast. Easy call if you want puff work done right 👍',
+    quote: 'Excellent digitizing quality! The designs came out beautifully with clean stitching, vibrant colors, and great attention to detail. Everything was well-organized and stitched smoothly. Very happy with the final results. Highly recommended!',
+    name: 'Disneyworld Embroidery Design',
+    project: 'Embroidery hoop sampler',
+    image: disneyworld,
+  },
+  {
+    quote: 'Really happy with how these caps turned out! The 3D puff lettering looks great and gives the logos a nice raised effect. Both caps came out just the way I wanted. Definitely happy with the work!',
     name: 'ExxonMobil',
     project: 'Puff cap logo',
     image: exxonMobil,
   },
   {
-    quote: 'Between the character, text, and small cuff emblem, there was plenty that could go wrong, and it all sewed out sharp. Fast turnaround plus quick replies when I needed a small fix 👌',
+    quote: "Love how this turned out! The character artwork looks fantastic, especially the different thread colors and lettering. It really brings the whole sweatshirt design together. Couldn't be happier with the finished look!",
     name: 'Eye of the Tiger',
-    project: 'Sweatshirt back embroidery',
+    project: 'Sweatshirt embroidery',
     image: eyeOfTiger,
   },
   {
-    quote: 'The stitched blocks and "Small Spaces" lettering came out sharp and even. Fast replies when I needed a quick check-in, and the service has been super reliable ✨',
-    name: 'Embroidery client',
-    project: 'Small Spaces',
+    quote: 'Simple, clean, and exactly how I wanted it! The design looks lovely on the apron, and the lettering is clear and easy to read. Really pleased with how the final piece turned out.',
+    name: 'Small Spaces',
+    project: 'Apron embroidery',
     image: smallSpaces,
   },
   {
-    quote: 'The small text and character faces came out super clear once stitched. Replies were fast when I asked for a small adjustment, and the file ran without any thread breaks 👌',
-    name: 'Embroidery client',
-    project: 'Heroine & Karl',
+    quote: 'Outstanding embroidery digitizing work! The design has so many details and colors, but everything turned out sharp, clean, and beautifully stitched. Great attention to detail and excellent stitch quality. Very satisfied with the results!',
+    name: 'Star Wars Embroidery Design',
+    project: 'Sweatshirt embroidery',
+    image: starWars,
+  },
+  {
+    quote: 'Really impressed with the digitizing quality! The detailed artwork, multiple colors, and fine stitching all turned out beautifully. The design looks clean and professional on the final product. Great attention to detail and excellent results!',
+    name: 'Héróïne & Karl',
+    project: 'Apron embroidery',
     image: heroineKarl,
   },
 ];
