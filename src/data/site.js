@@ -1,8 +1,10 @@
 import doubleRR from '../assets/testimonials/double-rr-trucking.webp';
 import exxonMobil from '../assets/testimonials/exxonmobil.webp';
-import rattleStars from '../assets/testimonials/rattle-the-stars.webp';
 import runLittleMouse from '../assets/testimonials/run-little-mouse.webp';
 import eyeOfTiger from '../assets/testimonials/eye-of-the-tiger.webp';
+import heroineKarl from '../assets/testimonials/heroine-karl.webp';
+import anchoredHomestead from '../assets/testimonials/anchored-homestead.webp';
+import smallSpaces from '../assets/testimonials/small-spaces.webp';
 
 // Single source of truth for verified business details.
 // Update contact info, prices or policies here and they change site-wide.
@@ -149,27 +151,39 @@ export const TESTIMONIALS = [
     image: doubleRR,
   },
   {
-    quote: 'We needed crisp puff lettering and a clean Pegasus without edges fraying or bunching up. Came back right on schedule and answered my sizing questions fast—easy call if you want puff work done right 👍',
-    name: 'ExxonMobil',
-    project: 'Puff cap logo',
-    image: exxonMobil,
-  },
-  {
-    quote: 'Even with thin mountain lines, stars, and lettering on dark fabric, it stitched out with no stray threads hanging around. Sent the file back fast and kept communication simple. My go-to spot for digitizing now ✨',
-    name: 'Rattle The Stars',
-    project: 'Left chest embroidery',
-    image: rattleStars,
-  },
-  {
     quote: 'I worried the skull and rose lines would get heavy on a sweatshirt, yet the stitch density stayed light and clean. Adjusted a small detail quickly when I asked. Great digitizing work from start to finish 🙌',
     name: 'Run Little Mouse',
     project: 'Sweatshirt back & sleeve embroidery',
     image: runLittleMouse,
   },
   {
+    quote: 'Really clean stitching on the anchor, leaves, and "Anchored Homestead" text. Quick response to my questions and on-time delivery 👍',
+    name: 'Embroidery client',
+    project: 'Anchored Homestead',
+    image: anchoredHomestead,
+  },
+  {
+    quote: 'We needed crisp puff lettering and a clean Pegasus without edges fraying or bunching up. Came back right on schedule and answered my sizing questions fast—easy call if you want puff work done right 👍',
+    name: 'ExxonMobil',
+    project: 'Puff cap logo',
+    image: exxonMobil,
+  },
+  {
     quote: 'Between the character, text, and small cuff emblem, there was plenty that could go wrong, and it all sewed out sharp. Fast turnaround plus quick replies when I needed a small fix 👌',
     name: 'Eye of the Tiger',
     project: 'Sweatshirt back embroidery',
     image: eyeOfTiger,
+  },
+  {
+    quote: 'The stitched blocks and "Small Spaces" lettering came out sharp and even. Fast replies when I needed a quick check-in, and the service has been super reliable ✨',
+    name: 'Embroidery client',
+    project: 'Small Spaces',
+    image: smallSpaces,
+  },
+  {
+    quote: 'The small text and character faces came out super clear once stitched. Replies were fast when I asked for a small adjustment, and the file ran without any thread breaks 👌',
+    name: 'Embroidery client',
+    project: 'Heroine & Karl',
+    image: heroineKarl,
   },
 ];
