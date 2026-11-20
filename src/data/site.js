@@ -163,7 +163,7 @@ export const TESTIMONIALS = [
     image: anchoredHomestead,
   },
   {
-    quote: 'We needed crisp puff lettering and a clean Pegasus without edges fraying or bunching up. Came back right on schedule and answered my sizing questions fast—easy call if you want puff work done right 👍',
+    quote: 'We needed crisp puff lettering and a clean Pegasus without edges fraying or bunching up. Came back right on schedule and answered my sizing questions fast. Easy call if you want puff work done right 👍',
     name: 'ExxonMobil',
     project: 'Puff cap logo',
     image: exxonMobil,
