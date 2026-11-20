@@ -1,3 +1,13 @@
+import doubleRR from '../assets/testimonials/double-rr-trucking.webp';
+import exxonMobil from '../assets/testimonials/exxonmobil.webp';
+import runLittleMouse from '../assets/testimonials/run-little-mouse.webp';
+import eyeOfTiger from '../assets/testimonials/eye-of-the-tiger.webp';
+import heroineKarl from '../assets/testimonials/heroine-karl.webp';
+import anchoredHomestead from '../assets/testimonials/anchored-homestead.webp';
+import smallSpaces from '../assets/testimonials/small-spaces.webp';
+import disneyworld from '../assets/testimonials/disneyworld.webp';
+import starWars from '../assets/testimonials/star-wars.webp';
+
 // Single source of truth for verified business details.
 // Update contact info, prices or policies here and they change site-wide.
 
@@ -135,4 +145,59 @@ export const VERIFIED_STATS = [
 
 // Add genuine reviews here (with the client's permission). Leave empty to hide names.
 // { quote: '', name: '', business: '', project: '', image: importedImage }
-export const TESTIMONIALS = [];
+export const TESTIMONIALS = [
+  {
+    quote: 'Absolutely loved the 3D puff embroidery results! The lettering has a bold, raised look with a clean and professional finish. The stitching looks sharp, well-defined, and perfectly suited for custom trucker caps. Excellent digitizing quality and attention to detail! 🔥',
+    name: 'Adrienne Martinez',
+    project: 'Double RR Trucking',
+    image: doubleRR,
+  },
+  {
+    quote: 'The fine details in this design were important to get right, and the result looks amazing. The rose, skull, and lettering all came together beautifully. A great finish on the sweatshirt! 🌹',
+    name: 'Kennedy Clark',
+    project: 'Run Little Mouse',
+    image: runLittleMouse,
+  },
+  {
+    quote: 'Very happy with how this design turned out! The fine floral details, lettering, and overall stitch quality look fantastic. Everything is clean, well-defined, and beautifully stitched. Excellent work and great attention to detail! ⚓',
+    name: 'Anghelina Parh',
+    project: 'Anchored Homestead',
+    image: anchoredHomestead,
+  },
+  {
+    quote: 'Excellent digitizing quality! The designs came out beautifully with clean stitching, vibrant colors, and great attention to detail. Everything was well-organized and stitched smoothly. Very happy with the final results. Highly recommended! 🏰',
+    name: 'Gabriela Milanes',
+    project: 'Disneyworld Embroidery Design',
+    image: disneyworld,
+  },
+  {
+    quote: 'Really happy with how these caps turned out! The 3D puff lettering looks great and gives the logos a nice raised effect. Both caps came out just the way I wanted. Definitely happy with the work! 👍',
+    name: 'Adrienne Martinez',
+    project: 'ExxonMobil',
+    image: exxonMobil,
+  },
+  {
+    quote: "Love how this turned out! The character artwork looks fantastic, especially the different thread colors and lettering. It really brings the whole sweatshirt design together. Couldn't be happier with the finished look! 🙌",
+    name: 'Kennedy Clark',
+    project: 'Eye of the Tiger',
+    image: eyeOfTiger,
+  },
+  {
+    quote: 'Simple, clean, and exactly how I wanted it! The design looks lovely on the apron, and the lettering is clear and easy to read. Really pleased with how the final piece turned out. 😊',
+    name: 'Anghelina Parh',
+    project: 'Small Spaces',
+    image: smallSpaces,
+  },
+  {
+    quote: 'Outstanding embroidery digitizing work! The design has so many details and colors, but everything turned out sharp, clean, and beautifully stitched. Great attention to detail and excellent stitch quality. Very satisfied with the results! ⭐',
+    name: 'Gabriela Milanes',
+    project: 'Star Wars Embroidery Design',
+    image: starWars,
+  },
+  {
+    quote: 'Really impressed with the digitizing quality! The detailed artwork, multiple colors, and fine stitching all turned out beautifully. The design looks clean and professional on the final product. Great attention to detail and excellent results! 🎉',
+    name: 'Anghelina Parh',
+    project: 'Héróïne & Karl',
+    image: heroineKarl,
+  },
+];

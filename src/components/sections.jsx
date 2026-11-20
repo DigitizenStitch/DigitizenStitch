@@ -77,21 +77,31 @@ export function StatsBand() {
   );
 }
 
-/** Testimonials: real ones from data/site.js, otherwise labelled placeholders (preview only). */
+function TestimonialCard({ t, hidden }) {
+  return (
+    <li aria-hidden={hidden || undefined} className="card card-hover flex w-[320px] shrink-0 flex-col overflow-hidden sm:w-[380px]">
+      {t.image && <img src={t.image} alt={`Sewout for ${t.project}`} loading="lazy" className="aspect-[4/3] w-full object-cover" />}
+      <figure className="flex flex-1 flex-col p-7">
+        <QuoteIcon className="h-6 w-6 shrink-0 text-thread" aria-hidden="true" />
+        <blockquote className="mt-4 flex-1 text-lg leading-relaxed text-ink">{t.quote}</blockquote>
+        <figcaption className="mt-6 border-t border-ink/10 pt-5 text-sm"><b className="text-ink">{t.name}</b>{t.business && `, ${t.business}`}<span className="block text-slate-500">{t.project}</span></figcaption>
+      </figure>
+    </li>
+  );
+}
+
+/** Testimonials: real ones from data/site.js, otherwise labelled placeholders (preview only).
+ *  Real reviews auto-scroll in a looping marquee (paused on hover/focus, and whenever the
+ *  visitor's system prefers reduced motion — see the .marquee rules in index.css). */
 export function Testimonials() {
   if (TESTIMONIALS.length) {
     return (
-      <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {TESTIMONIALS.map((t, i) => (
-          <Reveal as="li" key={i} delay={i * 90} className="card flex flex-col overflow-hidden">
-            {t.image && <img src={t.image} alt={`Sewout for ${t.project}`} loading="lazy" className="aspect-[4/3] w-full object-cover" />}
-            <figure className="flex flex-1 flex-col p-7">
-              <blockquote className="flex-1 text-lg leading-relaxed text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-6 text-sm"><b className="text-ink">{t.name}</b>{t.business && `, ${t.business}`}<span className="block text-slate-500">{t.project}</span></figcaption>
-            </figure>
-          </Reveal>
-        ))}
-      </ul>
+      <div className="-mx-6 overflow-hidden sm:mx-0">
+        <ul className="testimonial-marquee flex w-max gap-6 px-6 sm:px-0">
+          {TESTIMONIALS.map((t, i) => <TestimonialCard key={i} t={t} />)}
+          {TESTIMONIALS.map((t, i) => <TestimonialCard key={`dup-${i}`} t={t} hidden />)}
+        </ul>
+      </div>
     );
   }
   if (!SHOW_PLACEHOLDERS) return null;
