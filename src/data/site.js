@@ -1,7 +1,11 @@
 // Single source of truth for verified business details.
 // Update contact info, prices or policies here and they change site-wide.
 
-export const SITE_URL = 'https://digitizenstitch.com';
+import sewoutHeroineKarl from '../assets/sewout-heroine-karl.jpg';
+import sewoutAnchoredHomestead from '../assets/sewout-anchored-homestead.jpg';
+import sewoutSmallSpaces from '../assets/sewout-small-spaces.jpg';
+
+export const SITE_URL ='https://digitizenstitch.com';
 
 export const BRAND = "Digitize'NStitch";
 
@@ -135,4 +139,26 @@ export const VERIFIED_STATS = [
 
 // Add genuine reviews here (with the client's permission). Leave empty to hide names.
 // { quote: '', name: '', business: '', project: '', image: importedImage }
-export const TESTIMONIALS = [];
+export const TESTIMONIALS = [
+  {
+    quote: 'The small text and character faces came out super clear once stitched. Replies were fast when I asked for a small adjustment, and the file ran without any thread breaks 👌',
+    name: 'Embroidery client',
+    business: '',
+    project: 'Heroine & Karl',
+    image: sewoutHeroineKarl,
+  },
+  {
+    quote: 'Really clean stitching on the anchor, leaves, and "Anchored Homestead" text. Quick response to my questions and on-time delivery 👍',
+    name: 'Embroidery client',
+    business: '',
+    project: 'Anchored Homestead',
+    image: sewoutAnchoredHomestead,
+  },
+  {
+    quote: 'The stitched blocks and "Small Spaces" lettering came out sharp and even. Fast replies when I needed a quick check-in, and the service has been super reliable ✨',
+    name: 'Embroidery client',
+    business: '',
+    project: 'Small Spaces',
+    image: sewoutSmallSpaces,
+  },
+];
