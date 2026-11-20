@@ -95,7 +95,7 @@ function TestimonialCard({ t, hidden }) {
 export function Testimonials() {
   if (TESTIMONIALS.length) {
     return (
-      <div className="-mx-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] sm:mx-0">
+      <div className="-mx-6 overflow-hidden sm:mx-0">
         <ul className="testimonial-marquee flex w-max gap-6 px-6 sm:px-0">
           {TESTIMONIALS.map((t, i) => <TestimonialCard key={i} t={t} />)}
           {TESTIMONIALS.map((t, i) => <TestimonialCard key={`dup-${i}`} t={t} hidden />)}
