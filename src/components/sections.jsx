@@ -79,11 +79,12 @@ export function StatsBand() {
 
 function TestimonialCard({ t, hidden }) {
   return (
-    <li aria-hidden={hidden || undefined} className="card flex w-[320px] shrink-0 flex-col overflow-hidden sm:w-[380px]">
+    <li aria-hidden={hidden || undefined} className="card card-hover flex w-[320px] shrink-0 flex-col overflow-hidden sm:w-[380px]">
       {t.image && <img src={t.image} alt={`Sewout for ${t.project}`} loading="lazy" className="aspect-[4/3] w-full object-cover" />}
       <figure className="flex flex-1 flex-col p-7">
-        <blockquote className="flex-1 text-lg leading-relaxed text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
-        <figcaption className="mt-6 text-sm"><b className="text-ink">{t.name}</b>{t.business && `, ${t.business}`}<span className="block text-slate-500">{t.project}</span></figcaption>
+        <QuoteIcon className="h-6 w-6 shrink-0 text-thread" aria-hidden="true" />
+        <blockquote className="mt-4 flex-1 text-lg leading-relaxed text-ink">{t.quote}</blockquote>
+        <figcaption className="mt-6 border-t border-ink/10 pt-5 text-sm"><b className="text-ink">{t.name}</b>{t.business && `, ${t.business}`}<span className="block text-slate-500">{t.project}</span></figcaption>
       </figure>
     </li>
   );
