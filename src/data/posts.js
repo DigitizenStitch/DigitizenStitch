@@ -287,7 +287,7 @@ export const POSTS = [
       ],
       [
         'p',
-        'If you have received a .dst file and your computer cannot show it, that is normal. A DST file is not a picture. This guide covers what is inside one, how to open it and when it is the right format to ask for.',
+        'If you have received a .dst file and your computer cannot show it, that is normal. A DST file is not a picture. This guide covers what is inside one, how to open it, whether you can edit it and when it is the right format to ask for. It is about the embroidery format only: the .dst extension is also used by unrelated programs, such as some CAD software.',
       ],
       [
         'tip',
@@ -305,7 +305,7 @@ export const POSTS = [
       ['h2', 'What is a DST file?'],
       [
         'p',
-        'DST stands for Data Stitch Tajima. It was created for Tajima machines, and because so many other machines and software packages learned to read it, it became a kind of common language for commercial embroidery.',
+        'DST is known as the Tajima format, after the machine maker whose embroidery machines it was made for. Because so many other machines and software packages learned to read it, it became a kind of common language for commercial embroidery.',
       ],
       [
         'p',
@@ -323,7 +323,7 @@ export const POSTS = [
       ],
       [
         'p',
-        'What it does not contain is thread color information. A DST file only says that a color change happens, not which color to use. That is why a design sent as DST should come with a color list or a preview image.',
+        'What it does not contain is thread color information. A DST file holds stitch coordinates and stop codes, so it says that a color change happens, not which color to use. That is why a design sent as DST should come with a color list or a preview image.',
       ],
       [
         'img',
@@ -343,28 +343,53 @@ export const POSTS = [
       [
         'ul',
         [
-          'DST is the broad commercial format. PES is made for Brother and Baby Lock.',
-          'PES stores thread colors. DST does not.',
+          'DST is the broad commercial format. PES is made for Brother and Baby Lock, and it stores thread colors, which DST does not.',
           'Both can hold the same stitches, but a poorly digitized design stays poor in either format.',
         ],
       ],
       [
         'p',
-        'If you are not sure, ask the person who runs the machine which format it takes. Our [embroidery file formats guide](/embroidery-file-formats) lists the common formats and the machines that use them.',
+        'If you are not sure, ask the person who runs the machine which format it takes. Our guide on [what a PES file is](/blog/what-is-a-pes-file) covers the Brother and Baby Lock side, and the [embroidery file formats guide](/embroidery-file-formats) lists the common formats and the machines that use them.',
       ],
       ['h2', 'How do you open a DST file?'],
       [
         'p',
-        'A normal picture viewer cannot open it. You need embroidery software or a viewer. Free tools such as Ink/Stitch, which works inside Inkscape, can import DST files, and Wilcom TrueSizer is a free viewer for common stitch formats. Most commercial machines can read a DST file from a USB stick and show a preview before you sew.',
+        'A normal picture viewer cannot open it. You need embroidery software or a stitch viewer.',
+      ],
+      [
+        'ul',
+        [
+          'On a computer: Ink/Stitch, a free extension for Inkscape, can import DST files and show them in Inkscape. Wilcom TrueSizer is another option for previewing stitch files, and digitizing programs such as Wilcom usually open DST files too.',
+          'Check what you see: look at the size and the number of color changes, and make sure they match what you ordered.',
+          'On a machine: many machines can read a design from a USB stick and show a preview before you sew. The exact steps depend on the model, so follow your machine manual.',
+        ],
+      ],
+      [
+        'img',
+        {
+          src: '/images/blog/what-is-a-dst-file-wilcom-screenshot.webp',
+          alt: 'Wilcom embroidery software window with a design named MOMMY open and Tajima shown in the title bar, displaying purple arched MOMMY lettering above a woman holding a baby and the text EST. 2026, with the thread color palette along the bottom',
+          w: 1366,
+          h: 728,
+        },
       ],
       [
         'tip',
         'Opening a DST file in a viewer is a good habit before sewing. You can check the size, the stitch count and the sewing order before you waste a garment.',
       ],
+      ['h2', 'Can you edit a DST file?'],
+      [
+        'p',
+        'Only in a limited way. A DST file holds stitch coordinates and machine commands, not the shapes, stitch types and settings the design was built from. That is why software makers such as Wilcom advise keeping the original editable file and exporting machine files only when the design is ready for production.',
+      ],
+      [
+        'p',
+        'For bigger changes, such as a new size, different text or changed shapes, the clean way is to go back to the original working file and export a fresh DST. If you ordered your design from us, tell us what to change and we will adjust it, with free edits and revisions included.',
+      ],
       ['h2', 'Can you turn a JPG or PNG into a DST file?'],
       [
         'p',
-        'Not properly. A JPG or PNG is only a picture. To sew well, the artwork has to be digitized: someone chooses the stitch types, direction, density and underlay for your size and fabric, then saves the result as a DST file. Automatic converters usually struggle with small text and fine detail. Our step-by-step guide on [how to make a DST file](/blog/how-to-make-a-dst-file) shows what that involves.',
+        'Not properly. A JPG or PNG is only a picture, so the artwork has to be digitized first: someone plans the stitch types, direction, density and underlay for your size and fabric, then saves the result as DST. Automatic converters usually struggle with small text and fine detail. Our guide on [how to make a DST file](/blog/how-to-make-a-dst-file) shows the steps and why converters fail.',
       ],
       [
         'img',
@@ -381,9 +406,17 @@ export const POSTS = [
         [
           'Renaming another file to .dst. The extension does not change what is inside, and the machine will not read it.',
           'Resizing too much. Stitch files do not scale like pictures, because density and stitch length are planned for one size.',
-          'Forgetting the colors. Keep a color list or preview with the file, since the DST itself has none.',
           'Ordering the wrong format. Confirm what your machine reads before you place the order.',
         ],
+      ],
+      [
+        'img',
+        {
+          src: '/images/blog/what-is-a-dst-file-hoodie.webp',
+          alt: 'Burgundy hoodie with a small cream embroidered mountain logo, folded next to thread spools and scissors',
+          w: 1600,
+          h: 899,
+        },
       ],
       ['h2', 'What to send when you order a DST file'],
       [
@@ -399,15 +432,6 @@ export const POSTS = [
         'p',
         'Tell us you need DST and we deliver it by email, with free edits and revisions if anything needs adjusting. You can [order a DST file](/embroidery-digitizing) for your logo: send your artwork through the [quote form](/quote) and we will confirm the price for your size.',
       ],
-      [
-        'img',
-        {
-          src: '/images/blog/what-is-a-dst-file-hoodie.webp',
-          alt: 'Burgundy hoodie with a small cream embroidered mountain logo, folded next to thread spools and scissors',
-          w: 1600,
-          h: 899,
-        },
-      ],
     ],
     faqs: [
       [
@@ -416,11 +440,15 @@ export const POSTS = [
       ],
       [
         'Does a DST file store thread colors?',
-        'No. It only marks where a color change happens, so you choose the thread colors on the machine or follow a color list that comes with the file.',
+        'No. It holds stitch coordinates and stop codes, so it marks where a color change happens but not which thread to use. Choose the colors on the machine or follow a color list that comes with the file.',
       ],
       [
         'Can I open a DST file on my computer?',
-        'Not with a normal picture viewer. You need embroidery software or a free viewer, and many machines can show a preview from a USB stick.',
+        'Not with a normal picture viewer. You need embroidery software or a viewer such as Ink/Stitch, and many machines can show a preview from a USB stick.',
+      ],
+      [
+        'Can I edit a DST file?',
+        'Only in a limited way. A DST holds stitches, not the original shapes and settings, so bigger changes are best made from the original working file and exported again as a new DST.',
       ],
       [
         'Is DST better than PES?',
