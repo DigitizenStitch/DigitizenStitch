@@ -212,7 +212,7 @@ export const POSTS = [
         h: 899,
       }],
       ['h2', 'What is the standard left chest logo size?'],
-      ['p', 'There is no single official standard, but most embroiderers and decorators land in the same range. For adult garments, 3 to 4 inches wide is the common answer. Height depends on the shape of the logo, and 2 to 3 inches is typical for a horizontal mark. Print-on-demand companies often cap left chest embroidery at a 4 x 4 inch area, which is one more reason 4 inches is treated as the upper limit. See [Printful\'s placement guide](https://www.printful.com/blog/t-shirt-design-placement-guide) for an example.'],
+      ['p', 'There is no single official standard, but most embroiderers and decorators land in the same range. For adult garments, 3 to 4 inches wide is the common answer, and many embroidery shops quote 3.5 to 4 inches. Height depends on the shape of the logo, and 2 to 3 inches is typical for a horizontal mark. Print-on-demand companies often cap left chest embroidery at a 4 x 4 inch area, which is one more reason 4 inches is treated as the upper limit. See [Printful\'s placement guide](https://www.printful.com/blog/t-shirt-design-placement-guide) for an example.'],
       ['h2', 'Left chest logo size chart'],
       ['p', 'These are the typical ranges most decorators work with. Use them as a starting point and check them on the actual garment.'],
       ['table', {
@@ -221,13 +221,14 @@ export const POSTS = [
         rows: [
           ['Adult polo or T-shirt', '3–4 in (76–102 mm)', '2–3 in (51–76 mm)', 'Top of the logo about 3–4 in below the collar, or center about 7–9 in below the shoulder seam; about 3–5 in from the center line'],
           ['Kids (youth) shirt', '2–3.5 in (51–89 mm)', 'In proportion to the width', 'Often a little closer to the collar, around 2 in below it; check it on the garment'],
-          ['Hoodie or zip jacket', '3–4 in (76–102 mm)', '2–3 in (51–76 mm)', 'Clear of the zip, hood and pocket; check it with the hoodie worn'],
+          ['Hoodie or zip jacket', '3–4 in (76–102 mm); some guides allow up to 4.5 in', '2–3 in (51–76 mm)', 'Clear of the zip, hood and pocket; check it with the hoodie worn'],
         ],
       }],
       ['p', 'Sources do not agree on exact figures, especially for kids sizes, so treat these as ranges. If your garment supplier or customer has a spec sheet, that wins. Putting the same logo on caps too? Cap sizes work differently, so see the size table in our [cap and hat logo digitizing guide](/blog/cap-hat-logo-digitizing-guide).'],
       ['tip', 'Small logos and small text: keep lettering at least about 0.2 to 0.25 in (5 to 6 mm) tall and avoid hairline details. Below that, letters tend to fill in and become hard to read.'],
       ['ul', [
         'XL and XXL garments: some guides allow 4 to 4.5 inches wide. Going wider than about 4 inches can drift toward the armpit.',
+        'Polos: some guides suggest a slightly smaller logo, about 2.5 to 3.5 inches wide, so it clears the placket. If the shirt has a pocket, place the logo above it rather than on it.',
         'Fitted ladies tops: the chest is narrower, so many decorators stay at the smaller end of the adult range. Some guides also place the logo about 1 inch higher than on a men\'s cut.',
         'By shape: [Thread Logic](https://threadlogic.com/blogs/logo-embroidery/your-custom-logo-embroidery-size-guide) suggests about 2.5 in for a circle, 3 in or less for a square, and up to 3.5 in wide for a horizontal logo.',
       ]],
