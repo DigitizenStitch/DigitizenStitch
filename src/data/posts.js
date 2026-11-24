@@ -228,7 +228,7 @@ export const POSTS = [
       ['tip', 'Small logos and small text: keep lettering at least about 0.2 to 0.25 in (5 to 6 mm) tall and avoid hairline details. Below that, letters tend to fill in and become hard to read.'],
       ['ul', [
         'XL and XXL garments: some guides allow 4 to 4.5 inches wide. Going wider than about 4 inches can drift toward the armpit.',
-        'Polos: some guides suggest a slightly smaller logo, about 2.5 to 3.5 inches wide, so it clears the placket. If the shirt has a pocket, place the logo above it rather than on it.',
+        'Polos: some guides suggest a slightly smaller logo, about 2.5 to 3.5 inches wide, so it clears the placket. If the shirt has a pocket, most guides put the logo above it, and some put it on the pocket, so check the clearance.',
         'Fitted ladies tops: the chest is narrower, so many decorators stay at the smaller end of the adult range. Some guides also place the logo about 1 inch higher than on a men\'s cut.',
         'By shape: [Thread Logic](https://threadlogic.com/blogs/logo-embroidery/your-custom-logo-embroidery-size-guide) suggests about 2.5 in for a circle, 3 in or less for a square, and up to 3.5 in wide for a horizontal logo.',
       ]],
