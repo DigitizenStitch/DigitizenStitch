@@ -38,9 +38,9 @@ export const POSTS = [
       ['p', 'Software vendors publish starting points rather than hard rules here, since fill settings get adjusted per design. Wilcom lists common settings around a 0.38mm spacing and a 4mm stitch length as a typical baseline, with the row offset helping the rows blend instead of showing visible lines. Fill stitch can also double as an underlay layer underneath other stitching, holding the fabric steady before the top stitches go in.'],
       ['img', {
         src: '/images/blog/satin-stitch-vs-fill-stitch-2.webp',
-        alt: 'Green flaming heart patch with an Irish Hottie banner in fill-stitch color blocks, pinned to a beige ribbed sweater',
+        alt: 'Industrial embroidery machine needle head threaded with multiple colors, stitching into navy fabric lit by workshop lighting',
         w: 1600,
-        h: 2400,
+        h: 2843,
       }],
       ['h2', 'Satin stitch vs fill stitch: side by side'],
       ['table', {
@@ -60,9 +60,9 @@ export const POSTS = [
       ['p', 'One more thing worth knowing: stitch type is a cost and durability factor, not just a look. A design covered entirely in long satin blocks tends to carry more snag risk than the same shape split sensibly between satin and fill. That is part of why "just make it all satin, it looks nicer" usually is not the right call on anything wider than a letter.'],
       ['img', {
         src: '/images/blog/satin-stitch-vs-fill-stitch-3.webp',
-        alt: 'Round embroidered patch on a black cap showing an orange and yellow sunset, white mountains and blue water in fill stitch, with satin-stitched lettering around the border',
+        alt: 'Multi-head industrial embroidery machine with rows of colored thread cones, positioned over fabric ready to stitch a design',
         w: 1600,
-        h: 1067,
+        h: 2400,
       }],
       ['h2', 'What this means for the logo you send us'],
       ['p', 'You do not need to specify satin or fill when you send over your logo, that call is part of what a digitizer does. But it helps to flag anything unusual: very small text under about a quarter inch, a shape that needs to stay a specific solid color with no texture, or a design you have seen stitched badly elsewhere so we know what to avoid. Every design here goes through this same satin/fill decision before it is turned into a stitch file, and [free edits](/pricing) are included if something needs adjusting once you see the file.'],
